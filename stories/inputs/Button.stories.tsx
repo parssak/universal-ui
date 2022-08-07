@@ -10,6 +10,19 @@ export default {
         type: 'text',
       },
     },
+    theme: {
+      control: {
+        type: 'select',
+        options: [
+          'primary',
+          'secondary',
+          'success',
+          'warning',
+          'error',
+          'purple',
+        ],
+      },
+    },
   },
   args: {
     children: 'Button',
