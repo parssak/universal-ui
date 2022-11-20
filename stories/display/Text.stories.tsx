@@ -39,7 +39,7 @@ const RichTemplate = args => {
       <Text {...args} variant="h2" className="mt-6">
         What is this about?
       </Text>
-      <Text {...args} className="mt-2">
+      <Text {...args} className="mt-4">
         This article is essentially about nothing. It is a dummy article that is
         used to test the Text component.
       </Text>
@@ -75,7 +75,7 @@ const RichTemplate = args => {
         package.
       </Text>
 
-      <Text {...args} className="mt-2">
+      <Text {...args} className="mt-1">
         You can also use the{' '}
         <Text {...args} variant="code" size={getSmallerSize(args.size)}>
           Text

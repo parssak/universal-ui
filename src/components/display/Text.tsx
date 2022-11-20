@@ -51,8 +51,8 @@ export const Text = forwardRefWithAs(function<
       h2: `text-3xl   font-semibold tracking-tight`,
       h3: `text-2xl   font-semibold tracking-normal`,
       h4: `text-xl    font-medium   tracking-tight`,
-      h5: `text-lg    font-semibold tracking-tight`,
-      h6: `text-base  font-medium   tracking-normal `,
+      h5: `text-base  font-semibold tracking-tight`,
+      h6: `text-sm    font-medium   tracking-normal `,
       p: ` text-size  font-normal   tracking-normal`,
       code: `font-mono border text-size border-theme-base px-1 py-0.5 rounded font-medium whitespace-nowrap`,
       kbd: `
