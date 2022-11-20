@@ -1,5 +1,5 @@
-import { isSSR } from './ssr';
-import { createPortal } from 'react-dom';
+import { isSSR } from "./ssr";
+import { createPortal } from "react-dom";
 
 export interface PortalProps {
   children: React.ReactNode;
@@ -7,11 +7,7 @@ export interface PortalProps {
   disabled?: boolean;
 }
 
-export function Portal({
-  children,
-  container,
-  disabled = false,
-}: PortalProps): JSX.Element {
+export function Portal({ children, container, disabled = false }: PortalProps): JSX.Element {
   if (disabled || isSSR()) {
     return children as JSX.Element;
   }

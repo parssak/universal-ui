@@ -4,10 +4,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter var', 'sans-serif'],
+        sans: ['Inter var', 'Inter', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
     },
   },
-  plugins: [require('./src/plugin')],
+  plugins: [require('./src/config/plugin.cjs')],
 };

@@ -1,9 +1,8 @@
-import { useMemo } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { useMemo } from "react";
 
 export const useClassNames = (
   fn: () => (string | undefined | false | null)[],
-  deps: any[]
+  deps: React.DependencyList
 ) => {
   return useMemo(() => {
     const classes = fn();
@@ -12,6 +11,5 @@ export const useClassNames = (
 };
 
 export const cx = (classes: Array<string | undefined | false | null>) => {
-  const c = Array.from(classes).filter(Boolean).join(' ');
-  return twMerge(c);
+  return Array.from(classes).filter(Boolean).join(" ");
 };

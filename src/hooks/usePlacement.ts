@@ -1,10 +1,10 @@
-import { Placement } from '@popperjs/core';
-import { usePopper } from 'react-popper';
+import { Placement } from "@popperjs/core";
+import { usePopper } from "react-popper";
 
 export const usePlacement = ({
   reference,
   popper,
-  placement,
+  placement
 }: {
   reference: Element | null;
   popper: HTMLElement | null;
@@ -14,11 +14,11 @@ export const usePlacement = ({
     placement,
     modifiers: [
       {
-        name: 'offset',
+        name: "offset",
         options: {
-          offset: [0, 4],
-        },
-      },
-    ],
+          offset: [0, 4]
+        }
+      }
+    ]
   });
 };

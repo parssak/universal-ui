@@ -4,30 +4,10 @@ import { Button } from '../../src';
 
 export default {
   component: Button,
-  argTypes: {
-    children: {
-      control: {
-        type: 'text',
-      },
-    },
-    theme: {
-      control: {
-        type: 'select',
-        options: [
-          'primary',
-          'secondary',
-          'success',
-          'warning',
-          'info',
-          'error',
-          'purple',
-        ],
-      },
-    },
-  },
   args: {
     children: 'Button',
   },
+
 };
 
 const Template = args => (

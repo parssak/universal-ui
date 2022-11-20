@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { nanoid } from 'nanoid';
+import { useMemo } from "react";
+import { nanoid } from "nanoid";
 
 export const useIdentifier = (id?: string | undefined): string => {
   return useMemo(() => {
@@ -7,4 +7,3 @@ export const useIdentifier = (id?: string | undefined): string => {
     return `id-${nanoid()}`;
   }, [id]);
 };
-
