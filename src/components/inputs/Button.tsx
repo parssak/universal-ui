@@ -8,6 +8,7 @@ import {
   Props,
   render,
   unwrapConfigClasses,
+  transformTheme,
 } from '../../core';
 
 export interface ButtonProps {
@@ -28,7 +29,7 @@ export const Button = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base =
-      'font-medium tracking-tight rounded transition-all duration-75';
+      'font-medium tracking-tight rounded transition-all duration-75 border shadow';
 
     const sizeClass =
       'pl-size-x pr-size-x pt-size-y pb-size-y text-size leading-size';
@@ -66,12 +67,7 @@ export const Button = forwardRefWithAs(function<
       ref,
       className: classNames,
       'data-size': size,
-      'data-theme':
-        theme !== undefined
-          ? enabled || dark
-            ? `${theme}-dark`
-            : theme
-          : undefined,
+      'data-theme': transformTheme(theme, enabled, dark),
       ...rest,
     },
     defaultTag: DEFAULT_BUTTON_TAG,
