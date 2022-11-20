@@ -8,7 +8,7 @@ export interface PortalProps {
 }
 
 export function Portal({ children, container, disabled = false }: PortalProps): JSX.Element {
-  if (disabled || isSSR()) {
+  if (disabled || isSSR) {
     return children as JSX.Element;
   }
 
