@@ -16,6 +16,8 @@ export const themes = {
       'hover:border-light-primary-border-active dark:hover:border-dark-primary-border-active',
     'focus:border-active':
       'focus:border-light-primary-border-active dark:focus:border-dark-primary-border-active',
+    'focus-within:border-active':
+      'focus-within:border-light-primary-border-active dark:focus-within:border-dark-primary-border-active',
     text: 'text-light-primary-text dark:text-dark-primary-text',
     'disabled:text':
       'disabled:text-light-primary-text disabled:dark:text-dark-primary-text',
@@ -28,6 +30,8 @@ export const themes = {
       'hover:text-light-primary-text-active dark:hover:text-dark-primary-text-active',
     divide:
       'divide-light-primary-border-divide dark:divide-dark-primary-border-divide',
+    shadow:
+      'shadow-light-primary-border-active/5 dark:shadow-dark-primary-border-active/5',
   },
   secondary: {
     bg: 'bg-light-secondary-bg dark:bg-dark-secondary-bg',
@@ -46,6 +50,8 @@ export const themes = {
       'hover:border-light-secondary-border-active dark:hover:border-dark-secondary-border-active',
     'focus:border-active':
       'focus:border-light-secondary-border-active dark:focus:border-dark-secondary-border-active',
+    'focus-within:border-active':
+      'focus-within:border-light-secondary-border-active dark:focus-within:border-dark-secondary-border-active',
     text: 'text-light-secondary-text dark:text-dark-secondary-text',
     'disabled:text':
       'disabled:text-light-secondary-text disabled:dark:text-dark-secondary-text',
@@ -58,6 +64,8 @@ export const themes = {
       'hover:text-light-secondary-text-active dark:hover:text-dark-secondary-text-active',
     divide:
       'divide-light-secondary-border-divide dark:divide-dark-secondary-border-divide',
+    shadow:
+      'shadow-light-secondary-border-active/10 dark:shadow-dark-secondary-border-active/10',
   },
   success: {
     bg: 'bg-light-success-bg dark:bg-dark-success-bg',
@@ -75,6 +83,8 @@ export const themes = {
       'hover:border-light-success-border-active dark:hover:border-dark-success-border-active',
     'focus:border-active':
       'focus:border-light-success-border-active dark:focus:border-dark-success-border-active',
+    'focus-within:border-active':
+      'focus-within:border-light-success-border-active dark:focus-within:border-dark-success-border-active',
     text: 'text-light-success-text dark:text-dark-success-text',
     'disabled:text':
       'disabled:text-light-success-text disabled:dark:text-dark-success-text',
@@ -87,6 +97,8 @@ export const themes = {
       'hover:text-light-success-text-active dark:hover:text-dark-success-text-active',
     divide:
       'divide-light-success-border-divide dark:divide-dark-success-border-divide',
+    shadow:
+      'shadow-light-success-border-active/10 dark:shadow-dark-success-border-active/10',
   },
   warning: {
     bg: 'bg-light-warning-bg dark:bg-dark-warning-bg',
@@ -104,6 +116,8 @@ export const themes = {
       'hover:border-light-warning-border-active dark:hover:border-dark-warning-border-active',
     'focus:border-active':
       'focus:border-light-warning-border-active dark:focus:border-dark-warning-border-active',
+    'focus-within:border-active':
+      'focus-within:border-light-warning-border-active dark:focus-within:border-dark-warning-border-active',
     text: 'text-light-warning-text dark:text-dark-warning-text',
     'disabled:text':
       'disabled:text-light-warning-text disabled:dark:text-dark-warning-text',
@@ -116,12 +130,15 @@ export const themes = {
       'hover:text-light-warning-text-active dark:hover:text-dark-warning-text-active',
     divide:
       'divide-light-warning-border-divide dark:divide-dark-warning-border-divide',
+    shadow:
+      'shadow-light-warning-border-active/10 dark:shadow-dark-warning-border-active/10',
   },
   error: {
     bg: 'bg-light-error-bg dark:bg-dark-error-bg',
     'disabled:bg': 'disabled:bg-light-error-bg disabled:dark:bg-dark-error-bg',
     'bg-flipped': 'bg-dark-error-bg dark:bg-light-error-bg',
     'hover:bg-flipped': 'hover:bg-dark-error-bg dark:hover:bg-light-error-bg',
+    'focus:bg-flipped': 'focus:bg-dark-error-bg dark:focus:bg-light-error-bg',
     'bg-active': 'bg-light-error-bg-active dark:bg-dark-error-bg-active',
     ring: 'ring-light-error-ring dark:ring-dark-error-ring',
     border: 'border-light-error-border dark:border-dark-error-border',
@@ -131,6 +148,8 @@ export const themes = {
       'hover:border-light-error-border-active dark:hover:border-dark-error-border-active',
     'focus:border-active':
       'focus:border-light-error-border-active dark:focus:border-dark-error-border-active',
+    'focus-within:border-active':
+      'focus-within:border-light-error-border-active dark:focus-within:border-dark-error-border-active',
     text: 'text-light-error-text dark:text-dark-error-text',
     'disabled:text':
       'disabled:text-light-error-text disabled:dark:text-dark-error-text',
@@ -139,10 +158,14 @@ export const themes = {
     'text-flipped': 'text-dark-error-text dark:text-light-error-text',
     'hover:text-flipped':
       'hover:text-dark-error-text dark:hover:text-light-error-text',
+    'focus:text-flipped':
+      'focus:text-dark-error-text dark:focus:text-light-error-text',
     'hover:text-active':
       'hover:text-light-error-text-active dark:hover:text-dark-error-text-active',
     divide:
       'divide-light-error-border-divide dark:divide-dark-error-border-divide',
+    shadow:
+      'shadow-light-error-border-active/10 dark:shadow-dark-error-border-active/10',
   },
   info: {
     bg: 'bg-light-info-bg dark:bg-dark-info-bg',
@@ -158,6 +181,8 @@ export const themes = {
       'hover:border-light-info-border-active dark:hover:border-dark-info-border-active',
     'focus:border-active':
       'focus:border-light-info-border-active dark:focus:border-dark-info-border-active',
+    'focus-within:border-active':
+      'focus-within:border-light-info-border-active dark:focus-within:border-dark-info-border-active',
     text: 'text-light-info-text dark:text-dark-info-text',
     'disabled:text':
       'disabled:text-light-info-text disabled:dark:text-dark-info-text',
@@ -170,6 +195,8 @@ export const themes = {
       'hover:text-light-info-text-active dark:hover:text-dark-info-text-active',
     divide:
       'divide-light-info-border-divide dark:divide-dark-info-border-divide',
+    shadow:
+      'shadow-light-info-border-active/10 dark:shadow-dark-info-border-active/10',
   },
   purple: {
     bg: 'bg-light-purple-bg dark:bg-dark-purple-bg',
@@ -186,6 +213,8 @@ export const themes = {
       'hover:border-light-purple-border-active dark:hover:border-dark-purple-border-active',
     'focus:border-active':
       'focus:border-light-purple-border-active dark:focus:border-dark-purple-border-active',
+    'focus-within:border-active':
+      'focus-within:border-light-purple-border-active dark:focus-within:border-dark-purple-border-active',
     text: 'text-light-purple-text dark:text-dark-purple-text',
     'disabled:text':
       'disabled:text-light-purple-text disabled:dark:text-dark-purple-text',
@@ -198,5 +227,7 @@ export const themes = {
       'hover:text-light-purple-text-active dark:hover:text-dark-purple-text-active',
     divide:
       'divide-light-purple-border-divide dark:divide-dark-purple-border-divide',
+    shadow:
+      'shadow-light-purple-border-active/10 dark:shadow-dark-purple-border-active/10',
   },
 } as const;

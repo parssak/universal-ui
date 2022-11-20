@@ -18,6 +18,7 @@ export default {
           'secondary',
           'success',
           'warning',
+          'info',
           'error',
           'purple',
         ],

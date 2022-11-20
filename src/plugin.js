@@ -6,6 +6,8 @@ delete colors['trueGray'];
 delete colors['coolGray'];
 delete colors['blueGray'];
 
+const offBlack = '#0a0a0a';
+
 const mainFunction = require('tailwindcss/plugin')(function({}) {}, {
   theme: {
     colors: {
@@ -13,19 +15,19 @@ const mainFunction = require('tailwindcss/plugin')(function({}) {}, {
       light: {
         bg: colors.white,
         primary: {
-          bg: colors.black,
+          bg: offBlack,
           'bg-active': colors.neutral[50],
           text: colors.white,
-          'text-active': colors.white,
+          'text-active': offBlack,
           border: colors.neutral[300],
-          'border-active': colors.black,
-          ring: colors.black,
+          'border-active': offBlack,
+          ring: offBlack,
         },
         secondary: {
           bg: colors.white,
           'bg-active': colors.neutral[100],
           text: colors.neutral[600],
-          'text-active': colors.neutral[800],
+          'text-active': colors.neutral[900],
           border: colors.neutral[300],
           'border-active': colors.neutral[400],
           ring: colors.neutral[600],
@@ -40,13 +42,13 @@ const mainFunction = require('tailwindcss/plugin')(function({}) {}, {
           ring: colors.red[500],
         },
         success: {
-          bg: colors.green[500],
-          'bg-active': colors.green[100],
+          bg: colors.emerald[500],
+          'bg-active': colors.emerald[100],
           text: colors.white,
-          'text-active': colors.green[500],
-          border: colors.green[500],
-          'border-active': colors.green[600],
-          ring: colors.green[500],
+          'text-active': colors.emerald[500],
+          border: colors.emerald[500],
+          'border-active': colors.emerald[600],
+          ring: colors.emerald[500],
         },
         info: {
           bg: colors.blue[600],
@@ -60,7 +62,7 @@ const mainFunction = require('tailwindcss/plugin')(function({}) {}, {
         warning: {
           bg: colors.amber[500],
           'bg-active': colors.amber[100],
-          text: colors.black,
+          text: offBlack,
           'text-active': colors.amber[500],
           border: colors.amber[500],
           'border-active': colors.amber[600],
@@ -77,18 +79,18 @@ const mainFunction = require('tailwindcss/plugin')(function({}) {}, {
         },
       },
       dark: {
-        bg: colors.black,
+        bg: offBlack,
         primary: {
           bg: colors.white,
           'bg-active': colors.neutral[900],
-          text: colors.black,
-          'text-active': colors.black,
+          text: offBlack,
+          'text-active': colors.white,
           border: colors.neutral[600],
           'border-active': colors.white,
           ring: colors.white,
         },
         secondary: {
-          bg: colors.black,
+          bg: offBlack,
           'bg-active': colors.neutral[800],
           text: colors.neutral[300],
           'text-active': colors.neutral[200],
@@ -106,13 +108,13 @@ const mainFunction = require('tailwindcss/plugin')(function({}) {}, {
           ring: colors.red[500],
         },
         success: {
-          bg: colors.green[500],
-          'bg-active': colors.green[900],
+          bg: colors.emerald[500],
+          'bg-active': colors.emerald[900],
           text: colors.white,
-          'text-active': colors.green[300],
-          border: colors.green[500],
-          'border-active': colors.green[500],
-          ring: colors.green[500],
+          'text-active': colors.emerald[300],
+          border: colors.emerald[500],
+          'border-active': colors.emerald[500],
+          ring: colors.emerald[500],
         },
         info: {
           bg: colors.blue[500],
@@ -126,7 +128,7 @@ const mainFunction = require('tailwindcss/plugin')(function({}) {}, {
         warning: {
           bg: colors.amber[500],
           'bg-active': colors.amber[900],
-          text: colors.black,
+          text: offBlack,
           'text-active': colors.amber[300],
           border: colors.amber[500],
           'border-active': colors.amber[500],

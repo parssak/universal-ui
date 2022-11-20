@@ -1,3 +1,25 @@
+@import url("https://rsms.me/inter/inter.css");
+@import url("http://fonts.cdnfonts.com/css/jetbrains-mono");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .gradient-border {
+    --size: 40px;
+    --gradient: linear-gradient(to top, #ff0844, #ffb199);
+    @apply relative;
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: var(--size);
+    background: var(--gradient);
+    mask: linear-gradient(black, black) content-box, linear-gradient(black, black);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+}
