@@ -11,5 +11,5 @@ A customizable Tailwind React UI library, utilizing data-attributes and TW3.2 fu
 2. No components should ever require `!important` selectors of any kind to override any defaults.
 3. Many different custom theme styles should be achieveable through the `tailwind.config.js` and the `UniversalUIThemeProvider`
 4. Portalling is opt-in whenever possible, but always available
-5. Refs are **always** forwarded.
+5. Refs are **always** forwarded
 6. Composition is king
