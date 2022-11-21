@@ -9,5 +9,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('./src/config/plugin.cjs')],
+  plugins: [require('./src/plugin.js')],
 };
