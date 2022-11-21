@@ -60,7 +60,7 @@ export const Button = forwardRefWithAs(function<
     const configClasses = unwrapConfigClasses('button', config, props);
 
     return [base, sizeClass, variants[variant], configClasses, className];
-  }, [props]);
+  }, [size, theme, variant, dark, className, props]);
 
   return render({
     props: {

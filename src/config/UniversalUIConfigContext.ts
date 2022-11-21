@@ -7,12 +7,18 @@ export type UniversalUIConfigContextProps = {
     button?: string | ((props: ButtonProps) => string);
     text?: string | ((props: TextProps) => string);
   };
+  darkMode?: {
+    enabled?: boolean;
+  }
 };
 
 export const UniversalUIConfigContext = createContext<
   UniversalUIConfigContextProps
 >({
   components: {},
+  darkMode: {
+    enabled: false,
+  },
 });
 
 export const useUniversalUIConfig = () => {

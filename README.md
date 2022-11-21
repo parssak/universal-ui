@@ -13,3 +13,136 @@ A customizable Tailwind React UI library, utilizing data-attributes and TW3.2 fu
 4. Portalling is opt-in whenever possible, but always available
 5. Refs are **always** forwarded
 6. Composition is king
+7. Full light/dark mode support, with ability to override defaults
+
+## Getting Started
+This library assumes your project is configured with Tailwind 3.2+. 
+
+First install the library with your package manager of choice:
+
+```bash
+npm install @universal-ui/react
+```
+
+Then, import the `UniversalUIThemeProvider` and wrap your app in it:
+
+```jsx
+import { UniversalUIThemeProvider } from '@universal-ui/react';
+
+function App() {
+  return (
+    <UniversalUIThemeProvider>
+      <YourApp />
+    </UniversalUIThemeProvider>
+  );
+}
+```
+
+Lastly, add the following to your `tailwind.config.js`:
+
+```js
+
+content: [
+  ...,
+  "./node_modules/@parssa/universal-ui/src/components/**/*.{ts,tsx,js,jsx}",
+  ...
+],
+plugins: [
+  ...
+    require("@parssa/universal-ui/src/plugin"),
+  ...
+  ]
+```
+
+## Theming / Configuration
+
+There are two main ways to theme this library: through the `tailwind.config.js` and through the `UniversalUIThemeProvider`.
+
+### Tailwind Config
+Here is where you can apply overrides for the semantic colors, and things such as the spacing scale.
+
+Example theme replacing the brand color with some green hues.
+
+```js
+theme: {
+   universalUI: {
+    themes: [
+      {
+          name: "brand",
+          colors: {
+            50: "#f1f8f4",
+            100: "#ddeee3",
+            200: "#bdddc9",
+            300: "#9ac8af",
+            400: "#63a482",
+            500: "#428766",
+            600: "#306b50",
+            700: "#265641",
+            800: "#204536",
+            900: "#1b392d"
+          }
+        },
+    ]
+  }
+}
+```
+
+One thing to note is it's ideal to provide a color scale from 50-900, as these colors are all used when determining the light/dark variants for the components.
+
+### UniversalUIThemeProvider
+
+
+The `UniversalUIThemeProvider` is a React Context Provider that allows you to override the theme on a per-instance basis. This is useful for changing the feel of all components on a page, or for a specific component.
+
+Per component, you can pass in a string, or a function which returns the instance's `props`, to apply styles conditionally.
+
+```jsx
+import { UniversalUIThemeProvider } from '@universal-ui/react';
+
+const config = {
+  components: {
+    button: ({ theme }: ButtonProps) => {
+      if (theme === 'error') {
+        return 'cursor-not-allowed';
+      }
+      return '';
+    },
+    text: ({ variant }: TextProps) => {
+      if (variant === 'h1') {
+        return 'underline'
+      }
+
+      return '';
+    },
+  }
+}
+
+function App() {
+  return (
+    <UniversalUIThemeContext.Provider value={config}>
+      <YourApp />
+    </UniversalUIThemeContext.Provider>
+  );
+}
+```
+
+
+## Current Issues
+**Striking a balance between SSR and light/dark mode support.** Currently, SSR does not play nice with light/dark mode support, if the client preference is dark mode, the page will still return a light mode theme (as it doesn't have access to the window object). There are two "workarounds" to this, but I'm still looking for a better solution.
+
+1. Use the `UniversalUIThemeProvider` to force the app into light or dark mode
+```js
+const config = {
+  ...
+  darkMode: {
+    enabled: true
+  }
+} 
+```
+2. Dynamically render the components you wish to use only on the client, this preserves light/dark mode support but is worse for SEO. 
+
+```jsx
+const UI = dynamic(() => import('@universal-ui/react'), { ssr: false });
+
+<UI.Text>Hello World</UI.Text>
+```

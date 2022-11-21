@@ -37,7 +37,7 @@ export const Text = forwardRefWithAs(function<
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
-    const base = 'leading-size text-size';
+    const base = '';
 
     const colorVariants: Record<TextColorVariant, string> = {
       base: `text-theme-base`,
@@ -53,8 +53,8 @@ export const Text = forwardRefWithAs(function<
       h4: `text-xl    font-medium   tracking-tight`,
       h5: `text-base  font-semibold tracking-tight`,
       h6: `text-sm    font-medium   tracking-normal `,
-      p: ` text-size  font-normal   tracking-normal`,
-      code: `font-mono border text-size border-theme-base px-1 py-0.5 rounded font-medium whitespace-nowrap`,
+      p: ` text-size  font-normal   tracking-normal leading-size`,
+      code: `font-mono border text-size border-theme-base px-1 py-0.5 rounded font-medium whitespace-nowrap leading-size`,
       kbd: `
         font-medium font-sans
         text-size
@@ -77,7 +77,7 @@ export const Text = forwardRefWithAs(function<
       configClasses,
       className,
     ];
-  }, [props]);
+  }, [size, theme, variant, colorVariant, config, props]);
 
   const renderElement: React.ElementType = useMemo(() => {
     if (props.as) return props.as;
