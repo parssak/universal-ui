@@ -142,7 +142,7 @@ const config = {
 2. Dynamically render the components you wish to use only on the client, this preserves light/dark mode support but is worse for SEO. 
 
 ```jsx
-const UI = dynamic(() => import('@universal-ui/react'), { ssr: false });
+const Text = dynamic(() => import('@universal-ui/react').then(mod => mod.Text), { ssr: false });
 
-<UI.Text>Hello World</UI.Text>
+<Text>Hello World</Text>
 ```
