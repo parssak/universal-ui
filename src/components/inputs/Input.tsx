@@ -12,18 +12,18 @@ import {
 } from '../../core';
 import { getInputBaseCx, getInputSizeCx, getInputVariantCx } from './constants';
 
-export interface ButtonProps {
+export interface InputProps {
   size?: Size;
   theme?: Theme;
   variant?: Variant;
   dark?: boolean;
 }
 
-const DEFAULT_BUTTON_TAG = 'button';
+const DEFAULT_INPUT_TAG = 'input';
 
-export const Button = forwardRefWithAs(function<
-  TTag extends React.ElementType = typeof DEFAULT_BUTTON_TAG
->(props: Props<TTag> & ButtonProps, ref: React.Ref<TTag>) {
+export const Input = forwardRefWithAs(function<
+  TTag extends React.ElementType = typeof DEFAULT_INPUT_TAG
+>(props: Props<TTag> & InputProps, ref: React.Ref<TTag>) {
   const {
     size,
     theme = 'neutral',
@@ -38,7 +38,9 @@ export const Button = forwardRefWithAs(function<
   const classNames = useClassNames(() => {
     const base = getInputBaseCx();
     const sizeClass = getInputSizeCx();
-    const variantClass = getInputVariantCx(variant);
+    const variantClass = getInputVariantCx(variant, {
+      removeHover: true,
+    });
     const configClasses = unwrapConfigClasses('button', config, props);
 
     return [base, sizeClass, variantClass, configClasses, className];
@@ -52,6 +54,6 @@ export const Button = forwardRefWithAs(function<
       'data-theme': transformTheme(theme, enabled, dark),
       ...rest,
     },
-    defaultTag: DEFAULT_BUTTON_TAG,
+    defaultTag: DEFAULT_INPUT_TAG,
   });
 });

@@ -24,6 +24,7 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
     "bg-base": colorMap(0, 8),
     "bg-inverted": colorMap(8, 0),
     "bg-active": colorMap(2, 6),
+    "bg-inverted-active": colorMap(5, 5),
     "border-base": colorMap(4, 5),
     "border-inverted": colorMap(5, 4),
     "border-active": colorMap(3, 5)

@@ -105,4 +105,6 @@ const RichTemplate = args => {
 };
 
 export const Rich = RichTemplate.bind({});
-Rich.args = {};
+Rich.args = {
+  size: 'md'
+};
