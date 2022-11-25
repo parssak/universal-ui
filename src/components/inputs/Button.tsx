@@ -24,21 +24,23 @@ const DEFAULT_BUTTON_TAG = 'button';
 export const Button = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_BUTTON_TAG
 >(props: Props<TTag> & ButtonProps, ref: React.Ref<TTag>) {
-  const {
-    size,
-    theme,
-    variant = 'solid',
-    dark,
-    className,
-    ...rest
-  } = props;
+  const { size, theme, variant = 'solid', dark, className, ...rest } = props;
   const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx();
     const sizeClass = getInputSizeCx();
-    const variantClass = getInputVariantCx(variant);
+    const variantClass = getInputVariantCx(variant, {
+      override: v => {
+        switch (v) {
+          case 'solid':
+            return 'border-theme-base/20';
+          default:
+            return '';
+        }
+      },
+    });
     const configClasses = unwrapConfigClasses('button', config, props);
 
     return [base, sizeClass, variantClass, configClasses, className];

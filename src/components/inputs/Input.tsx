@@ -24,24 +24,20 @@ const DEFAULT_INPUT_TAG = 'input';
 export const Input = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_INPUT_TAG
 >(props: Props<TTag> & InputProps, ref: React.Ref<TTag>) {
-  const {
-    size,
-    theme = 'neutral',
-    variant = 'solid',
-    dark,
-    className,
-    ...rest
-  } = props;
+  const { size, theme, variant = 'solid', dark, className, ...rest } = props;
   const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx();
+
     const sizeClass = getInputSizeCx();
     const variantClass = getInputVariantCx(variant, {
       removeHover: true,
     });
-    const configClasses = unwrapConfigClasses('button', config, props);
+
+    const configClasses = unwrapConfigClasses('input', config, props);
+
 
     return [base, sizeClass, variantClass, configClasses, className];
   }, [size, theme, variant, dark, className, config, props]);

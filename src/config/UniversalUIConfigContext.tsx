@@ -1,7 +1,7 @@
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { TextProps } from '../components/display/Text';
 import { ButtonProps } from '../components/inputs/Button';
-import { InputProps } from './../components/inputs/Input';
+import { InputProps } from '../components/inputs/Input';
 
 export type UniversalUIConfigContextProps = {
   components: {
@@ -17,8 +17,21 @@ export const UniversalUIConfigContext = createContext<
 >({
   components: {},
   ssr: false,
-  
 });
+
+export const UniversalUIConfigProvider = ({
+  children,
+  value,
+}: {
+  children: React.ReactNode;
+  value: UniversalUIConfigContextProps;
+}) => {
+  return (
+    <UniversalUIConfigContext.Provider value={value}>
+      {children}
+    </UniversalUIConfigContext.Provider>
+  );
+};
 
 export const useUniversalUIConfig = () => {
   return useContext(UniversalUIConfigContext);

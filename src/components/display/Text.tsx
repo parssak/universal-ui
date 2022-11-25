@@ -26,7 +26,7 @@ export const Text = forwardRefWithAs(function<
 >(props: Props<TTag> & TextProps, ref: React.Ref<TTag>) {
   const {
     size,
-    theme = 'neutral',
+    theme,
     variant = 'p',
     colorVariant = 'base',
     dark,
