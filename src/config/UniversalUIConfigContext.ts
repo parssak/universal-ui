@@ -9,18 +9,15 @@ export type UniversalUIConfigContextProps = {
     text?: string | ((props: TextProps) => string);
     input?: string | ((props: InputProps) => string);
   };
-  darkMode?: {
-    enabled?: boolean;
-  };
+  ssr?: boolean;
 };
 
 export const UniversalUIConfigContext = createContext<
   UniversalUIConfigContextProps
 >({
   components: {},
-  darkMode: {
-    enabled: false,
-  },
+  ssr: false,
+  
 });
 
 export const useUniversalUIConfig = () => {

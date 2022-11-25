@@ -126,23 +126,12 @@ function App() {
 }
 ```
 
-
-## Current Issues
-**Striking a balance between SSR and light/dark mode support.** Currently, SSR does not play nice with light/dark mode support, if the client preference is dark mode, the page will still return a light mode theme (as it doesn't have access to the window object). There are two "workarounds" to this, but I'm still looking for a better solution.
-
-1. Use the `UniversalUIThemeProvider` to force the app into light or dark mode
-```js
-const config = {
-  ...
-  darkMode: {
-    enabled: true
-  }
-} 
-```
-2. Dynamically render the components you wish to use only on the client, this preserves light/dark mode support but is worse for SEO. 
+## SSR
+To ensure components respond to the user's OS theme preference, you'll need to wrap your app in the `UniversalUIThemeProvider` and pass in the `ssr` prop.
 
 ```jsx
-const Text = dynamic(() => import('@universal-ui/react').then(mod => mod.Text), { ssr: false });
-
-<Text>Hello World</Text>
+const config = {
+  components: { ... },
+  ssr: true
+}
 ```

@@ -26,7 +26,7 @@ export const Button = forwardRefWithAs(function<
 >(props: Props<TTag> & ButtonProps, ref: React.Ref<TTag>) {
   const {
     size,
-    theme = 'neutral',
+    theme,
     variant = 'solid',
     dark,
     className,

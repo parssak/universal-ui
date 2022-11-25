@@ -1,7 +1,10 @@
 import { Variant } from '../../types';
 
-export const getInputBaseCx = () => {
-  return 'font-medium tracking-tight rounded transition-all duration-75 border shadow';
+export const getInputBaseCx = (options?: { removeFocus?: boolean }) => {
+  const base =
+    'font-medium tracking-tight rounded transition-colors duration-75 border shadow';
+  const focusStyles = 'focus:outline-none focus:ring focus:ring-theme-base/50';
+  return [base, options?.removeFocus ? '' : focusStyles].join(' ');
 };
 
 export const getInputSizeCx = () => {
