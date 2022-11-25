@@ -7,3 +7,6 @@ export * from './components/inputs/Input';
 
 // Config
 export * from './config/UniversalUIConfigContext';
+
+// Temp
+export * from './components/temp/GanttChart';
