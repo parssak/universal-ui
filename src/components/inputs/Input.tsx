@@ -29,15 +29,17 @@ export const Input = forwardRefWithAs(function<
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
-    const base = getInputBaseCx();
+    const base = getInputBaseCx({
+      override: 'font-normal',
+    });
 
     const sizeClass = getInputSizeCx();
+
     const variantClass = getInputVariantCx(variant, {
       removeHover: true,
     });
 
     const configClasses = unwrapConfigClasses('input', config, props);
-
 
     return [base, sizeClass, variantClass, configClasses, className];
   }, [size, theme, variant, dark, className, config, props]);

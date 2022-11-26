@@ -2,22 +2,29 @@ import { Variant } from '../../types';
 
 export const getInputBaseCx = (options?: {
   removeFocus?: boolean;
-  override?: () => string;
+  override?: (() => string) | string;
 }) => {
   const base =
-    'font-medium tracking-tight rounded transition-colors  border shadow';
+    'font-medium tracking-tight rounded transition-colors duration-100 border shadow disabled:opacity-85';
 
   const focusStyles = options?.removeFocus
     ? ''
     : 'focus:outline-none focus:ring focus:ring-theme-base/50';
 
-  const overrideStyles = options?.override ? options.override() : '';
+  const override = options?.override;
+
+  let overrideStyles = '';
+
+  if (typeof override === 'function') {
+    overrideStyles = override();
+  } else if (typeof override === 'string') {
+    overrideStyles = override;
+  }
 
   return [base, focusStyles, overrideStyles].join(' ');
 };
 
-export const
- getInputSizeCx = () => {
+export const getInputSizeCx = () => {
   return 'pl-size-x pr-size-x pt-size-y pb-size-y text-size leading-size';
 };
 

@@ -30,7 +30,9 @@ export const Button = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx();
+
     const sizeClass = getInputSizeCx();
+
     const variantClass = getInputVariantCx(variant, {
       override: v => {
         switch (v) {
@@ -41,6 +43,7 @@ export const Button = forwardRefWithAs(function<
         }
       },
     });
+
     const configClasses = unwrapConfigClasses('button', config, props);
 
     return [base, sizeClass, variantClass, configClasses, className];
