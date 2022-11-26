@@ -15,6 +15,8 @@ export const useClassNames = (
 const twMerge = extendTailwindMerge({
   classGroups: {
     'font-size': [{ text: ['size'] }],
+    'padding-left': [{ pl: ['size-x', 'size-y', 'size-2x', 'size-2y'] }],
+    'padding-right': [{ pr: ['size-x', 'size-y', 'size-2x', 'size-2y'] }],
   },
 });
 
