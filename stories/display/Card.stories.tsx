@@ -12,11 +12,13 @@ export default {
 const Template = args => (
   <StoryLayout>
     <Card {...args}>
-      <div className="space-x-size-x">
-        <Button>Hello World</Button>
-        <Input />
-      </div>
-      <Text className="mt-size-2y">This is some regular text</Text>
+      <Card.Content>
+        <div className="flex gap-size-x">
+          <Button>Hello World</Button>
+          <Input />
+        </div>
+        <Text className="mt-size-2y">This is some regular text</Text>
+      </Card.Content>
     </Card>
   </StoryLayout>
 );

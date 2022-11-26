@@ -12,16 +12,7 @@ import {
 } from '../../core';
 import { getInputBaseCx, getInputSizeCx, getInputVariantCx } from './constants';
 
-export interface ButtonProps {
-  size?: Size;
-  theme?: Theme;
-  variant?: Variant;
-  dark?: boolean;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
-  icon?: React.ReactNode;
-}
-
+// For internal use only
 const ButtonIcon = ({
   children,
   type = 'center',
@@ -29,21 +20,18 @@ const ButtonIcon = ({
   children: React.ReactNode;
   type?: 'center' | 'leading' | 'trailing';
 }) => {
-  
   const classNames = useClassNames(() => {
     const base =
-      'h-size-line aspect-square relative flex-shrink-0 scale-75';
+      'h-size-line aspect-square relative flex-shrink-0 scale-75 text-theme-muted';
 
     const positionClasses = {
       center: '',
-      leading: 'relative -left-size-qx',
+      leading: 'relative -left-size-qx ',
       trailing: 'relative -right-size-qx ',
     };
 
     return [base, positionClasses[type]];
   }, [type]);
-
-
 
   return (
     <span className={classNames} aria-hidden="true">
@@ -52,9 +40,19 @@ const ButtonIcon = ({
   );
 };
 
+export interface ButtonProps {
+  size?: Size;
+  theme?: Theme;
+  variant?: Variant;
+  dark?: boolean;
+  icon?: React.ReactNode;
+  leadingIcon?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
+}
+
 const DEFAULT_BUTTON_TAG = 'button';
 
-export const Button = forwardRefWithAs(function<
+const ButtonRoot = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_BUTTON_TAG
 >(props: Props<TTag> & ButtonProps, ref: React.Ref<TTag>) {
   const {
@@ -63,9 +61,9 @@ export const Button = forwardRefWithAs(function<
     variant = 'solid',
     dark,
     className,
+    icon,
     leadingIcon,
     trailingIcon,
-    icon,
     children,
     ...rest
   } = props;
@@ -123,4 +121,47 @@ export const Button = forwardRefWithAs(function<
     },
     defaultTag: DEFAULT_BUTTON_TAG,
   });
+});
+
+interface ButtonGroupProps {
+  size?: Size;
+  theme?: Theme;
+  variant?: Variant;
+  dark?: boolean;
+}
+
+const DEFAULT_BUTTON_GROUP_TAG = 'div';
+
+const ButtonGroup = forwardRefWithAs(function<
+  TTag extends React.ElementType = typeof DEFAULT_BUTTON_GROUP_TAG
+>(props: Props<TTag> & ButtonGroupProps, ref: React.Ref<TTag>) {
+  const { size, theme, variant = 'solid', dark, className, ...rest } = props;
+  const [enabled] = useDarkMode();
+
+  const classNames = useClassNames(() => {
+    const base = getInputBaseCx({
+      override: 'inline-flex',
+    });
+
+    const sizeClass = getInputSizeCx();
+
+    const variantClass = getInputVariantCx(variant, {});
+
+    return [base, sizeClass, variantClass, className];
+  }, [size, theme, variant, dark, className]);
+
+  return render({
+    props: {
+      ref,
+      className: classNames,
+      'data-size': size,
+      'data-theme': transformTheme(theme, enabled, dark),
+      ...rest,
+    },
+    defaultTag: DEFAULT_BUTTON_GROUP_TAG,
+  });
+});
+
+export const Button = Object.assign(ButtonRoot, {
+  Group: ButtonGroup,
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import { useDarkMode } from '../../hooks/useDarkMode';
 import { useClassNames } from '../../hooks/useClassNames';
-import { Size, Theme, Variant } from '../../types';
+import { Size, Theme } from '../../types';
 import {
   forwardRefWithAs,
   Props,
@@ -14,7 +14,6 @@ import {
 export interface CardProps {
   size?: Size;
   theme?: Theme;
-  variant?: Variant;
   dark?: boolean;
 }
 
@@ -23,22 +22,18 @@ const DEFAULT_CARD_TAG = 'div';
 const CardRoot = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_CARD_TAG
 >(props: Props<TTag> & CardProps, ref: React.Ref<TTag>) {
-  const { size, theme, variant = 'solid', dark, className, ...rest } = props;
+  const { size, theme, dark, className, ...rest } = props;
   const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
     const base =
-      'border border-theme-base/20 rounded-md shadow p-size-x bg-theme-base/20';
-
-    const sizeClass = '';
-
-    const variantClass = '';
+      'border border-theme-base/20 rounded-md shadow-sm bg-theme-base/20';
 
     const configClasses = unwrapConfigClasses('card', config, props);
 
-    return [base, sizeClass, variantClass, configClasses, className];
-  }, [size, theme, variant, dark, className, config, props]);
+    return [base, configClasses, className];
+  }, [size, theme, dark, className, config, props]);
 
   return render({
     props: {
@@ -52,4 +47,32 @@ const CardRoot = forwardRefWithAs(function<
   });
 });
 
-export const Card = Object.assign(CardRoot, {});
+export interface CardContentProps {}
+
+const CardContent = forwardRefWithAs(function<
+  TTag extends React.ElementType = typeof DEFAULT_CARD_TAG
+>(props: Props<TTag> & CardContentProps, ref: React.Ref<TTag>) {
+  const { className, ...rest } = props;
+  const config = useUniversalUIConfig();
+
+  const classNames = useClassNames(() => {
+    const base = 'p-size-x';
+
+    const configClasses = unwrapConfigClasses('card.content', config, props);
+
+    return [base, configClasses, className];
+  }, [className, config, props]);
+
+  return render({
+    props: {
+      ref,
+      className: classNames,
+      ...rest,
+    },
+    defaultTag: DEFAULT_CARD_TAG,
+  });
+});
+
+export const Card = Object.assign(CardRoot, {
+  Content: CardContent,
+});
