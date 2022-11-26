@@ -137,6 +137,8 @@ module.exports = plugin(
       ...customSizes
     ];
 
+
+
     const defaultColors = themes.find((t) => t.name === "neutral").colors;
     if (!defaultColors) {
       throw new Error("Default theme not found");
@@ -234,6 +236,10 @@ module.exports = plugin(
           }
         },
         padding: {
+          "size-x": "var(--size-px)",
+          "size-y": "var(--size-py)"
+        },
+        margin: {
           "size-x": "var(--size-px)",
           "size-y": "var(--size-py)"
         },

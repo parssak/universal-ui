@@ -1,5 +1,6 @@
 // Display
 export * from './components/display/Text';
+export * from './components/display/Card';
 
 // Inputs
 export * from './components/inputs/Button';
