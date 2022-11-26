@@ -29,11 +29,14 @@ export const Button = forwardRefWithAs(function<
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
-    const base = getInputBaseCx();
+    const base = getInputBaseCx({
+      override: 'select-none',
+    });
 
     const sizeClass = getInputSizeCx();
 
     const variantClass = getInputVariantCx(variant, {
+      removeHover: props.disabled,
       override: v => {
         switch (v) {
           case 'solid':

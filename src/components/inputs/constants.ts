@@ -5,7 +5,7 @@ export const getInputBaseCx = (options?: {
   override?: (() => string) | string;
 }) => {
   const base =
-    'font-medium tracking-tight rounded transition-colors duration-100 border shadow disabled:opacity-85';
+    'font-medium tracking-tight rounded transition-colors duration-100 border shadow disabled:opacity-75 disabled:cursor-not-allowed';
 
   const focusStyles = options?.removeFocus
     ? ''
@@ -41,6 +41,7 @@ export const getInputVariantCx = (
     solid: `
       bg-theme-base
       text-theme-base
+      placeholder:text-theme-muted
       border-theme-base
       ${removeHover ? '' : 'hover:bg-theme-active'}
 
@@ -48,12 +49,14 @@ export const getInputVariantCx = (
     outline: `
       bg-transparent
       text-theme-base
+      placeholder:text-theme-muted
       border-theme-base
       ${removeHover ? '' : 'hover:bg-theme-active'}
     `,
     ghost: `
       bg-transparent
       text-theme-base hover:text-theme-active
+      placeholder:text-theme-muted
       border-transparent
       ${removeHover ? '' : 'hover:bg-theme-active'}
     `,

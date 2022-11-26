@@ -1,39 +1,25 @@
 import { useState, useEffect } from 'react';
-import { useUniversalUIConfig } from './../config/UniversalUIConfigContext';
 import { useMedia } from './useMedia';
+import { useClient } from './useClient';
 
 function usePrefersDarkMode() {
   return useMedia(['(prefers-color-scheme: dark)'], [true], false);
 }
 
-const useClient = () => {
-  const [client, setClient] = useState(false);
-
-  useEffect(() => {
-    setClient(true);
-  }, []);
-
-  return client;
-};
-
 export const useDarkMode = () => {
   const prefersDarkMode = usePrefersDarkMode();
   const [stored, setStored] = useState(false);
 
-  const config = useUniversalUIConfig();
   const client = useClient();
 
   useEffect(() => {
-    if (client || !config.ssr) {
+    if (client) {
       setStored(prefersDarkMode);
+      return;
     }
 
     // SSR only
-    let t: NodeJS.Timeout;
-
-    if (config.ssr && !client) {
-      t = setTimeout(() => setStored(prefersDarkMode), 0);
-    }
+    const t = setTimeout(() => setStored(prefersDarkMode), 0);
 
     return () => t && clearTimeout(t);
   }, [prefersDarkMode, client]);

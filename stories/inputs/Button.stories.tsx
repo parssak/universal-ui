@@ -6,8 +6,8 @@ export default {
   component: Button,
   args: {
     children: 'Button',
+    disabled: false,
   },
-
 };
 
 const Template = args => (

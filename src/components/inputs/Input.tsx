@@ -30,7 +30,7 @@ export const Input = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
-      override: 'font-normal',
+      override: 'font-normal placeholder:opacity-50',
     });
 
     const sizeClass = getInputSizeCx();

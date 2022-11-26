@@ -4,6 +4,10 @@ import { Input } from '../../src';
 
 export default {
   component: Input,
+  args: {
+    placeholder: "Add your text here",
+    disabled: false
+  }
 };
 
 const Template = args => (
