@@ -19,6 +19,7 @@ export interface ButtonProps {
   dark?: boolean;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
 const ButtonIcon = ({
