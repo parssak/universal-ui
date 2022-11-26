@@ -24,8 +24,22 @@ export const getInputBaseCx = (options?: {
   return [base, focusStyles, overrideStyles].join(' ');
 };
 
-export const getInputSizeCx = () => {
-  return 'pl-size-x pr-size-x pt-size-y pb-size-y text-size leading-size';
+export const getInputSizeCx = (options?: {
+  override?: (() => string) | string;
+}) => {
+  const base = 'pl-size-x pr-size-x pt-size-y pb-size-y text-size leading-size';
+
+  const override = options?.override;
+
+  let overrideStyles = '';
+
+  if (typeof override === 'function') {
+    overrideStyles = override();
+  } else if (typeof override === 'string') {
+    overrideStyles = override;
+  }
+
+  return [base, overrideStyles].join(' ');
 };
 
 export const getInputVariantCx = (

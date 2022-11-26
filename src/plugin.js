@@ -1,70 +1,86 @@
-const plugin = require("tailwindcss/plugin");
-const colors = require("tailwindcss/colors");
+const plugin = require('tailwindcss/plugin');
+const colors = require('tailwindcss/colors');
 
 function getRgbChannels(hex) {
-  const padded = hex.length === 4 ? "#" + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3] : hex;
+  const padded =
+    hex.length === 4
+      ? '#' + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3]
+      : hex;
   return padded
     .match(/\w\w/g)
-    .map((x) => parseInt(x, 16))
-    .join(" ");
+    .map(x => parseInt(x, 16))
+    .join(' ');
 }
 
 const getColorsForTheme = (color, isDark = false, predefinedColors) => {
-  const STEPS = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900"];
+  const STEPS = [
+    '50',
+    '100',
+    '200',
+    '300',
+    '400',
+    '500',
+    '600',
+    '700',
+    '800',
+    '900',
+  ];
 
   const C = predefinedColors ?? colors[color];
   const colorMap = (light, dark) => C[STEPS[isDark ? dark : light]];
 
   return {
-    "text-base": colorMap(8, 0),
-    "text-inverted": colorMap(0, 8),
-    "text-muted": colorMap(5, 3),
-    "text-active": colorMap(9, 1),
-    "bg-pure": isDark ? colors.black : colors.white,
-    "bg-base": colorMap(0, 8),
-    "bg-inverted": colorMap(8, 0),
-    "bg-active": colorMap(2, 6),
-    "bg-inverted-active": colorMap(5, 5),
-    "border-base": colorMap(4, 5),
-    "border-inverted": colorMap(5, 4),
-    "border-active": colorMap(3, 5)
+    'text-base': colorMap(8, 0),
+    'text-inverted': colorMap(0, 8),
+    'text-muted': colorMap(5, 3),
+    'text-active': colorMap(9, 1),
+    'bg-pure': isDark ? colors.black : colors.white,
+    'bg-base': colorMap(0, 8),
+    'bg-inverted': colorMap(8, 0),
+    'bg-active': colorMap(2, 6),
+    'bg-inverted-active': colorMap(5, 5),
+    'border-base': colorMap(4, 5),
+    'border-inverted': colorMap(5, 4),
+    'border-active': colorMap(3, 5),
   };
 };
 
 module.exports = plugin(
-  function ({ addBase, addVariant, config }) {
+  function({ addBase, addVariant, config }) {
     const DEFAULT_THEMES_CONFIG = [
       {
-        name: "neutral",
-        color: "neutral"
+        name: 'neutral',
+        color: 'neutral',
       },
       {
-        name: "brand",
-        color: "indigo"
+        name: 'brand',
+        color: 'indigo',
       },
       {
-        name: "error",
-        color: "rose"
+        name: 'error',
+        color: 'rose',
       },
       {
-        name: "success",
-        color: "emerald"
+        name: 'success',
+        color: 'emerald',
       },
       {
-        name: "warning",
-        color: "orange"
+        name: 'warning',
+        color: 'orange',
       },
       {
-        name: "info",
-        color: "sky"
-      }
+        name: 'info',
+        color: 'sky',
+      },
     ];
 
     // filter out all config defined themes
-    const customThemes = config("theme.universalUI.themes") || [];
+    const customThemes = config('theme.universalUI.themes') || [];
     const themeConfig = [
-      ...DEFAULT_THEMES_CONFIG.filter((theme) => !customThemes.find((t) => t.name === theme.name)),
-      ...customThemes
+      ...DEFAULT_THEMES_CONFIG.filter(
+        theme => !customThemes.find(t => t.name === theme.name)
+      ),
+      ...customThemes,
     ];
 
     // Create light/dark themes for each color
@@ -74,82 +90,105 @@ module.exports = plugin(
         ...acc,
         {
           name,
-          colors: getColorsForTheme(color, false, colors)
+          colors: getColorsForTheme(color, false, colors),
         },
         {
           name: `${name}-dark`,
-          colors: getColorsForTheme(color, true, colors)
-        }
+          colors: getColorsForTheme(color, true, colors),
+        },
       ];
     }, []);
 
     const DEFAULT_SIZES_CONFIG = [
       {
-        name: "xs",
+        name: 'xs',
         sizes: {
-          px: "0.25rem",
-          py: "0.125rem",
-          text: "0.75rem",
-          line: "1rem"
-        }
+          x: '0.25rem',
+          y: '0.125rem',
+          text: '0.75rem',
+          line: '1rem',
+        },
       },
       {
-        name: "sm",
+        name: 'sm',
         sizes: {
-          px: "0.5rem",
-          py: "0.25rem",
-          text: "0.875rem",
-          line: "1.25rem"
-        }
+          x: '0.5rem',
+          y: '0.25rem',
+          text: '0.875rem',
+          line: '1.25rem',
+        },
       },
       {
-        name: "md",
+        name: 'md',
         sizes: {
-          px: "0.75rem",
-          py: "0.375rem",
-          text: "1rem",
-          line: "1.5rem"
-        }
+          x: '0.75rem',
+          y: '0.375rem',
+          text: '1rem',
+          line: '1.5rem',
+        },
       },
       {
-        name: "lg",
+        name: 'lg',
         sizes: {
-          px: "1rem",
-          py: "0.375rem",
-          text: "1.125rem",
-          line: "1.5rem"
-        }
+          x: '1rem',
+          y: '0.375rem',
+          text: '1.125rem',
+          line: '1.5rem',
+        },
       },
       {
-        name: "xl",
+        name: 'xl',
         sizes: {
-          px: "1.25rem",
-          py: "0.5rem",
-          text: "1.25rem",
-          line: "1.5rem"
-        }
-      }
+          x: '1.25rem',
+          y: '0.5rem',
+          text: '1.25rem',
+          line: '1.5rem',
+        },
+      },
     ];
 
-    const customSizes = config("theme.universalUI.sizes") || [];
-    const sizes = [
-      ...DEFAULT_SIZES_CONFIG.filter((size) => !customSizes.find((s) => s.name === size.name)),
-      ...customSizes
-    ];
+    const injectDoubleHalfSizes = sizes => {
+      return sizes.reduce((acc, size) => {
+        const { name, sizes: sizeSizes } = size;
+        return [
+          ...acc,
+          {
+            name,
+            sizes: {
+              ...sizeSizes,
+              // double sizes
+              '2x': `${parseFloat(sizeSizes.x) * 2}rem`,
+              '2y': `${parseFloat(sizeSizes.y) * 2}rem`,
+              // half sizes
+              'hx': `${parseFloat(sizeSizes.x) / 2}rem`,
+              'hy': `${parseFloat(sizeSizes.y) / 2}rem`,
+              'qx': `${parseFloat(sizeSizes.x) / 4}rem`,
+              'qy': `${parseFloat(sizeSizes.y) / 4}rem`,  
+            },
+          },
+        ];
+      }, []);
+    };
 
+    const customSizes = config('theme.universalUI.sizes') || [];
+    const sizes = injectDoubleHalfSizes([
+      ...DEFAULT_SIZES_CONFIG.filter(
+        size => !customSizes.find(s => s.name === size.name)
+      ),
+      ...customSizes,
+    ]);
 
-
-    const defaultColors = themes.find((t) => t.name === "neutral").colors;
+    const defaultColors = themes.find(t => t.name === 'neutral').colors;
     if (!defaultColors) {
-      throw new Error("Default theme not found");
+      throw new Error('Default theme not found');
     }
 
-    const defaultSizes = sizes.find((s) => s.name === "md").sizes;
+    const defaultSizes = sizes.find(s => s.name === 'md').sizes;
     if (!defaultSizes) {
-      throw new Error("Default sizes not found");
+      throw new Error('Default sizes not found');
     }
 
-    const getCSSColorVariables = (colors) => {
+    const getCSSColorVariables = colors => {
       return Object.fromEntries(
         Object.entries(colors).map(([name, value]) => {
           return [[`--color-${name}`], getRgbChannels(value)];
@@ -157,7 +196,7 @@ module.exports = plugin(
       );
     };
 
-    const getCSSSizeVariables = (sizes) => {
+    const getCSSSizeVariables = sizes => {
       return Object.fromEntries(
         Object.entries(sizes).map(([name, value]) => {
           return [[`--size-${name}`], value];
@@ -166,39 +205,39 @@ module.exports = plugin(
     };
 
     addBase({
-      ":root": {
+      ':root': {
         ...getCSSColorVariables(defaultColors),
-        ...getCSSSizeVariables(defaultSizes)
-      }
+        ...getCSSSizeVariables(defaultSizes),
+      },
     });
 
     // Redefine CSS variables for each theme
 
-    themes.forEach((theme) => {
+    themes.forEach(theme => {
       const { colors, name } = theme;
       addBase({
         [`[data-theme=${name}]`]: {
-          ...getCSSColorVariables(colors)
-        }
+          ...getCSSColorVariables(colors),
+        },
       });
     });
 
-    sizes.forEach((size) => {
+    sizes.forEach(size => {
       const { sizes, name } = size;
       addBase({
         [`[data-size=${name}]`]: {
-          ...getCSSSizeVariables(sizes)
-        }
+          ...getCSSSizeVariables(sizes),
+        },
       });
     });
 
     //  Add theme-specific variant for bespoke theming overrides
 
-    themes.forEach((theme) => {
+    themes.forEach(theme => {
       addVariant(`theme-${theme.name}`, `[data-theme=${theme.name}] &`);
     });
 
-    sizes.forEach((size) => {
+    sizes.forEach(size => {
       addVariant(`size-${size.name}`, `[data-size=${size.name}] &`);
     });
   },
@@ -207,49 +246,52 @@ module.exports = plugin(
       extend: {
         textColor: {
           theme: {
-            base: "rgb(var(--color-text-base) / <alpha-value>)",
-            inverted: "rgb(var(--color-text-inverted) / <alpha-value>)",
-            active: "rgb(var(--color-text-active) / <alpha-value>)",
-            muted: "rgb(var(--color-text-muted) / <alpha-value>)"
-          }
+            base: 'rgb(var(--color-text-base) / <alpha-value>)',
+            inverted: 'rgb(var(--color-text-inverted) / <alpha-value>)',
+            active: 'rgb(var(--color-text-active) / <alpha-value>)',
+            muted: 'rgb(var(--color-text-muted) / <alpha-value>)',
+          },
         },
         backgroundColor: {
           theme: {
-            pure: "rgb(var(--color-bg-pure) / <alpha-value>)",
-            base: "rgb(var(--color-bg-base) / <alpha-value>)",
-            inverted: "rgb(var(--color-bg-inverted) / <alpha-value>)",
-            active: "rgb(var(--color-bg-active) / <alpha-value>)"
-          }
+            pure: 'rgb(var(--color-bg-pure) / <alpha-value>)',
+            base: 'rgb(var(--color-bg-base) / <alpha-value>)',
+            inverted: 'rgb(var(--color-bg-inverted) / <alpha-value>)',
+            active: 'rgb(var(--color-bg-active) / <alpha-value>)',
+          },
         },
         borderColor: {
           theme: {
-            base: "rgb(var(--color-border-base) / <alpha-value>)",
-            inverted: "rgb(var(--color-border-inverted) / <alpha-value>)",
-            active: "rgb(var(--color-border-active) / <alpha-value>)"
-          }
+            base: 'rgb(var(--color-border-base) / <alpha-value>)',
+            inverted: 'rgb(var(--color-border-inverted) / <alpha-value>)',
+            active: 'rgb(var(--color-border-active) / <alpha-value>)',
+          },
         },
         ringColor: {
           theme: {
-            base: "rgb(var(--color-border-base) / <alpha-value>)",
-            inverted: "rgb(var(--color-border-inverted) / <alpha-value>)",
-            active: "rgb(var(--color-border-active) / <alpha-value>)"
-          }
+            base: 'rgb(var(--color-border-base) / <alpha-value>)',
+            inverted: 'rgb(var(--color-border-inverted) / <alpha-value>)',
+            active: 'rgb(var(--color-border-active) / <alpha-value>)',
+          },
         },
-        padding: {
-          "size-x": "var(--size-px)",
-          "size-y": "var(--size-py)"
-        },
-        margin: {
-          "size-x": "var(--size-px)",
-          "size-y": "var(--size-py)"
+        spacing: {
+          'size-x': 'var(--size-x)',
+          'size-y': 'var(--size-y)',
+          'size-2x': 'var(--size-2x)',
+          'size-2y': 'var(--size-2y)',
+          'size-hx': 'var(--size-hx)',
+          'size-hy': 'var(--size-hy)',
+          'size-qx': 'var(--size-qx)',
+          'size-qy': 'var(--size-qy)',
+          'size-line': 'var(--size-line)',
         },
         fontSize: {
-          size: "var(--size-text)"
+          size: 'var(--size-text)',
         },
         lineHeight: {
-          size: "var(--size-line)"
-        }
-      }
-    }
+          size: 'var(--size-line)',
+        },
+      },
+    },
   }
 );

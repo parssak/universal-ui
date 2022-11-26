@@ -20,7 +20,7 @@ export interface CardProps {
 
 const DEFAULT_CARD_TAG = 'div';
 
-export const Card = forwardRefWithAs(function<
+const CardRoot = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_CARD_TAG
 >(props: Props<TTag> & CardProps, ref: React.Ref<TTag>) {
   const { size, theme, variant = 'solid', dark, className, ...rest } = props;
@@ -28,7 +28,8 @@ export const Card = forwardRefWithAs(function<
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
-    const base = 'border border-theme-base/20 rounded-md shadow-sm p-size-x';
+    const base =
+      'border border-theme-base/20 rounded-md shadow p-size-x bg-theme-base/20';
 
     const sizeClass = '';
 
@@ -50,3 +51,5 @@ export const Card = forwardRefWithAs(function<
     defaultTag: DEFAULT_CARD_TAG,
   });
 });
+
+export const Card = Object.assign(CardRoot, {});
