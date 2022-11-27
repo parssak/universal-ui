@@ -88,7 +88,7 @@ export const getInputVariantCx = (
 };
 
 export const getInputGroupItemCx = (options?: {
-  borders?: GroupBorderOption;
+  borderOption?: GroupBorderOption;
 }) => {
   const base =
     'shadow-none rounded-none focus:relative focus:z-10 first:rounded-l last:rounded-r ';
@@ -100,5 +100,5 @@ export const getInputGroupItemCx = (options?: {
     none: 'first:border-l last:border-r border-0',
   };
 
-  return [base, borderOptions[options?.borders || 'both']].join(' ');
+  return [base, borderOptions[options?.borderOption || 'both']].join(' ');
 };

@@ -30,7 +30,7 @@ const DEFAULT_INPUT_TAG = 'input';
 export const Input = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_INPUT_TAG
 >(props: Props<TTag> & InputProps, ref: React.Ref<TTag>) {
-  const { size, theme, variant = 'solid', dark, className, ...rest } = props;
+  const { size, theme, variant, dark, className, ...rest } = props;
   const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
   const buttonGroupContext = useButtonGroupContext();
@@ -42,12 +42,18 @@ export const Input = forwardRefWithAs(function<
 
     const sizeClass = getInputSizeCx();
 
-    const variantClass = getInputVariantCx(variant, {
-      removeHover: true,
-    });
+    const groupVariantClass = buttonGroupContext?.variant;
+    const variantClass = getInputVariantCx(
+      variant || groupVariantClass || 'solid',
+      {
+        removeHover: true,
+      }
+    );
 
     const inGroup = buttonGroupContext !== null;
-    const groupClasses = inGroup ? getInputGroupItemCx() : '';
+    const groupClasses =
+      inGroup &&
+      getInputGroupItemCx({ borderOption: buttonGroupContext.borderOption });
 
     const configClasses = unwrapConfigClasses('input', config, {
       ...props,
