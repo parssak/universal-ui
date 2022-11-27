@@ -47,6 +47,14 @@ export const Input = forwardRefWithAs(function<
       variant || groupVariantClass || 'solid',
       {
         removeHover: true,
+        override: v => {
+          switch (v) {
+            case 'solid':
+              return 'bg-theme-base/20';
+            default:
+              return ''
+          }
+        },
       }
     );
 

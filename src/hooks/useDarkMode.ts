@@ -25,7 +25,6 @@ export const useDarkMode = () => {
       return;
     }
 
-    console.debug('calling timeout!');
     // SSR only
     const t = setTimeout(() => setStored(prefersDarkMode), 0);
 

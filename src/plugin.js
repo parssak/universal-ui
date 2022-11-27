@@ -46,7 +46,7 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
 };
 
 module.exports = plugin(
-  function({ addBase, addVariant, config }) {
+  function({ addBase, addUtilities, addVariant, config }) {
     const DEFAULT_THEMES_CONFIG = [
       {
         name: 'neutral',
@@ -163,10 +163,10 @@ module.exports = plugin(
               '4x': `${parseFloat(sizeSizes.x) * 4}rem`,
               '4y': `${parseFloat(sizeSizes.y) * 4}rem`,
               // half sizes
-              'hx': `${parseFloat(sizeSizes.x) / 2}rem`,
-              'hy': `${parseFloat(sizeSizes.y) / 2}rem`,
-              'qx': `${parseFloat(sizeSizes.x) / 4}rem`,
-              'qy': `${parseFloat(sizeSizes.y) / 4}rem`,  
+              hx: `${parseFloat(sizeSizes.x) / 2}rem`,
+              hy: `${parseFloat(sizeSizes.y) / 2}rem`,
+              qx: `${parseFloat(sizeSizes.x) / 4}rem`,
+              qy: `${parseFloat(sizeSizes.y) / 4}rem`,
             },
           },
         ];
@@ -243,6 +243,32 @@ module.exports = plugin(
     sizes.forEach(size => {
       addVariant(`size-${size.name}`, `[data-size=${size.name}] &`);
     });
+
+    // Add utilities
+
+    // const bg = '';
+
+    /**
+     *
+     * type: pure | base | inverted | active
+     * theme: neutral | brand | error | success | warning | info
+     * .bg-<theme>-<type> {
+     *  rgb(var(--) / var(--tw-bg-opacity))
+     *
+     */
+
+    // themes.forEach(theme => {
+    //   const { name, colors } = theme;
+
+    //   const bgColors = {
+    //     pure: colors['bg-pure'],
+    //     base: colors['bg-base'],
+    //     inverted: colors['bg-inverted'],
+    //     active: colors['bg-active'],
+    //   };
+
+    //   console.debug(name, bgColors);
+    // });
   },
   {
     theme: {
