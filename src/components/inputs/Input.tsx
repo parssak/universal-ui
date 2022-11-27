@@ -53,7 +53,7 @@ export const Input = forwardRefWithAs(function<
     const inGroup = buttonGroupContext !== null;
     const groupClasses =
       inGroup &&
-      getInputGroupItemCx({ borderOption: buttonGroupContext.borderOption });
+      getInputGroupItemCx({ borderOption: buttonGroupContext?.borderOption });
 
     const configClasses = unwrapConfigClasses('input', config, {
       ...props,

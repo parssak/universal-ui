@@ -114,7 +114,7 @@ const ButtonRoot = forwardRefWithAs(function<
     const inGroup = buttonGroupContext !== null;
     const groupClasses =
       inGroup &&
-      getInputGroupItemCx({ borderOption: buttonGroupContext.borderOption });
+      getInputGroupItemCx({ borderOption: buttonGroupContext?.borderOption });
 
     const configClasses = unwrapConfigClasses('button', config, {
       ...props,
@@ -166,7 +166,15 @@ const DEFAULT_BUTTON_GROUP_TAG = 'div';
 const ButtonGroup = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_BUTTON_GROUP_TAG
 >(props: Props<TTag> & ButtonGroupProps, ref: React.Ref<TTag>) {
-  const { size, theme, variant = 'solid', dark, className, borderOption = 'both', ...rest } = props;
+  const {
+    size,
+    theme,
+    variant = 'solid',
+    dark,
+    className,
+    borderOption = 'both',
+    ...rest
+  } = props;
   const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
 

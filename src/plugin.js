@@ -147,7 +147,7 @@ module.exports = plugin(
       },
     ];
 
-    const injectDoubleHalfSizes = sizes => {
+    const injectSizes = sizes => {
       return sizes.reduce((acc, size) => {
         const { name, sizes: sizeSizes } = size;
         return [
@@ -159,6 +159,9 @@ module.exports = plugin(
               // double sizes
               '2x': `${parseFloat(sizeSizes.x) * 2}rem`,
               '2y': `${parseFloat(sizeSizes.y) * 2}rem`,
+              // quadruple sizes
+              '4x': `${parseFloat(sizeSizes.x) * 4}rem`,
+              '4y': `${parseFloat(sizeSizes.y) * 4}rem`,
               // half sizes
               'hx': `${parseFloat(sizeSizes.x) / 2}rem`,
               'hy': `${parseFloat(sizeSizes.y) / 2}rem`,
@@ -171,7 +174,7 @@ module.exports = plugin(
     };
 
     const customSizes = config('theme.universalUI.sizes') || [];
-    const sizes = injectDoubleHalfSizes([
+    const sizes = injectSizes([
       ...DEFAULT_SIZES_CONFIG.filter(
         size => !customSizes.find(s => s.name === size.name)
       ),
@@ -279,6 +282,8 @@ module.exports = plugin(
           'size-y': 'var(--size-y)',
           'size-2x': 'var(--size-2x)',
           'size-2y': 'var(--size-2y)',
+          'size-4x': 'var(--size-4x)',
+          'size-4y': 'var(--size-4y)',
           'size-hx': 'var(--size-hx)',
           'size-hy': 'var(--size-hy)',
           'size-qx': 'var(--size-qx)',
