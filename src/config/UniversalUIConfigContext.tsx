@@ -6,9 +6,10 @@ import { InputProps } from '../components/inputs/Input';
 
 export type UniversalUIConfigContextProps = {
   components: {
-    button?: string | ((props: ButtonProps) => string);
+    button?: string | ((props: ButtonProps & { inGroup?: boolean }) => string);
+    'button.group'?: string | ((props: ButtonProps) => string);
     text?: string | ((props: TextProps) => string);
-    input?: string | ((props: InputProps) => string);
+    input?: string | ((props: InputProps & { inGroup?: boolean }) => string);
     card?: string | ((props: CardProps) => string);
     'card.content'?: string | ((props: CardContentProps) => string);
   };

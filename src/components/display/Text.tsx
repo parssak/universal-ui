@@ -49,7 +49,7 @@ export const Text = forwardRefWithAs(function<
     const styleVariants: Record<TextStyleVariant, string> = {
       h1: `text-4xl   font-semibold tracking-tight`,
       h2: `text-3xl   font-semibold tracking-tight`,
-      h3: `text-2xl   font-semibold tracking-normal`,
+      h3: `text-2xl   font-semibold tracking-tight`,
       h4: `text-xl    font-medium   tracking-tight`,
       h5: `text-base  font-semibold tracking-tight`,
       h6: `text-sm    font-medium   tracking-normal `,

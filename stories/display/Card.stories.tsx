@@ -25,3 +25,20 @@ const Template = args => (
 
 export const Basic = Template.bind({});
 Basic.args = {};
+
+
+export const Rich = args => (
+  <StoryLayout>
+    <Card {...args}>
+      <Card.Content>
+        <Text variant='h3'>This is a Card</Text>
+      </Card.Content>
+      <Card.Content>
+        <Text>This is some regular text</Text>
+      </Card.Content>
+      <Card.Content>
+        <Text>This is some regular text</Text>
+      </Card.Content>
+    </Card>
+  </StoryLayout>
+)

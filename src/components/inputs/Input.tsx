@@ -10,7 +10,13 @@ import {
   unwrapConfigClasses,
   transformTheme,
 } from '../../core';
-import { getInputBaseCx, getInputSizeCx, getInputVariantCx } from './constants';
+import {
+  getInputBaseCx,
+  getInputGroupItemCx,
+  getInputSizeCx,
+  getInputVariantCx,
+} from './constants';
+import { useButtonGroupContext } from './ButtonGroupContext';
 
 export interface InputProps {
   size?: Size;
@@ -27,10 +33,11 @@ export const Input = forwardRefWithAs(function<
   const { size, theme, variant = 'solid', dark, className, ...rest } = props;
   const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
+  const buttonGroupContext = useButtonGroupContext();
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
-      override: 'font-normal placeholder:opacity-50',
+      override: 'font-normal placeholder:opacity-50 truncate',
     });
 
     const sizeClass = getInputSizeCx();
@@ -39,10 +46,23 @@ export const Input = forwardRefWithAs(function<
       removeHover: true,
     });
 
-    const configClasses = unwrapConfigClasses('input', config, props);
+    const inGroup = buttonGroupContext !== null;
+    const groupClasses = inGroup ? getInputGroupItemCx() : '';
 
-    return [base, sizeClass, variantClass, configClasses, className];
-  }, [size, theme, variant, dark, className, config, props]);
+    const configClasses = unwrapConfigClasses('input', config, {
+      ...props,
+      inGroup,
+    });
+
+    return [
+      base,
+      sizeClass,
+      variantClass,
+      groupClasses,
+      configClasses,
+      className,
+    ];
+  }, [size, theme, variant, className, config, props]);
 
   return render({
     props: {

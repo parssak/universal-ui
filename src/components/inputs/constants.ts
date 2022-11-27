@@ -1,4 +1,4 @@
-import { Variant } from '../../types';
+import { GroupBorderOption, Variant } from '../../types';
 
 export const getInputBaseCx = (options?: {
   removeFocus?: boolean;
@@ -85,4 +85,20 @@ export const getInputVariantCx = (
   const overrideStyles = override?.(variant) || '';
 
   return [INPUT_VARIANT_STYLES[variant], overrideStyles].join(' ');
+};
+
+export const getInputGroupItemCx = (options?: {
+  borders?: GroupBorderOption;
+}) => {
+  const base =
+    'shadow-none rounded-none focus:relative focus:z-10 first:rounded-l last:rounded-r ';
+
+  const borderOptions = {
+    left: 'border-r-0 last:border-r',
+    right: 'border-l-0 first:border-l',
+    both: '',
+    none: 'first:border-l last:border-r border-0',
+  };
+
+  return [base, borderOptions[options?.borders || 'both']].join(' ');
 };

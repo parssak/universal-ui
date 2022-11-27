@@ -2,7 +2,7 @@ import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import { useDarkMode } from '../../hooks/useDarkMode';
 import { useClassNames } from '../../hooks/useClassNames';
-import { Size, Theme, Variant } from '../../types';
+import { GroupBorderOption, Size, Theme, Variant } from '../../types';
 import {
   forwardRefWithAs,
   Props,
@@ -10,7 +10,16 @@ import {
   unwrapConfigClasses,
   transformTheme,
 } from '../../core';
-import { getInputBaseCx, getInputSizeCx, getInputVariantCx } from './constants';
+import {
+  getInputBaseCx,
+  getInputGroupItemCx,
+  getInputSizeCx,
+  getInputVariantCx,
+} from './constants';
+import {
+  ButtonGroupContext,
+  useButtonGroupContext,
+} from './ButtonGroupContext';
 
 // For internal use only
 const ButtonIcon = ({
@@ -58,7 +67,7 @@ const ButtonRoot = forwardRefWithAs(function<
   const {
     size,
     theme,
-    variant = 'solid',
+    variant,
     dark,
     className,
     icon,
@@ -69,6 +78,7 @@ const ButtonRoot = forwardRefWithAs(function<
   } = props;
   const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
+  const buttonGroupContext = useButtonGroupContext();
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
@@ -84,22 +94,40 @@ const ButtonRoot = forwardRefWithAs(function<
       },
     });
 
-    const variantClass = getInputVariantCx(variant, {
-      removeHover: props.disabled,
-      override: v => {
-        switch (v) {
-          case 'solid':
-            return 'border-theme-base/20';
-          default:
-            return '';
-        }
-      },
+    const groupVariantClass = buttonGroupContext?.variant;
+
+    const variantClass = getInputVariantCx(
+      variant || groupVariantClass || 'solid',
+      {
+        removeHover: props.disabled,
+        override: v => {
+          switch (v) {
+            case 'solid':
+              return 'border-theme-base/20';
+            default:
+              return '';
+          }
+        },
+      }
+    );
+
+    const inGroup = buttonGroupContext !== null;
+    const groupClasses = inGroup ? getInputGroupItemCx() : '';
+
+    const configClasses = unwrapConfigClasses('button', config, {
+      ...props,
+      inGroup,
     });
 
-    const configClasses = unwrapConfigClasses('button', config, props);
-
-    return [base, sizeClass, variantClass, configClasses, className];
-  }, [size, theme, variant, dark, className, config, props]);
+    return [
+      base,
+      sizeClass,
+      variantClass,
+      groupClasses,
+      configClasses,
+      className,
+    ];
+  }, [size, theme, variant, className, config, buttonGroupContext, props]);
 
   return render({
     props: {
@@ -128,6 +156,7 @@ interface ButtonGroupProps {
   theme?: Theme;
   variant?: Variant;
   dark?: boolean;
+  borderOption?: GroupBorderOption;
 }
 
 const DEFAULT_BUTTON_GROUP_TAG = 'div';
@@ -137,29 +166,28 @@ const ButtonGroup = forwardRefWithAs(function<
 >(props: Props<TTag> & ButtonGroupProps, ref: React.Ref<TTag>) {
   const { size, theme, variant = 'solid', dark, className, ...rest } = props;
   const [enabled] = useDarkMode();
+  const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
-    const base = getInputBaseCx({
-      override: 'inline-flex',
-    });
+    const base = 'inline-flex shadow rounded';
+    const configClasses = unwrapConfigClasses('button.group', config, props);
+    return [base, configClasses, className];
+  }, [config, className]);
 
-    const sizeClass = getInputSizeCx();
-
-    const variantClass = getInputVariantCx(variant, {});
-
-    return [base, sizeClass, variantClass, className];
-  }, [size, theme, variant, dark, className]);
-
-  return render({
-    props: {
-      ref,
-      className: classNames,
-      'data-size': size,
-      'data-theme': transformTheme(theme, enabled, dark),
-      ...rest,
-    },
-    defaultTag: DEFAULT_BUTTON_GROUP_TAG,
-  });
+  return (
+    <ButtonGroupContext.Provider value={{ variant }}>
+      {render({
+        props: {
+          ref,
+          className: classNames,
+          'data-size': size,
+          'data-theme': transformTheme(theme, enabled, dark),
+          ...rest,
+        },
+        defaultTag: DEFAULT_BUTTON_GROUP_TAG,
+      })}
+    </ButtonGroupContext.Provider>
+  );
 });
 
 export const Button = Object.assign(ButtonRoot, {
