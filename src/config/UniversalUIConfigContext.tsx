@@ -3,6 +3,7 @@ import { CardContentProps, CardProps } from '../components/display/Card';
 import { TextProps } from '../components/display/Text';
 import { ButtonProps } from '../components/inputs/Button';
 import { InputProps } from '../components/inputs/Input';
+import { isSSR } from '../core';
 
 export type UniversalUIConfigContextProps = {
   components: {
@@ -30,6 +31,10 @@ export const UniversalUIConfigProvider = ({
   children: React.ReactNode;
   value: UniversalUIConfigContextProps;
 }) => {
+  if (isSSR) {
+    return <>{children}</>;
+  }
+
   return (
     <UniversalUIConfigContext.Provider value={value}>
       {children}
@@ -38,5 +43,12 @@ export const UniversalUIConfigProvider = ({
 };
 
 export const useUniversalUIConfig = () => {
-  return useContext(UniversalUIConfigContext);
+  return useContext(
+    // @ts-ignore
+    typeof createContext === 'function'
+      ? UniversalUIConfigContext
+      : {
+          displayName: 'SSR_MODE',
+        }
+  );
 };
