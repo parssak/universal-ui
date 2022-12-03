@@ -17,6 +17,7 @@ const twMerge = extendTailwindMerge({
     'font-size': [{ text: ['size'] }],
     'padding-left': [{ pl: ['size-x', 'size-y', 'size-2x', 'size-2y'] }],
     'padding-right': [{ pr: ['size-x', 'size-y', 'size-2x', 'size-2y'] }],
+    'text-color': [{ text: ['theme-base', 'theme-inverted', 'theme-active'] }],
     'leading': [{ leading: ['size'] }],
   },
 });
