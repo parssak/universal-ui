@@ -15,5 +15,6 @@ export const ThemeProvider = ({
 }) => {
   const [enabled] = useDarkMode();
 
+
   return <div {...props} data-theme={transformTheme(theme, enabled, dark)} />;
 };

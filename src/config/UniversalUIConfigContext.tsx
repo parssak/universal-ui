@@ -1,9 +1,9 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { CardContentProps, CardProps } from '../components/display/Card';
 import { TextProps } from '../components/display/Text';
 import { ButtonProps } from '../components/inputs/Button';
 import { InputProps } from '../components/inputs/Input';
-import { isSSR } from '../core';
+
 
 export type UniversalUIConfigContextProps = {
   components: {
@@ -31,12 +31,24 @@ export const UniversalUIConfigProvider = ({
   children: React.ReactNode;
   value: UniversalUIConfigContextProps;
 }) => {
-  if (isSSR) {
-    return <>{children}</>;
-  }
+  const [v, setV] = useState(
+    !value.ssr
+      ? value
+      : {
+          components: {},
+        }
+  );
+
+  useEffect(() => {
+    setV(v);
+  }, [value]);
+
+  // if (isSSR) {
+  //   return <>{children}</>;
+  // }
 
   return (
-    <UniversalUIConfigContext.Provider value={value}>
+    <UniversalUIConfigContext.Provider value={v}>
       {children}
     </UniversalUIConfigContext.Provider>
   );

@@ -68,7 +68,11 @@ export const Text = forwardRefWithAs(function<
         text-center leading-none`,
     };
 
-    const configClasses = unwrapConfigClasses('text', config, props);
+    const configClasses = unwrapConfigClasses('text', config, {
+      ...props,
+      variant,
+      colorVariant,
+    });
 
     return [
       base,
