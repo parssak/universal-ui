@@ -26,14 +26,14 @@ export const UniversalUIConfigContext = createContext<
 
 export const UniversalUIConfigProvider = ({
   children,
-  value,
+  config,
 }: {
   children: React.ReactNode;
-  value: UniversalUIConfigContextProps;
+  config: UniversalUIConfigContextProps;
 }) => {
   const [v, setV] = useState(
-    !value.ssr
-      ? value
+    !config.ssr
+      ? config
       : {
           components: {},
         }
@@ -41,7 +41,7 @@ export const UniversalUIConfigProvider = ({
 
   useEffect(() => {
     setV(v);
-  }, [value]);
+  }, [config]);
 
   // if (isSSR) {
   //   return <>{children}</>;

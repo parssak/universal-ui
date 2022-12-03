@@ -1,4 +1,4 @@
-import { useUniversalUIConfig } from './../config/UniversalUIConfigContext';
+// import { useUniversalUIConfig } from './../config/UniversalUIConfigContext';
 import { useState, useEffect } from 'react';
 import { useMedia } from './useMedia';
 import { useClient } from './useClient';
@@ -12,23 +12,23 @@ export const useDarkMode = () => {
   const [stored, setStored] = useState(false);
 
   const client = useClient();
-  const config = useUniversalUIConfig();
+  // const config = useUniversalUIConfig();
 
   useEffect(() => {
-    if (!config.ssr) {
-      setStored(prefersDarkMode);
-      return;
-    }
+    // if (!config.ssr) {
+    //   setStored(prefersDarkMode);
+    //   return;
+    // }
 
-    if (client) {
-      setStored(prefersDarkMode);
-      return;
-    }
+    setStored(prefersDarkMode);
+    // if (client) {
+    //   return;
+    // }
 
     // SSR only
-    const t = setTimeout(() => setStored(prefersDarkMode), 0);
+    // const t = setTimeout(() => setStored(prefersDarkMode), 0);
 
-    return () => t && clearTimeout(t);
+    // return () => t && clearTimeout(t);
   }, [prefersDarkMode, client]);
 
   return [stored] as const;

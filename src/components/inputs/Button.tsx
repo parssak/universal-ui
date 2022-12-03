@@ -179,7 +179,7 @@ const ButtonGroup = forwardRefWithAs(function<
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
-    const base = 'inline-flex shadow rounded';
+    const base = 'inline-flex shadow rounded justify-center';
     const configClasses = unwrapConfigClasses('button.group', config, props);
     return [base, configClasses, className];
   }, [config, className]);
