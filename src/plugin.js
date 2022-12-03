@@ -289,6 +289,14 @@ module.exports = plugin(
             active: 'rgb(var(--color-bg-active) / <alpha-value>)',
           },
         },
+        gradientColorStops: {
+          theme: {
+            pure: 'rgb(var(--color-bg-pure) / <alpha-value>)',
+            base: 'rgb(var(--color-bg-base) / <alpha-value>)',
+            inverted: 'rgb(var(--color-bg-inverted) / <alpha-value>)',
+            active: 'rgb(var(--color-bg-active) / <alpha-value>)',
+          },
+        },
         borderColor: {
           theme: {
             base: 'rgb(var(--color-border-base) / <alpha-value>)',
