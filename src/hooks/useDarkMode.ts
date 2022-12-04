@@ -9,7 +9,7 @@ function usePrefersDarkMode() {
 
 export const useDarkMode = () => {
   const prefersDarkMode = usePrefersDarkMode();
-  const [stored, setStored] = useState(false);
+  const [stored, setStored] = useState(true);
 
   const client = useClient();
   // const config = useUniversalUIConfig();
