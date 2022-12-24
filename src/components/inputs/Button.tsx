@@ -1,6 +1,6 @@
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
-import { useDarkMode } from '../../hooks/useDarkMode';
+// import { useDarkMode } from '../../hooks/useDarkMode';
 import { useClassNames } from '../../hooks/useClassNames';
 import { GroupBorderOption, Size, Theme, Variant } from '../../types';
 import {
@@ -8,7 +8,6 @@ import {
   Props,
   render,
   unwrapConfigClasses,
-  transformTheme,
 } from '../../core';
 import {
   getInputBaseCx,
@@ -76,7 +75,7 @@ const ButtonRoot = forwardRefWithAs(function<
     children,
     ...rest
   } = props;
-  const [enabled] = useDarkMode();
+  // const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
   const buttonGroupContext = useButtonGroupContext();
 
@@ -136,7 +135,8 @@ const ButtonRoot = forwardRefWithAs(function<
       ref,
       className: classNames,
       'data-size': size,
-      'data-theme': transformTheme(theme, enabled, dark),
+      'data-theme': theme,
+      'data-dark': dark,
       children: (
         <>
           {leadingIcon && <ButtonIcon type="leading">{leadingIcon}</ButtonIcon>}
@@ -175,7 +175,7 @@ const ButtonGroup = forwardRefWithAs(function<
     borderOption = 'both',
     ...rest
   } = props;
-  const [enabled] = useDarkMode();
+  // const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
@@ -191,7 +191,8 @@ const ButtonGroup = forwardRefWithAs(function<
           ref,
           className: classNames,
           'data-size': size,
-          'data-theme': transformTheme(theme, enabled, dark),
+          'data-theme': theme,
+          'data-dark': dark,
           ...rest,
         },
         defaultTag: DEFAULT_BUTTON_GROUP_TAG,

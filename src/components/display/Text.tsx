@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
-import { useDarkMode } from '../../hooks/useDarkMode';
 import { useClassNames } from '../../hooks/useClassNames';
 import { Size, TextColorVariant, TextStyleVariant, Theme } from '../../types';
 import {
@@ -8,7 +7,6 @@ import {
   Props,
   render,
   unwrapConfigClasses,
-  transformTheme,
 } from '../../core';
 
 export interface TextProps {
@@ -33,7 +31,7 @@ export const Text = forwardRefWithAs(function<
     className,
     ...rest
   } = props;
-  const [enabled] = useDarkMode();
+
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
@@ -94,7 +92,8 @@ export const Text = forwardRefWithAs(function<
       ref,
       className: classNames,
       'data-size': size,
-      'data-theme': transformTheme(theme, enabled, dark),
+      'data-theme': theme,
+      'data-dark': dark,
       ...rest,
     },
     defaultTag: renderElement,

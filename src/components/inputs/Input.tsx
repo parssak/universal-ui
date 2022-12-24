@@ -1,6 +1,5 @@
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
-import { useDarkMode } from '../../hooks/useDarkMode';
 import { useClassNames } from '../../hooks/useClassNames';
 import { Size, Theme, Variant } from '../../types';
 import {
@@ -8,7 +7,6 @@ import {
   Props,
   render,
   unwrapConfigClasses,
-  transformTheme,
 } from '../../core';
 import {
   getInputBaseCx,
@@ -31,7 +29,6 @@ export const Input = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_INPUT_TAG
 >(props: Props<TTag> & InputProps, ref: React.Ref<TTag>) {
   const { size, theme, variant, dark, className, ...rest } = props;
-  const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
   const buttonGroupContext = useButtonGroupContext();
 
@@ -52,7 +49,7 @@ export const Input = forwardRefWithAs(function<
             case 'solid':
               return 'bg-theme-pure';
             default:
-              return ''
+              return '';
           }
         },
       }
@@ -83,7 +80,8 @@ export const Input = forwardRefWithAs(function<
       ref,
       className: classNames,
       'data-size': size,
-      'data-theme': transformTheme(theme, enabled, dark),
+      'data-theme': theme,
+      'data-dark': dark,
       ...rest,
     },
     defaultTag: DEFAULT_INPUT_TAG,

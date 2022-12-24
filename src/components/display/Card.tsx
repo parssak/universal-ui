@@ -1,6 +1,5 @@
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
-import { useDarkMode } from '../../hooks/useDarkMode';
 import { useClassNames } from '../../hooks/useClassNames';
 import { Size, Theme } from '../../types';
 import {
@@ -8,7 +7,6 @@ import {
   Props,
   render,
   unwrapConfigClasses,
-  transformTheme,
 } from '../../core';
 
 export interface CardProps {
@@ -23,7 +21,6 @@ const CardRoot = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_CARD_TAG
 >(props: Props<TTag> & CardProps, ref: React.Ref<TTag>) {
   const { size, theme, dark, className, ...rest } = props;
-  const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
@@ -40,7 +37,8 @@ const CardRoot = forwardRefWithAs(function<
       ref,
       className: classNames,
       'data-size': size,
-      'data-theme': transformTheme(theme, enabled, dark),
+      'data-theme': theme,
+      'data-dark': dark,
       ...rest,
     },
     defaultTag: DEFAULT_CARD_TAG,

@@ -223,6 +223,17 @@ module.exports = plugin(
           ...getCSSColorVariables(colors),
         },
       });
+      if (name.endsWith('-dark')) {
+        const pureName = name.replace('-dark', '');
+        addBase({
+          [`[data-theme=${pureName}][data-dark=true]`]: {
+            ...getCSSColorVariables(colors),
+          },
+          [`[data-theme=${pureName}] [data-dark=true]`]: {
+            ...getCSSColorVariables(colors),
+          },
+        });
+      }
     });
 
     sizes.forEach(size => {

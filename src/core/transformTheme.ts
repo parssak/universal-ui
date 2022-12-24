@@ -2,12 +2,12 @@ import { Theme } from '../types';
 
 export const transformTheme = (
   theme: Theme | undefined,
-  enabled: boolean,
-  dark: boolean | undefined
+  enabledDarkMode: boolean,
+  isDarkModeMedia: boolean | undefined
 ) => {
   if (theme === undefined) return undefined;
 
-  if (enabled || dark) {
+  if (enabledDarkMode || isDarkModeMedia) {
     return `${theme}-dark`;
   }
 
