@@ -20,7 +20,8 @@ export const ThemeProvider = ({
   const isRootEnabled = () => {
     if (!isSSR) return enabled;
 
-    if (document.body.dataset.theme?.includes('dark')) return true;
+    
+    if (typeof document !== 'undefined' && document.body.dataset.theme?.includes('dark')) return true;
     return false;
   };
 
