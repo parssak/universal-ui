@@ -46,7 +46,7 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
 };
 
 module.exports = plugin(
-  function({ addBase, addUtilities, addVariant, config }) {
+  function({ addBase, addVariant, config }) {
     const DEFAULT_THEMES_CONFIG = [
       {
         name: 'neutral',
@@ -229,7 +229,7 @@ module.exports = plugin(
           [`[data-theme=${pureName}][data-dark=true]`]: {
             ...getCSSColorVariables(colors),
           },
-          [`[data-theme=${pureName}] [data-dark=true]`]: {
+          [`[data-dark=true] [data-theme=${pureName}]`]: {
             ...getCSSColorVariables(colors),
           },
         });
