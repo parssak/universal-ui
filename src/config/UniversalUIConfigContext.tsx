@@ -3,14 +3,16 @@ import { CardContentProps, CardProps } from '../components/display/Card';
 import { TextProps } from '../components/display/Text';
 import { ButtonProps } from '../components/inputs/Button';
 import { InputProps } from '../components/inputs/Input';
-
+import { InputGroupProps } from '../components/inputs/InputGroup';
 
 export type UniversalUIConfigContextProps = {
   components: {
     button?: string | ((props: ButtonProps & { inGroup?: boolean }) => string);
     'button.group'?: string | ((props: ButtonProps) => string);
+    'input-group'?: string | ((props: InputGroupProps) => string);
     text?: string | ((props: TextProps) => string);
     input?: string | ((props: InputProps & { inGroup?: boolean }) => string);
+    input_inner?: string | ((props: InputProps) => string);
     card?: string | ((props: CardProps) => string);
     'card.content'?: string | ((props: CardContentProps) => string);
   };

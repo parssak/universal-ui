@@ -1,3 +1,5 @@
+// ! For internal use only, do not export from index.ts
+
 import { GroupBorderOption, Variant } from '../../types';
 
 export const getInputBaseCx = (options?: {
@@ -9,7 +11,7 @@ export const getInputBaseCx = (options?: {
 
   const focusStyles = options?.removeFocus
     ? ''
-    : 'focus:outline-none focus:ring focus:ring-theme-base/50';
+    : 'focus:outline-none focus:ring focus-within:ring focus:ring-theme-base/50 focus-within:ring-theme-base/50';
 
   const override = options?.override;
 

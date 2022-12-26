@@ -14,27 +14,42 @@ import {
   getInputSizeCx,
   getInputVariantCx,
 } from './constants';
-import { useButtonGroupContext } from './ButtonGroupContext';
+import { useInputGroupContext } from './InputGroupContext';
+import { InputIcon } from './InputIcon';
 
 export interface InputProps {
   size?: Size;
   theme?: Theme;
   variant?: Variant;
   dark?: boolean;
+  leadingIcon?: React.ReactNode;
+  trailingIcon?: React.ReactNode;
+  inputRef?: React.Ref<HTMLInputElement>;
 }
 
-const DEFAULT_INPUT_TAG = 'input';
+const DEFAULT_INPUT_TAG = 'div';
 
 export const Input = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_INPUT_TAG
 >(props: Props<TTag> & InputProps, ref: React.Ref<TTag>) {
-  const { size, theme, variant, dark, className, ...rest } = props;
+  const {
+    size,
+    theme,
+    variant,
+    dark,
+    className,
+    leadingIcon,
+    trailingIcon,
+    inputRef,
+    ...rest
+  } = props;
   const config = useUniversalUIConfig();
-  const buttonGroupContext = useButtonGroupContext();
+  const buttonGroupContext = useInputGroupContext();
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
-      override: 'font-normal placeholder:opacity-50 truncate',
+      override:
+        'font-normal placeholder:opacity-50 truncate w-max flex items-center',
     });
 
     const sizeClass = getInputSizeCx();
@@ -75,6 +90,18 @@ export const Input = forwardRefWithAs(function<
     ];
   }, [size, theme, variant, className, config, props]);
 
+  const inputClassNames = useClassNames(() => {
+    const base =
+      'bg-transparent focus:outline-none truncate placeholder:opacity-50';
+
+    const configClasses = unwrapConfigClasses('input_inner', config, {
+      ...props,
+      inGroup: buttonGroupContext !== null,
+    });
+
+    return [base, configClasses];
+  }, [config, props]);
+
   return render({
     props: {
       ref,
@@ -82,7 +109,15 @@ export const Input = forwardRefWithAs(function<
       'data-size': size,
       'data-theme': theme,
       'data-dark': dark,
-      ...rest,
+      children: (
+        <>
+          {leadingIcon && <InputIcon type="leading">{leadingIcon}</InputIcon>}
+          <input {...rest} className={inputClassNames} ref={inputRef} />
+          {trailingIcon && (
+            <InputIcon type="trailing">{trailingIcon}</InputIcon>
+          )}
+        </>
+      ),
     },
     defaultTag: DEFAULT_INPUT_TAG,
   });
