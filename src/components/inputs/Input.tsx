@@ -44,7 +44,7 @@ export const Input = forwardRefWithAs(function<
     ...rest
   } = props;
   const config = useUniversalUIConfig();
-  const buttonGroupContext = useInputGroupContext();
+  const inputGroupContext = useInputGroupContext();
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
@@ -54,7 +54,7 @@ export const Input = forwardRefWithAs(function<
 
     const sizeClass = getInputSizeCx();
 
-    const groupVariantClass = buttonGroupContext?.variant;
+    const groupVariantClass = inputGroupContext?.variant;
     const variantClass = getInputVariantCx(
       variant || groupVariantClass || 'solid',
       {
@@ -70,10 +70,10 @@ export const Input = forwardRefWithAs(function<
       }
     );
 
-    const inGroup = buttonGroupContext !== null;
+    const inGroup = inputGroupContext !== null;
     const groupClasses =
       inGroup &&
-      getInputGroupItemCx({ borderOption: buttonGroupContext?.borderOption });
+      getInputGroupItemCx({ borderOption: inputGroupContext?.borderOption });
 
     const configClasses = unwrapConfigClasses('input', config, {
       ...props,
@@ -92,11 +92,11 @@ export const Input = forwardRefWithAs(function<
 
   const inputClassNames = useClassNames(() => {
     const base =
-      'bg-transparent focus:outline-none truncate placeholder:opacity-50';
+      'bg-transparent focus:outline-none placeholder:text-theme-muted truncate placeholder:opacity-50';
 
     const configClasses = unwrapConfigClasses('input_inner', config, {
       ...props,
-      inGroup: buttonGroupContext !== null,
+      inGroup: inputGroupContext !== null,
     });
 
     return [base, configClasses];

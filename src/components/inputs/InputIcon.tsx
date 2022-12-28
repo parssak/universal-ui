@@ -5,14 +5,15 @@ import { useClassNames } from '../../hooks/useClassNames';
 
 export const InputIcon = ({
   children,
+  className,
   type = 'center',
 }: {
   children: React.ReactNode;
+  className?: string;
   type?: 'center' | 'leading' | 'trailing';
 }) => {
   const classNames = useClassNames(() => {
-    const base =
-      'h-size-line aspect-square relative flex-shrink-0 scale-75 text-theme-muted';
+    const base = 'h-size-line aspect-square relative scale-75 text-theme-muted';
 
     const positionClasses = {
       center: '',
@@ -20,7 +21,7 @@ export const InputIcon = ({
       trailing: 'relative -right-size-qx ',
     };
 
-    return [base, positionClasses[type]];
+    return [base, positionClasses[type], className];
   }, [type]);
 
   return (

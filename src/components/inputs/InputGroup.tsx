@@ -32,12 +32,12 @@ const InputGroup = forwardRefWithAs(function<
     borderOption = 'both',
     ...rest
   } = props;
-  // const [enabled] = useDarkMode();
+
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
     const base = 'inline-flex shadow rounded';
-    const configClasses = unwrapConfigClasses('button.group', config, props);
+    const configClasses = unwrapConfigClasses('input-group', config, props);
     return [base, configClasses, className];
   }, [config, className]);
 
