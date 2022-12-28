@@ -44,53 +44,6 @@ const SelectRoot = (props: SelectRootProps) => {
     <RadixSelect.Root {...rest}>
       <SelectContext.Provider value={{ size, theme, dark }}>
         {children}
-        {/* <RadixSelect.Portal>
-          <ThemeProvider theme={theme} dark={dark} size={size}>
-            <RadixSelect.Content className="bg-theme-pure px-size-qx py-size-qx rounded border border-theme-base shadow-md">
-              <RadixSelect.ScrollUpButton className="grid place-items-center">
-                <InputIcon type="center">
-                  <Icon
-                    name="chevron-down"
-                    className="h-size-line rotate-180"
-                  />
-                </InputIcon>
-              </RadixSelect.ScrollUpButton>
-              <RadixSelect.Viewport>
-                <RadixSelect.Group>
-                  <SelectItem value="apple">Apple</SelectItem>
-                  <SelectItem value="banana">Banana</SelectItem>
-                  <SelectItem value="orange">Orange</SelectItem>
-                  <SelectItem value="pineapple">Pineapple</SelectItem>
-                  <SelectItem value="mango">Mango</SelectItem>
-                  <SelectItem value="grape">Grape</SelectItem>
-                  <SelectItem value="watermelon">Watermelon</SelectItem>
-                  <SelectItem value="pear">Pear</SelectItem>
-                  <SelectItem value="peach">Peach</SelectItem>
-                  <SelectItem value="cherry">Cherry</SelectItem>
-                  <SelectItem value="strawberry">Strawberry</SelectItem>
-                  <SelectItem value="kiwi">Kiwi</SelectItem>
-                  <SelectItem value="blueberry">Blueberry</SelectItem>
-                  <SelectItem value="raspberry">Raspberry</SelectItem>
-                  <SelectItem value="blackberry">Blackberry</SelectItem>
-                  <SelectItem value="apricot">Apricot</SelectItem>
-                  <SelectItem value="avocado">Avocado</SelectItem>
-                  <SelectItem value="coconut">Coconut</SelectItem>
-                  <SelectItem value="fig">Fig</SelectItem>
-                  <SelectItem value="lemon">Lemon</SelectItem>
-                  <SelectItem value="lime">Lime</SelectItem>
-                  <SelectItem value="melon">Melon</SelectItem>
-                  <SelectItem value="nectarine">Nectarine</SelectItem>
-                  <SelectItem value="papaya">Papaya</SelectItem>
-                </RadixSelect.Group>
-              </RadixSelect.Viewport>
-              <RadixSelect.ScrollDownButton className="grid place-items-center">
-                <InputIcon type="center">
-                  <Icon name="chevron-down" className="h-size-line" />
-                </InputIcon>
-              </RadixSelect.ScrollDownButton>
-            </RadixSelect.Content>
-          </ThemeProvider>
-        </RadixSelect.Portal> */}
       </SelectContext.Provider>
     </RadixSelect.Root>
   );
@@ -112,7 +65,7 @@ const SelectTrigger = forwardRefWithAs(function<
     className,
     children,
     leadingIcon,
-    trailingIcon = <Icon name="chevron-down" />,
+    trailingIcon = <Icon name="selector" />,
     ...rest
   } = props;
 
