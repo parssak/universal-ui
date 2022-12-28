@@ -1,20 +1,27 @@
 import React from 'react';
-import { isSSR } from '../core';
+import { forwardRefWithAs, isSSR, Props, render } from '../core';
 import { useDarkMode } from '../hooks/useDarkMode';
-import { Theme } from '../types';
+import { Size, Theme } from '../types';
 
-type DivProps = React.HTMLAttributes<HTMLDivElement>;
-
-export const ThemeProvider = ({
-  theme = 'neutral',
-  dark,
-  isRoot = false,
-  ...props
-}: DivProps & {
+export interface ThemeProviderProps {
   theme?: Theme;
+  size?: Size;
   dark?: boolean;
-  isRoot?: boolean;
-}) => {
+}
+
+const DEFAULT_THEME_PROVIDER_TAG = 'div';
+
+export const ThemeProvider = forwardRefWithAs(function<
+  TTag extends React.ElementType = typeof DEFAULT_THEME_PROVIDER_TAG
+>(props: Props<TTag> & ThemeProviderProps, ref: React.Ref<TTag>) {
+  const {
+    theme = 'neutral',
+    size = 'md',
+    dark,
+
+    ...rest
+  } = props;
+
   const [enabled] = useDarkMode();
 
   const isRootEnabled = () => {
@@ -31,11 +38,14 @@ export const ThemeProvider = ({
     return false;
   };
 
-  return (
-    <div
-      {...props}
-      data-theme={theme}
-      data-dark={typeof dark !== 'undefined' ? dark : isRootEnabled()}
-    />
-  );
-};
+  return render({
+    props: {
+      'data-theme': theme,
+      'data-dark': typeof dark !== 'undefined' ? dark : isRootEnabled(),
+      'data-size': size,
+      ref,
+      ...rest,
+    },
+    defaultTag: DEFAULT_THEME_PROVIDER_TAG,
+  });
+});

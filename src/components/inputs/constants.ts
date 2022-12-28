@@ -1,3 +1,5 @@
+// ! For internal use only, do not export from index.ts
+
 import { GroupBorderOption, Variant } from '../../types';
 
 export const getInputBaseCx = (options?: {
@@ -9,7 +11,7 @@ export const getInputBaseCx = (options?: {
 
   const focusStyles = options?.removeFocus
     ? ''
-    : 'focus:outline-none focus:ring focus:ring-theme-base/50';
+    : 'focus:outline-none ring-0 transition-all focus-within:relative focus-within:z-20 focus:ring focus-within:ring focus:ring-theme-base/50 focus-within:ring-theme-base/50';
 
   const override = options?.override;
 
@@ -57,7 +59,7 @@ export const getInputVariantCx = (
       text-theme-base
       placeholder:text-theme-muted
       border-theme-base
-      ${removeHover ? '' : 'hover:bg-theme-active'}
+      ${removeHover ? '' : 'enabled:hover:bg-theme-active'}
 
       `,
     outline: `
@@ -65,20 +67,24 @@ export const getInputVariantCx = (
       text-theme-base
       placeholder:text-theme-muted
       border-theme-base
-      ${removeHover ? '' : 'hover:bg-theme-active'}
+      ${removeHover ? '' : 'enabled:hover:bg-theme-active'}
     `,
     ghost: `
       bg-transparent
       text-theme-base hover:text-theme-active
       placeholder:text-theme-muted
       border-transparent
-      ${removeHover ? '' : 'hover:bg-theme-active'}
+      ${removeHover ? '' : 'enabled:hover:bg-theme-active'}
     `,
     inverted: `
       bg-theme-inverted 
       text-theme-inverted 
       border-theme-inverted
-      ${removeHover ? '' : 'hover:bg-theme-base hover:text-theme-active'}
+      ${
+        removeHover
+          ? ''
+          : 'enabled:hover:bg-theme-base enabled:hover:text-theme-active'
+      }
       `,
   };
 

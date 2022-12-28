@@ -1,8 +1,7 @@
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
-// import { useDarkMode } from '../../hooks/useDarkMode';
 import { useClassNames } from '../../hooks/useClassNames';
-import { GroupBorderOption, Size, Theme, Variant } from '../../types';
+import { Size, Theme, Variant } from '../../types';
 import {
   forwardRefWithAs,
   Props,
@@ -15,38 +14,9 @@ import {
   getInputSizeCx,
   getInputVariantCx,
 } from './constants';
-import {
-  ButtonGroupContext,
-  useButtonGroupContext,
-} from './ButtonGroupContext';
-
-// For internal use only
-const ButtonIcon = ({
-  children,
-  type = 'center',
-}: {
-  children: React.ReactNode;
-  type?: 'center' | 'leading' | 'trailing';
-}) => {
-  const classNames = useClassNames(() => {
-    const base =
-      'h-size-line aspect-square relative flex-shrink-0 scale-75 text-theme-muted';
-
-    const positionClasses = {
-      center: '',
-      leading: 'relative -left-size-qx ',
-      trailing: 'relative -right-size-qx ',
-    };
-
-    return [base, positionClasses[type]];
-  }, [type]);
-
-  return (
-    <span className={classNames} aria-hidden="true">
-      {children}
-    </span>
-  );
-};
+import { useInputGroupContext } from './InputGroupContext';
+import { InputIcon } from './InputIcon';
+import { InputGroup } from './InputGroup';
 
 export interface ButtonProps {
   size?: Size;
@@ -77,7 +47,7 @@ const ButtonRoot = forwardRefWithAs(function<
   } = props;
   // const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
-  const buttonGroupContext = useButtonGroupContext();
+  const inputGroupContext = useInputGroupContext();
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
@@ -93,7 +63,7 @@ const ButtonRoot = forwardRefWithAs(function<
       },
     });
 
-    const groupVariantClass = buttonGroupContext?.variant;
+    const groupVariantClass = inputGroupContext?.variant;
 
     const variantClass = getInputVariantCx(
       variant || groupVariantClass || 'solid',
@@ -110,10 +80,10 @@ const ButtonRoot = forwardRefWithAs(function<
       }
     );
 
-    const inGroup = buttonGroupContext !== null;
+    const inGroup = inputGroupContext !== null;
     const groupClasses =
       inGroup &&
-      getInputGroupItemCx({ borderOption: buttonGroupContext?.borderOption });
+      getInputGroupItemCx({ borderOption: inputGroupContext?.borderOption });
 
     const configClasses = unwrapConfigClasses('button', config, {
       ...props,
@@ -128,7 +98,7 @@ const ButtonRoot = forwardRefWithAs(function<
       configClasses,
       className,
     ];
-  }, [size, theme, variant, className, config, buttonGroupContext, props]);
+  }, [size, theme, variant, className, config, inputGroupContext, props]);
 
   return render({
     props: {
@@ -139,11 +109,11 @@ const ButtonRoot = forwardRefWithAs(function<
       'data-dark': dark,
       children: (
         <>
-          {leadingIcon && <ButtonIcon type="leading">{leadingIcon}</ButtonIcon>}
+          {leadingIcon && <InputIcon type="leading">{leadingIcon}</InputIcon>}
           {children}
-          {icon && <ButtonIcon type="center">{icon}</ButtonIcon>}
+          {icon && <InputIcon type="center">{icon}</InputIcon>}
           {trailingIcon && (
-            <ButtonIcon type="trailing">{trailingIcon}</ButtonIcon>
+            <InputIcon type="trailing">{trailingIcon}</InputIcon>
           )}
         </>
       ),
@@ -153,54 +123,6 @@ const ButtonRoot = forwardRefWithAs(function<
   });
 });
 
-interface ButtonGroupProps {
-  size?: Size;
-  theme?: Theme;
-  variant?: Variant;
-  dark?: boolean;
-  borderOption?: GroupBorderOption;
-}
-
-const DEFAULT_BUTTON_GROUP_TAG = 'div';
-
-const ButtonGroup = forwardRefWithAs(function<
-  TTag extends React.ElementType = typeof DEFAULT_BUTTON_GROUP_TAG
->(props: Props<TTag> & ButtonGroupProps, ref: React.Ref<TTag>) {
-  const {
-    size,
-    theme,
-    variant = 'solid',
-    dark,
-    className,
-    borderOption = 'both',
-    ...rest
-  } = props;
-  // const [enabled] = useDarkMode();
-  const config = useUniversalUIConfig();
-
-  const classNames = useClassNames(() => {
-    const base = 'inline-flex shadow rounded';
-    const configClasses = unwrapConfigClasses('button.group', config, props);
-    return [base, configClasses, className];
-  }, [config, className]);
-
-  return (
-    <ButtonGroupContext.Provider value={{ variant, borderOption }}>
-      {render({
-        props: {
-          ref,
-          className: classNames,
-          'data-size': size,
-          'data-theme': theme,
-          'data-dark': dark,
-          ...rest,
-        },
-        defaultTag: DEFAULT_BUTTON_GROUP_TAG,
-      })}
-    </ButtonGroupContext.Provider>
-  );
-});
-
 export const Button = Object.assign(ButtonRoot, {
-  Group: ButtonGroup,
+  Group: InputGroup,
 });

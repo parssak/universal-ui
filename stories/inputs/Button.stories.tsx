@@ -1,6 +1,6 @@
 import React from 'react';
 import StoryLayout from '../utils/StoryLayout';
-import { Button, Input } from '../../src';
+import { Button, Input, InputGroup } from '../../src';
 
 export default {
   component: Button,
@@ -55,8 +55,8 @@ TrailingIcon.args = {
   ),
 };
 
-export const CenterButton = Template.bind({});
-CenterButton.args = {
+export const PureIconButton = Template.bind({});
+PureIconButton.args = {
   children: undefined,
   icon: (
     <svg
@@ -75,17 +75,17 @@ CenterButton.args = {
 
 export const Group = args => (
   <StoryLayout>
-    <Button.Group {...args}>
+    <InputGroup {...args}>
       <Button>Discussions</Button>
       <Button>Send Invoice</Button>
       <Button>Inbox</Button>
-    </Button.Group>
+    </InputGroup>
   </StoryLayout>
 );
 
 export const GroupWithIcon = args => (
   <StoryLayout>
-    <Button.Group {...args}>
+    <InputGroup {...args}>
       <Button>Inbox</Button>
       <Button
         icon={
@@ -102,15 +102,15 @@ export const GroupWithIcon = args => (
           </svg>
         }
       />
-    </Button.Group>
+    </InputGroup>
   </StoryLayout>
 );
 
 export const GroupWithInput = args => (
   <StoryLayout>
-    <Button.Group {...args}>
+    <InputGroup {...args}>
       <Input />
       <Button>Join Waitlist</Button>
-    </Button.Group>
+    </InputGroup>
   </StoryLayout>
 );
