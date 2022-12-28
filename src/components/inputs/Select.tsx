@@ -65,7 +65,7 @@ const SelectTrigger = forwardRefWithAs(function<
     className,
     children,
     leadingIcon,
-    trailingIcon = <Icon name="check" />,
+    trailingIcon = <Icon name="selector" />,
     ...rest
   } = props;
 
