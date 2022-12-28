@@ -65,7 +65,7 @@ const SelectTrigger = forwardRefWithAs(function<
     className,
     children,
     leadingIcon,
-    trailingIcon = <Icon name="selector" />,
+    trailingIcon = <Icon name="check" />,
     ...rest
   } = props;
 
@@ -195,11 +195,13 @@ const SelectPanel = forwardRefWithAs(function<
 
   return (
     <RadixSelect.Portal>
+      {/* @ts-ignore */}
       <ThemeProvider
         theme={theme}
         dark={dark}
         size={size}
         ref={ref}
+        // @ts-ignore
         as={asElement || DEFAULT_SELECT_PANEL_TAG}
         {...rest}
       >
@@ -244,9 +246,9 @@ const SelectItem = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base =
-      'flex items-center rounded  w-full text-left border border-transparent ';
+      'flex items-center rounded w-full text-left border border-transparent group';
     const focusClasses =
-      'focus:bg-theme-active/50 focus:border-theme-base/20 focus:outline-none data-[state=checked]:bg-theme-active';
+      'focus:bg-theme-active/30 focus:outline-none data-[state=checked]:bg-theme-active/50';
 
     const sizeClass = getInputSizeCx({
       override: 'pt-size-hy pb-size-hy',
@@ -275,7 +277,10 @@ const SelectItem = forwardRefWithAs(function<
                 </RadixSelect.ItemIndicator>
               )}
               <RadixSelect.ItemText asChild>
-                <Text as="span" className="">
+                <Text
+                  as="span"
+                  className="text-theme-muted group-data-[state=checked]:text-theme-base"
+                >
                   {children}
                 </Text>
               </RadixSelect.ItemText>

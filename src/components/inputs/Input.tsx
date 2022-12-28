@@ -28,9 +28,10 @@ export interface InputProps {
 }
 
 const DEFAULT_INPUT_TAG = 'div';
+const INPUT_TAG = 'input';
 
 export const Input = forwardRefWithAs(function<
-  TTag extends React.ElementType = typeof DEFAULT_INPUT_TAG
+  TTag extends React.ElementType = typeof INPUT_TAG
 >(props: Props<TTag> & InputProps, ref: React.Ref<TTag>) {
   const {
     size,
@@ -62,7 +63,7 @@ export const Input = forwardRefWithAs(function<
         override: v => {
           switch (v) {
             case 'solid':
-              return 'bg-theme-pure';
+              return 'bg-theme-pure border-theme-base/50';
             default:
               return '';
           }

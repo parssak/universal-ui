@@ -1,17 +1,18 @@
 // ! For internal use only, do not export from index.ts
 
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useClassNames } from '../../hooks/useClassNames';
 
-export const InputIcon = ({
-  children,
-  className,
-  type = 'center',
-}: {
-  children: React.ReactNode;
-  className?: string;
-  type?: 'center' | 'leading' | 'trailing';
-}) => {
+export const InputIcon = forwardRef<
+  HTMLSpanElement,
+  {
+    children: React.ReactNode;
+    className?: string;
+    type?: 'center' | 'leading' | 'trailing';
+  }
+>((props, ref) => {
+  const { children, className, type = 'center' } = props;
+
   const classNames = useClassNames(() => {
     const base = 'h-size-line aspect-square relative scale-75 text-theme-muted';
 
@@ -25,8 +26,8 @@ export const InputIcon = ({
   }, [type]);
 
   return (
-    <span className={classNames} aria-hidden="true">
+    <span className={classNames} aria-hidden="true" ref={ref}>
       {children}
     </span>
   );
-};
+});
