@@ -4,7 +4,11 @@ import { TextProps } from '../components/display/Text';
 import { ButtonProps } from '../components/inputs/Button';
 import { InputProps } from '../components/inputs/Input';
 import { InputGroupProps } from '../components/inputs/InputGroup';
-import { SelectItemProps, SelectPanelProps, SelectTriggerProps } from '../components/inputs/Select';
+import {
+  SelectItemProps,
+  SelectPanelProps,
+  SelectTriggerProps,
+} from '../components/inputs/Select';
 import { Size, Theme, Variant } from '../types';
 
 interface CanBeInsideInputGroup {
@@ -35,7 +39,8 @@ export type UniversalUIConfigContextProps = {
         ) => string);
     'select.panel'?: string | ((props: SelectPanelProps) => string);
     'select.item'?: string | ((props: SelectItemProps) => string);
-    
+    'select.item_text'?: string | ((props: SelectItemProps) => string);
+
     // -- Display --
     text?: string | ((props: TextProps) => string);
     card?: string | ((props: CardProps) => string);
@@ -56,10 +61,10 @@ export const UniversalUIConfigProvider = ({
   config,
 }: {
   children: React.ReactNode;
-  config: UniversalUIConfigContextProps;
+  config?: UniversalUIConfigContextProps;
 }) => {
   const [v, setV] = useState(
-    !config.ssr
+    !config?.ssr
       ? config
       : {
           components: {},
@@ -70,13 +75,9 @@ export const UniversalUIConfigProvider = ({
     setV(v);
   }, [config]);
 
-  // if (isSSR) {
-  //   return <>{children}</>;
-  // }
-
   return (
-    <UniversalUIConfigContext.Provider value={v}>
-      {children}
+    <UniversalUIConfigContext.Provider value={v ?? { components: {} }}>
+      <div id="#universal-ui-provider">{children}</div>
     </UniversalUIConfigContext.Provider>
   );
 };

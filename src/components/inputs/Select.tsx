@@ -18,8 +18,9 @@ import { useInputGroupContext } from './InputGroupContext';
 import * as RadixSelect from '@radix-ui/react-select';
 import { InputIcon } from './InputIcon';
 import { ThemeProvider } from '../../config/ThemeProvider';
-import { Text } from '../display/Text';
+
 import { Icon } from '../icons/Icon';
+import { useBodyElement } from '../../hooks/useBody';
 
 const SelectContext = React.createContext<{
   size?: Size;
@@ -106,9 +107,6 @@ const SelectTrigger = forwardRefWithAs(function<
       theme,
       variant,
       inGroup,
-      className,
-      leadingIcon,
-      trailingIcon,
     });
 
     return [
@@ -182,19 +180,18 @@ const SelectPanel = forwardRefWithAs(function<
   const config = useUniversalUIConfig();
   const { size, theme, dark } = React.useContext(SelectContext);
 
+  const body = useBodyElement();
+
   const classNames = useClassNames(() => {
     const base =
       'bg-theme-pure px-size-qx py-size-qx rounded border border-theme-base shadow-md';
-    const configClasses = unwrapConfigClasses('select.panel', config, {
-      ...props,
-      className,
-    });
+    const configClasses = unwrapConfigClasses('select.panel', config, props);
 
     return [base, configClasses, className];
   }, [config, className]);
 
   return (
-    <RadixSelect.Portal>
+    <RadixSelect.Portal container={body}>
       {/* @ts-ignore */}
       <ThemeProvider
         theme={theme}
@@ -246,22 +243,29 @@ const SelectItem = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base =
-      'flex items-center rounded w-full text-left border border-transparent group';
+      'flex items-center rounded w-full text-left border border-transparent group/item-text';
     const focusClasses =
       'focus:bg-theme-active/30 focus:outline-none data-[state=checked]:bg-theme-active/50';
-
     const sizeClass = getInputSizeCx({
       override: 'pt-size-hy pb-size-hy',
     });
 
-    const configClasses = unwrapConfigClasses('select.item', config, {
-      ...props,
-      className,
-      leadingIcon,
-      trailingIcon,
-    });
+    const configClasses = unwrapConfigClasses('select.item', config, props);
 
     return [base, focusClasses, sizeClass, configClasses, className];
+  }, []);
+
+  const textClassNames = useClassNames(() => {
+    const base =
+      'text-theme-muted group-data-[state=checked]/item-text:text-theme-base';
+
+    const configClasses = unwrapConfigClasses(
+      'select.item_text',
+      config,
+      props
+    );
+
+    return [base, configClasses];
   }, []);
 
   return (
@@ -277,12 +281,7 @@ const SelectItem = forwardRefWithAs(function<
                 </RadixSelect.ItemIndicator>
               )}
               <RadixSelect.ItemText asChild>
-                <Text
-                  as="span"
-                  className="text-theme-muted group-data-[state=checked]:text-theme-base"
-                >
-                  {children}
-                </Text>
+                <span className={textClassNames}>{children}</span>
               </RadixSelect.ItemText>
               {trailingIcon && (
                 <RadixSelect.ItemIndicator asChild>
