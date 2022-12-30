@@ -32,7 +32,7 @@ const INPUT_TAG = 'input';
 
 export const Input = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof INPUT_TAG
->(props: Props<TTag> & InputProps, ref: React.Ref<TTag>) {
+>(props: Omit<Props<TTag>, 'size'> & InputProps, ref: React.Ref<TTag>) {
   const {
     size,
     theme,

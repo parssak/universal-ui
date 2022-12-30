@@ -235,6 +235,7 @@ const SelectItem = forwardRefWithAs(function<
     className,
     children,
     value,
+    theme,
     leadingIcon,
     trailingIcon = <Icon name="check" />,
     ...rest
@@ -273,6 +274,7 @@ const SelectItem = forwardRefWithAs(function<
       {render({
         props: {
           className: classNames,
+          'data-theme': theme,
           children: (
             <>
               {leadingIcon && (

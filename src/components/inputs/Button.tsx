@@ -110,7 +110,7 @@ const ButtonRoot = forwardRefWithAs(function<
       children: (
         <>
           {leadingIcon && <InputIcon type="leading">{leadingIcon}</InputIcon>}
-          {children}
+          {icon ? <span className="sr-only">{children}</span> : children}
           {icon && <InputIcon type="center">{icon}</InputIcon>}
           {trailingIcon && (
             <InputIcon type="trailing">{trailingIcon}</InputIcon>
