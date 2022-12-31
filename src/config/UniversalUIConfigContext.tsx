@@ -4,12 +4,14 @@ import { TextProps } from '../components/display/Text';
 import { ButtonProps } from '../components/inputs/Button';
 import { InputProps } from '../components/inputs/Input';
 import { InputGroupProps } from '../components/inputs/InputGroup';
+import * as Tooltip from '@radix-ui/react-tooltip';
 import {
   SelectItemProps,
   SelectPanelProps,
   SelectTriggerProps,
 } from '../components/inputs/Select';
 import { Size, Theme, Variant } from '../types';
+import { TooltipContentProps, TooltipTriggerProps } from '../components/display/Tooltip';
 
 interface CanBeInsideInputGroup {
   inGroup?: boolean;
@@ -45,6 +47,12 @@ export type UniversalUIConfigContextProps = {
     text?: string | ((props: TextProps) => string);
     card?: string | ((props: CardProps) => string);
     'card.content'?: string | ((props: CardContentProps) => string);
+    'tooltip.trigger'?: string | ((props: TooltipTriggerProps) => string);
+    'tooltip.content'?: string | ((props: TooltipContentProps) => string);
+    'tooltip.content_arrow'?: string | ((props: TooltipContentProps) => string);
+  };
+  providers?: {
+    tooltip?: Omit<Tooltip.TooltipProviderProps, 'children'>;
   };
   ssr?: boolean;
 };
@@ -77,7 +85,9 @@ export const UniversalUIConfigProvider = ({
 
   return (
     <UniversalUIConfigContext.Provider value={v ?? { components: {} }}>
-      <div id="#universal-ui-provider">{children}</div>
+      <Tooltip.Provider {...config?.providers?.tooltip}>
+        {children}
+      </Tooltip.Provider>
     </UniversalUIConfigContext.Provider>
   );
 };

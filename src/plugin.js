@@ -254,32 +254,6 @@ module.exports = plugin(
     sizes.forEach(size => {
       addVariant(`size-${size.name}`, `[data-size=${size.name}] &`);
     });
-
-    // Add utilities
-
-    // const bg = '';
-
-    /**
-     *
-     * type: pure | base | inverted | active
-     * theme: neutral | brand | error | success | warning | info
-     * .bg-<theme>-<type> {
-     *  rgb(var(--) / var(--tw-bg-opacity))
-     *
-     */
-
-    // themes.forEach(theme => {
-    //   const { name, colors } = theme;
-
-    //   const bgColors = {
-    //     pure: colors['bg-pure'],
-    //     base: colors['bg-base'],
-    //     inverted: colors['bg-inverted'],
-    //     active: colors['bg-active'],
-    //   };
-
-    //   console.debug(name, bgColors);
-    // });
   },
   {
     theme: {
@@ -293,6 +267,22 @@ module.exports = plugin(
           },
         },
         backgroundColor: {
+          theme: {
+            pure: 'rgb(var(--color-bg-pure) / <alpha-value>)',
+            base: 'rgb(var(--color-bg-base) / <alpha-value>)',
+            inverted: 'rgb(var(--color-bg-inverted) / <alpha-value>)',
+            active: 'rgb(var(--color-bg-active) / <alpha-value>)',
+          },
+        },
+        fill: {
+          theme: {
+            pure: 'rgb(var(--color-bg-pure) / <alpha-value>)',
+            base: 'rgb(var(--color-bg-base) / <alpha-value>)',
+            inverted: 'rgb(var(--color-bg-inverted) / <alpha-value>)',
+            active: 'rgb(var(--color-bg-active) / <alpha-value>)',
+          },
+        },
+        stroke: {
           theme: {
             pure: 'rgb(var(--color-bg-pure) / <alpha-value>)',
             base: 'rgb(var(--color-bg-base) / <alpha-value>)',
