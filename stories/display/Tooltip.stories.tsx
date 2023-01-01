@@ -22,7 +22,7 @@ const Template = args => (
       <Tooltip.Trigger>
         <Button>Hover me</Button>
       </Tooltip.Trigger>
-      <Tooltip.Content side='right'>hello world</Tooltip.Content>
+      <Tooltip.Content size='sm' side='right'>hello world</Tooltip.Content>
     </Tooltip.Root>
   </StoryLayout>
 );

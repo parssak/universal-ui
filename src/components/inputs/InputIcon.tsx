@@ -14,7 +14,7 @@ export const InputIcon = forwardRef<
   const { children, className, type = 'center' } = props;
 
   const classNames = useClassNames(() => {
-    const base = 'h-size-line aspect-square relative scale-75 text-theme-muted';
+    const base = 'h-size-line aspect-square relative scale-75 text-theme-muted pointer-events-none select-none';
 
     const positionClasses = {
       center: '',

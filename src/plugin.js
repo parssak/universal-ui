@@ -42,6 +42,7 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
     'border-base': colorMap(4, 5),
     'border-inverted': colorMap(5, 4),
     'border-active': colorMap(3, 5),
+    'border-muted': colorMap(2, 8),
   };
 };
 
@@ -255,6 +256,7 @@ module.exports = plugin(
       addVariant(`size-${size.name}`, `[data-size=${size.name}] &`);
     });
   },
+
   {
     theme: {
       extend: {
@@ -276,10 +278,10 @@ module.exports = plugin(
         },
         fill: {
           theme: {
-            pure: 'rgb(var(--color-bg-pure) / <alpha-value>)',
-            base: 'rgb(var(--color-bg-base) / <alpha-value>)',
-            inverted: 'rgb(var(--color-bg-inverted) / <alpha-value>)',
-            active: 'rgb(var(--color-bg-active) / <alpha-value>)',
+            base: 'rgb(var(--color-border-base) / <alpha-value>)',
+            inverted: 'rgb(var(--color-border-inverted) / <alpha-value>)',
+            active: 'rgb(var(--color-border-active) / <alpha-value>)',
+            muted: 'rgb(var(--color-border-muted) / <alpha-value>)',
           },
         },
         stroke: {
@@ -303,6 +305,7 @@ module.exports = plugin(
             base: 'rgb(var(--color-border-base) / <alpha-value>)',
             inverted: 'rgb(var(--color-border-inverted) / <alpha-value>)',
             active: 'rgb(var(--color-border-active) / <alpha-value>)',
+            muted: 'rgb(var(--color-border-muted) / <alpha-value>)',
           },
         },
         ringColor: {
@@ -330,6 +333,21 @@ module.exports = plugin(
         },
         lineHeight: {
           size: 'var(--size-line)',
+        },
+        keyframes: {
+          'scale-in': {
+            '0%': {
+              opacity: '0',
+              transform: 'scale(0.8)',
+            },
+            '100%': {
+              opacity: '1',
+              transform: 'scale(1)',
+            },
+          },
+        },
+        animation: {
+          'scale-in': 'scale-in 0.1s ease-out',
         },
       },
     },

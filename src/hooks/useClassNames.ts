@@ -12,13 +12,37 @@ export const useClassNames = (
   }, deps);
 };
 
+const SPACING_CLASSES = [
+  'size-x',
+  'size-y',
+  'size-2x',
+  'size-2y',
+  'size-hx',
+  'size-hy',
+  'size-qx',
+  'size-qy',
+  'size-4x',
+  'size-4y',
+];
 const twMerge = extendTailwindMerge({
   classGroups: {
     'font-size': [{ text: ['size'] }],
-    'padding-left': [{ pl: ['size-x', 'size-y', 'size-2x', 'size-2y'] }],
-    'padding-right': [{ pr: ['size-x', 'size-y', 'size-2x', 'size-2y'] }],
+    'padding-left': [{ pl: SPACING_CLASSES }],
+    'padding-right': [{ pr: SPACING_CLASSES }],
+    'padding-top': [{ pt: SPACING_CLASSES }],
+    'padding-bottom': [{ pb: SPACING_CLASSES }],
+    'padding-x': [{ px: SPACING_CLASSES }],
+    'padding-y': [{ py: SPACING_CLASSES }],
+    padding: [{ p: SPACING_CLASSES }],
+    'margin-left': [{ ml: SPACING_CLASSES }],
+    'margin-right': [{ mr: SPACING_CLASSES }],
+    'margin-top': [{ mt: SPACING_CLASSES }],
+    'margin-bottom': [{ mb: SPACING_CLASSES }],
+    'margin-x': [{ mx: SPACING_CLASSES }],
+    'margin-y': [{ my: SPACING_CLASSES }],
+    margin: [{ m: SPACING_CLASSES }],
     'text-color': [{ text: ['theme-base', 'theme-inverted', 'theme-active'] }],
-    'leading': [{ leading: ['size'] }],
+    leading: [{ leading: ['size'] }],
   },
 });
 
