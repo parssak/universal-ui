@@ -4,18 +4,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-scale-in {
-  animation: scale-in 0.1s ease-out;
-} */

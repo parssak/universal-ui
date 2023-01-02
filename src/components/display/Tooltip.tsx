@@ -53,6 +53,7 @@ export interface TooltipContentProps extends RadixTooltip.TooltipContentProps {
   dark?: boolean;
   size?: Size;
   arrowClassName?: string;
+  container?: HTMLElement | null | undefined;
 }
 
 const TooltipContent = (props: TooltipContentProps) => {
@@ -63,6 +64,7 @@ const TooltipContent = (props: TooltipContentProps) => {
     size,
     dark,
     arrowClassName,
+    container,
     ...rest
   } = props;
   const body = useBodyElement();
@@ -91,7 +93,7 @@ const TooltipContent = (props: TooltipContentProps) => {
   }, [arrowClassName, config, props]);
 
   return (
-    <RadixTooltip.Portal container={body}>
+    <RadixTooltip.Portal container={container ?? body}>
       <ThemeProvider
         {...rest}
         sideOffset={sideOffset}
