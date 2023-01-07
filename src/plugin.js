@@ -163,6 +163,9 @@ module.exports = plugin(
               // quadruple sizes
               '4x': `${parseFloat(sizeSizes.x) * 4}rem`,
               '4y': `${parseFloat(sizeSizes.y) * 4}rem`,
+              // 8x sizes
+              '8x': `${parseFloat(sizeSizes.x) * 8}rem`,
+              '8y': `${parseFloat(sizeSizes.y) * 8}rem`,
               // half sizes
               hx: `${parseFloat(sizeSizes.x) / 2}rem`,
               hy: `${parseFloat(sizeSizes.y) / 2}rem`,
@@ -324,6 +327,8 @@ module.exports = plugin(
           'size-2y': 'var(--size-2y)',
           'size-4x': 'var(--size-4x)',
           'size-4y': 'var(--size-4y)',
+          'size-8x': 'var(--size-8x)',
+          'size-8y': 'var(--size-8y)',
           'size-hx': 'var(--size-hx)',
           'size-hy': 'var(--size-hy)',
           'size-qx': 'var(--size-qx)',
