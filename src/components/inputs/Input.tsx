@@ -93,7 +93,7 @@ export const Input = forwardRefWithAs(function<
 
   const inputClassNames = useClassNames(() => {
     const base =
-      'bg-transparent focus:outline-none placeholder:text-theme-muted truncate placeholder:opacity-50';
+      'bg-transparent focus:outline-none placeholder:text-theme-muted truncate placeholder:opacity-50 w-full';
 
     const configClasses = unwrapConfigClasses('input_inner', config, {
       ...props,
