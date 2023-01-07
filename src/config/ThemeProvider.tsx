@@ -7,6 +7,7 @@ export interface ThemeProviderProps {
   theme?: Theme;
   size?: Size;
   dark?: boolean;
+  inverted?: boolean;
 }
 
 const DEFAULT_THEME_PROVIDER_TAG = 'div';
@@ -18,6 +19,7 @@ export const ThemeProvider = forwardRefWithAs(function<
     theme = 'neutral',
     size = 'md',
     dark,
+    inverted,
     ...rest
   } = props;
 
@@ -37,10 +39,14 @@ export const ThemeProvider = forwardRefWithAs(function<
     return false;
   };
 
+  const isDark = typeof dark !== 'undefined' ? dark : isRootEnabled();
+
+  const isDarkWithInverted = typeof inverted !== 'undefined' ?  !isDark : isDark;
+
   return render({
     props: {
       'data-theme': theme,
-      'data-dark': typeof dark !== 'undefined' ? dark : isRootEnabled(),
+      'data-dark': isDarkWithInverted,
       'data-size': size,
       ref,
       ...rest,

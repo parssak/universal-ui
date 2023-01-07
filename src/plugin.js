@@ -219,21 +219,23 @@ module.exports = plugin(
 
     themes.forEach(theme => {
       const { colors, name } = theme;
-      addBase({
-        [`[data-theme=${name}]`]: {
-          ...getCSSColorVariables(colors),
-        },
-      });
+     
       if (name.endsWith('-dark')) {
         const pureName = name.replace('-dark', '');
         addBase({
-            [`[data-dark=true] [data-theme=${pureName}]`]: {
-              ...getCSSColorVariables(colors),
-            },
+          [`[data-dark=true] [data-theme=${pureName}]:not([data-override=true])`]: {
+            ...getCSSColorVariables(colors),
+          },
           [`[data-theme=${pureName}][data-dark=true]`]: {
             ...getCSSColorVariables(colors),
           },
         });
+      } else {
+         addBase({
+           [`[data-theme=${name}]`]: {
+             ...getCSSColorVariables(colors),
+           },
+         });
       }
     });
 
