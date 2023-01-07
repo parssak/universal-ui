@@ -11,7 +11,11 @@ import {
   SelectTriggerProps,
 } from '../components/inputs/Select';
 import { Size, Theme, Variant } from '../types';
-import { TooltipContentProps, TooltipTriggerProps } from '../components/display/Tooltip';
+import {
+  TooltipContentProps,
+  TooltipTriggerProps,
+} from '../components/display/Tooltip';
+import { ThemeProvider, ThemeProviderProps } from './ThemeProvider';
 
 interface CanBeInsideInputGroup {
   inGroup?: boolean;
@@ -53,6 +57,7 @@ export type UniversalUIConfigContextProps = {
   };
   providers?: {
     tooltip?: Omit<Tooltip.TooltipProviderProps, 'children'>;
+    theme?: Omit<ThemeProviderProps, 'children'>;
   };
   ssr?: boolean;
 };
@@ -85,9 +90,11 @@ export const UniversalUIConfigProvider = ({
 
   return (
     <UniversalUIConfigContext.Provider value={v ?? { components: {} }}>
-      <Tooltip.Provider {...config?.providers?.tooltip}>
-        {children}
-      </Tooltip.Provider>
+      <ThemeProvider {...config?.providers?.theme}>
+        <Tooltip.Provider {...config?.providers?.tooltip}>
+          {children}
+        </Tooltip.Provider>
+      </ThemeProvider>
     </UniversalUIConfigContext.Provider>
   );
 };
