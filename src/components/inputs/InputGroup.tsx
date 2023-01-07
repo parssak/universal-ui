@@ -29,7 +29,7 @@ const InputGroup = forwardRefWithAs(function<
     variant = 'solid',
     dark,
     className,
-    borderOption = 'both',
+    borderOption = 'right',
     ...rest
   } = props;
 

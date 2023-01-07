@@ -227,10 +227,10 @@ module.exports = plugin(
       if (name.endsWith('-dark')) {
         const pureName = name.replace('-dark', '');
         addBase({
+          // [`[data-dark=true] [data-theme=${pureName}]`]: {
+          //   ...getCSSColorVariables(colors),
+          // },
           [`[data-theme=${pureName}][data-dark=true]`]: {
-            ...getCSSColorVariables(colors),
-          },
-          [`[data-dark=true] [data-theme=${pureName}]`]: {
             ...getCSSColorVariables(colors),
           },
         });

@@ -45,7 +45,6 @@ const ButtonRoot = forwardRefWithAs(function<
     children,
     ...rest
   } = props;
-  // const [enabled] = useDarkMode();
   const config = useUniversalUIConfig();
   const inputGroupContext = useInputGroupContext();
 

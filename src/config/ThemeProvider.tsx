@@ -18,7 +18,6 @@ export const ThemeProvider = forwardRefWithAs(function<
     theme = 'neutral',
     size = 'md',
     dark,
-
     ...rest
   } = props;
 
