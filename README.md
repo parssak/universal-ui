@@ -2,6 +2,8 @@
 
 Note: This project is very much a work in progress.
 
+See the docs here: https://universal-ui.vercel.app
+
 ## What is this library?
 
 A customizable Tailwind React UI library, utilizing data-attributes and TW3.2 functionality to have extremely flexible components.
