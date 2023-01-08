@@ -4,7 +4,7 @@ Note: This project is very much a work in progress.
 
 ## What is this library?
 
-A customizable Tailwind React UI library, utilizing data-attributes and TW3.2 functionality to have extrmeely flexible components.
+A customizable Tailwind React UI library, utilizing data-attributes and TW3.2 functionality to have extremely flexible components.
 
 ## Tenets
 1. All components should be easily themeable project-wide, and per-instance overrideable.
