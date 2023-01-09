@@ -7,9 +7,13 @@ function usePrefersDarkMode() {
   return useMedia(['(prefers-color-scheme: dark)'], [true], false);
 }
 
+const KEY = 'universal-ui:dark-mode';
+
 export const useDarkMode = () => {
   const prefersDarkMode = usePrefersDarkMode();
-  const [stored, setStored] = useState(false);
+  const [stored, setStored] = useState(
+    typeof window !== 'undefined' && window.localStorage.getItem(KEY) === 'true'
+  );
 
   const client = useClient();
   // const config = useUniversalUIConfig();
@@ -30,6 +34,12 @@ export const useDarkMode = () => {
 
     // return () => t && clearTimeout(t);
   }, [prefersDarkMode, client]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(KEY, stored.toString());
+    }
+  }, [stored]);
 
   return [stored] as const;
 };

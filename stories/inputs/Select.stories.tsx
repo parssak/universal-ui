@@ -12,7 +12,7 @@ export default {
 
 const Template = args => (
   <StoryLayout>
-    <Select {...args}>
+    <Select {...args} >
       <Select.Trigger />
       <Select.Panel>
         {FRUITS.map(fruit => (
