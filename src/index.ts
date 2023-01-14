@@ -4,6 +4,7 @@ export * from './components/display/Card';
 export * from './components/display/Tooltip';
 
 // Inputs
+export * from './components/inputs/Checkbox';
 export * from './components/inputs/Button';
 export * from './components/inputs/Input';
 export * from './components/inputs/InputGroup';

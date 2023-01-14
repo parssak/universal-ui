@@ -15,13 +15,7 @@ const DEFAULT_THEME_PROVIDER_TAG = 'div';
 export const ThemeProvider = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_THEME_PROVIDER_TAG
 >(props: Props<TTag> & ThemeProviderProps, ref: React.Ref<TTag>) {
-  const {
-    theme = 'neutral',
-    size = 'md',
-    dark,
-    inverted,
-    ...rest
-  } = props;
+  const { theme = 'neutral', size = 'md', dark, inverted, ...rest } = props;
 
   const [enabled] = useDarkMode();
 
@@ -41,7 +35,7 @@ export const ThemeProvider = forwardRefWithAs(function<
 
   const isDark = typeof dark !== 'undefined' ? dark : isRootEnabled();
 
-  const isDarkWithInverted = typeof inverted !== 'undefined' ?  !isDark : isDark;
+  const isDarkWithInverted = typeof inverted !== 'undefined' ? !isDark : isDark;
 
   return render({
     props: {
