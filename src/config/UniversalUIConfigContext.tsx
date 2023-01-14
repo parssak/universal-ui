@@ -31,6 +31,7 @@ export type UniversalUIConfigContextProps = {
   components: {
     // -- Inputs --
     button?: string | ((props: ButtonProps & CanBeInsideInputGroup) => string);
+    checkbox?: string | ((props: InputProps) => string);
     'input-group'?: string | ((props: InputGroupProps) => string);
     input?: string | ((props: InputProps & CanBeInsideInputGroup) => string);
     input_inner?:

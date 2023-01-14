@@ -34,6 +34,7 @@ const ICON_MAP = {
     </svg>
   ),
 };
+
 export const Icon = ({
   ...props
 }: SvgProps & {
