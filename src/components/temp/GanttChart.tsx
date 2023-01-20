@@ -19,12 +19,6 @@ interface Item {
   name: string;
 }
 
-interface LayoutNode {
-  id: string;
-  x: number;
-  width: number;
-  name: string;
-}
 
 export const GanttChart = ({
   defaultItems,
