@@ -14,5 +14,3 @@ export * from './components/inputs/Select';
 export * from './config/UniversalUIConfigContext';
 export * from './config/ThemeProvider';
 
-// Temp
-export * from './components/temp/GanttChart';
