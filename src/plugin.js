@@ -222,7 +222,7 @@ module.exports = plugin(
 
     themes.forEach(theme => {
       const { colors, name } = theme;
-     
+
       if (name.endsWith('-dark')) {
         const pureName = name.replace('-dark', '');
         addBase({
@@ -234,11 +234,11 @@ module.exports = plugin(
           },
         });
       } else {
-         addBase({
-           [`[data-theme=${name}]`]: {
-             ...getCSSColorVariables(colors),
-           },
-         });
+        addBase({
+          [`[data-theme=${name}]`]: {
+            ...getCSSColorVariables(colors),
+          },
+        });
       }
     });
 
@@ -254,11 +254,20 @@ module.exports = plugin(
     //  Add theme-specific variant for bespoke theming overrides
 
     themes.forEach(theme => {
-      addVariant(`theme-${theme.name}`, `[data-theme=${theme.name}] &`);
+      addVariant(
+        `theme-${theme.name}`,
+        `[data-theme=${theme.name}][data-anchor=true] &`
+      );
     });
 
+    addVariant(`is-dark`, `[data-dark=true][data-anchor=true] &`);
+    addVariant(`is-light`, `[data-dark=false][data-anchor=true] &`);
+
     sizes.forEach(size => {
-      addVariant(`size-${size.name}`, `[data-size=${size.name}] &`);
+      addVariant(
+        `size-${size.name}`,
+        `[data-size=${size.name}][data-anchor=true] &`
+      );
     });
   },
 
