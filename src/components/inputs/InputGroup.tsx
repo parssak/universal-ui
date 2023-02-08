@@ -39,7 +39,7 @@ const InputGroup = forwardRefWithAs(function<
     const base = 'inline-flex shadow rounded';
     const configClasses = unwrapConfigClasses('input-group', config, props);
     return [base, configClasses, className];
-  }, [config, className]);
+  });
 
   return (
     <InputGroupContext.Provider value={{ variant, borderOption }}>

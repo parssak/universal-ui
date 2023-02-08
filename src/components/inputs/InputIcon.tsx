@@ -23,7 +23,7 @@ export const InputIcon = forwardRef<
     };
 
     return [base, positionClasses[type], className];
-  }, [type]);
+  });
 
   return (
     <span className={classNames} aria-hidden="true" ref={ref}>

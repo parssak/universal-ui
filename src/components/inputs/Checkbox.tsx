@@ -29,7 +29,7 @@ const CheckboxRoot = forwardRef(
       const configClasses = unwrapConfigClasses('checkbox', config, props);
 
       return [base, sizeClass, configClasses, className];
-    }, [size, theme, dark, className, config, props]);
+    });
 
     return (
       <RadixCheckbox.Root

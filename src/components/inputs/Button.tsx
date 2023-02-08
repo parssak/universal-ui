@@ -97,7 +97,7 @@ const ButtonRoot = forwardRefWithAs(function<
       configClasses,
       className,
     ];
-  }, [size, theme, variant, className, config, inputGroupContext, props]);
+  });
 
   return render({
     props: {

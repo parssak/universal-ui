@@ -79,7 +79,7 @@ export const Text = forwardRefWithAs(function<
       configClasses,
       className,
     ];
-  }, [size, theme, variant, colorVariant, config, props]);
+  });
 
   const renderElement: React.ElementType = useMemo(() => {
     if (props.as) return props.as;

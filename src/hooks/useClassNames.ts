@@ -3,6 +3,13 @@ import { useMemo } from 'react';
 import { extendTailwindMerge } from 'tailwind-merge';
 
 export const useClassNames = (
+  fn: () => (string | undefined | false | null)[]
+) => {
+  const classes = fn();
+  return cx(classes);
+};
+
+export const useMemoizedClassNames = (
   fn: () => (string | undefined | false | null)[],
   deps: React.DependencyList
 ) => {

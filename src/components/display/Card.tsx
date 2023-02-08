@@ -30,7 +30,7 @@ const CardRoot = forwardRefWithAs(function<
     const configClasses = unwrapConfigClasses('card', config, props);
 
     return [base, configClasses, className];
-  }, [size, theme, dark, className, config, props]);
+  });
 
   return render({
     props: {
@@ -59,7 +59,7 @@ const CardContent = forwardRefWithAs(function<
     const configClasses = unwrapConfigClasses('card.content', config, props);
 
     return [base, configClasses, className];
-  }, [className, config, props]);
+  });
 
   return render({
     props: {
@@ -74,3 +74,4 @@ const CardContent = forwardRefWithAs(function<
 export const Card = Object.assign(CardRoot, {
   Content: CardContent,
 });
+

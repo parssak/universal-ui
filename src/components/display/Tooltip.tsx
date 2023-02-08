@@ -32,7 +32,7 @@ const TooltipTrigger = forwardRefWithAs(function<
     const base = 'inline-block';
     const configClasses = unwrapConfigClasses('tooltip.trigger', config, props);
     return [base, configClasses, className];
-  }, [className, config, props]);
+  });
 
   return (
     <RadixTooltip.Trigger {...rest} asChild>
@@ -78,7 +78,7 @@ const TooltipContent = (props: TooltipContentProps) => {
       'origin-[var(--radix-tooltip-content-transform-origin)] animate-scale-in';
     const configClasses = unwrapConfigClasses('tooltip.content', config, props);
     return [base, sizeClasses, animationClasses, configClasses, className];
-  }, [className, config, props]);
+  });
 
   const arrowClassNames = useClassNames(() => {
     const base = 'fill-transparent';
@@ -90,7 +90,7 @@ const TooltipContent = (props: TooltipContentProps) => {
     );
 
     return [base, configClasses, arrowClassName];
-  }, [arrowClassName, config, props]);
+  });
 
   return (
     <RadixTooltip.Portal container={container ?? body}>

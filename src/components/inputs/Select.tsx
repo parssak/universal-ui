@@ -117,17 +117,7 @@ const SelectTrigger = forwardRefWithAs(function<
       configClasses,
       className,
     ];
-  }, [
-    config,
-    inputGroupContext,
-    size,
-    theme,
-    dark,
-    variant,
-    className,
-    leadingIcon,
-    trailingIcon,
-  ]);
+  });
 
   return (
     <RadixSelect.Trigger asChild>
@@ -188,7 +178,7 @@ const SelectPanel = forwardRefWithAs(function<
     const configClasses = unwrapConfigClasses('select.panel', config, props);
 
     return [base, configClasses, className];
-  }, [config, className]);
+  });
 
   return (
     <RadixSelect.Portal container={body}>
@@ -254,7 +244,7 @@ const SelectItem = forwardRefWithAs(function<
     const configClasses = unwrapConfigClasses('select.item', config, props);
 
     return [base, focusClasses, sizeClass, configClasses, className];
-  }, []);
+  });
 
   const textClassNames = useClassNames(() => {
     const base =
@@ -267,7 +257,7 @@ const SelectItem = forwardRefWithAs(function<
     );
 
     return [base, configClasses];
-  }, []);
+  });
 
   return (
     <RadixSelect.Item {...rest} value={value} asChild>

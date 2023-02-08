@@ -89,7 +89,7 @@ export const Input = forwardRefWithAs(function<
       configClasses,
       className,
     ];
-  }, [size, theme, variant, className, config, props]);
+  });
 
   const inputClassNames = useClassNames(() => {
     const base =
@@ -101,7 +101,7 @@ export const Input = forwardRefWithAs(function<
     });
 
     return [base, configClasses];
-  }, [config, props]);
+  });
 
   return render({
     props: {
