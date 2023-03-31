@@ -12,7 +12,7 @@ export interface ThemeProviderProps {
 
 const DEFAULT_THEME_PROVIDER_TAG = 'div';
 
-export const ThemeProvider = forwardRefWithAs(function<
+export const ThemeProvider = forwardRefWithAs(function <
   TTag extends React.ElementType = typeof DEFAULT_THEME_PROVIDER_TAG
 >(props: Props<TTag> & ThemeProviderProps, ref: React.Ref<TTag>) {
   const { theme = 'neutral', size = 'md', dark, inverted, ...rest } = props;

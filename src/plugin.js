@@ -39,10 +39,10 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
     'bg-inverted': colorMap(8, 0),
     'bg-active': colorMap(2, 6),
     'bg-inverted-active': colorMap(5, 5),
-    'border-base': colorMap(4, 5),
-    'border-inverted': colorMap(5, 4),
-    'border-active': colorMap(3, 5),
-    'border-muted': colorMap(2, 8),
+    'border-base': colorMap(3, 6),
+    'border-active': colorMap(4, 5),
+    'border-inverted': colorMap(7, 3),
+    'border-muted': colorMap(2, 7),
   };
 };
 
@@ -225,6 +225,7 @@ module.exports = plugin(
 
       if (name.endsWith('-dark')) {
         const pureName = name.replace('-dark', '');
+        // TODO: This is a confusing implementation, find a better way to manage overrides
         addBase({
           [`[data-dark=true] [data-theme=${pureName}]:not([data-override=true])`]: {
             ...getCSSColorVariables(colors),

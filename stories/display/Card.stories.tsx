@@ -11,9 +11,12 @@ export default {
 
 const Template = args => (
   <StoryLayout>
-    <Card {...args} data-override='true'>
+    <Card {...args} data-override="true">
       <Card.Content>
         <div className="flex gap-size-x">
+          <div className="bg-theme-base border-theme-muted p-2 border"></div>
+          <div className="bg-theme-base border-theme-base p-2 border"></div>
+          <div className="bg-theme-base border-theme-active p-2 border"></div>
           <Button>Hello World</Button>
           <Input />
         </div>
