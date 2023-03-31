@@ -63,7 +63,7 @@ export const Input = forwardRefWithAs(function<
         override: v => {
           switch (v) {
             case 'solid':
-              return 'bg-theme-pure border-theme-base/50';
+              return 'bg-theme-pure';
             default:
               return '';
           }
