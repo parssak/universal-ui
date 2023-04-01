@@ -21,6 +21,10 @@ interface CanBeInsideInputGroup {
   inGroup?: boolean;
 }
 
+interface WithClassName {
+  className?: string;
+}
+
 interface WithThemeSizeVariant {
   theme?: Theme;
   size?: Size;
@@ -30,31 +34,54 @@ interface WithThemeSizeVariant {
 export type UniversalUIConfigContextProps = {
   components: {
     // -- Inputs --
-    button?: string | ((props: ButtonProps & CanBeInsideInputGroup) => string);
-    checkbox?: string | ((props: InputProps) => string);
-    'input-group'?: string | ((props: InputGroupProps) => string);
-    input?: string | ((props: InputProps & CanBeInsideInputGroup) => string);
+    button?:
+      | string
+      | ((
+          props: ButtonProps & CanBeInsideInputGroup & WithClassName
+        ) => string);
+    checkbox?: string | ((props: InputProps & WithClassName) => string);
+    'input-group'?:
+      | string
+      | ((props: InputGroupProps & WithClassName) => string);
+    input?:
+      | string
+      | ((props: InputProps & CanBeInsideInputGroup & WithClassName) => string);
     input_inner?:
       | string
-      | ((props: InputProps & CanBeInsideInputGroup) => string);
+      | ((props: InputProps & CanBeInsideInputGroup & WithClassName) => string);
     'select.trigger'?:
       | string
       | ((
           props: SelectTriggerProps &
             CanBeInsideInputGroup &
-            WithThemeSizeVariant
+            WithThemeSizeVariant &
+            WithClassName
         ) => string);
-    'select.panel'?: string | ((props: SelectPanelProps) => string);
-    'select.item'?: string | ((props: SelectItemProps) => string);
-    'select.item_text'?: string | ((props: SelectItemProps) => string);
+    'select.panel'?:
+      | string
+      | ((props: SelectPanelProps & WithClassName) => string);
+    'select.item'?:
+      | string
+      | ((props: SelectItemProps & WithClassName) => string);
+    'select.item_text'?:
+      | string
+      | ((props: SelectItemProps & WithClassName) => string);
 
     // -- Display --
-    text?: string | ((props: TextProps) => string);
-    card?: string | ((props: CardProps) => string);
-    'card.content'?: string | ((props: CardContentProps) => string);
-    'tooltip.trigger'?: string | ((props: TooltipTriggerProps) => string);
-    'tooltip.content'?: string | ((props: TooltipContentProps) => string);
-    'tooltip.content_arrow'?: string | ((props: TooltipContentProps) => string);
+    text?: string | ((props: TextProps & WithClassName) => string);
+    card?: string | ((props: CardProps & WithClassName) => string);
+    'card.content'?:
+      | string
+      | ((props: CardContentProps & WithClassName) => string);
+    'tooltip.trigger'?:
+      | string
+      | ((props: TooltipTriggerProps & WithClassName) => string);
+    'tooltip.content'?:
+      | string
+      | ((props: TooltipContentProps & WithClassName) => string);
+    'tooltip.content_arrow'?:
+      | string
+      | ((props: TooltipContentProps & WithClassName) => string);
   };
   providers?: {
     tooltip?: Omit<Tooltip.TooltipProviderProps, 'children'>;
