@@ -106,5 +106,38 @@ const RichTemplate = args => {
 
 export const Rich = RichTemplate.bind({});
 Rich.args = {
-  size: 'md'
+  size: 'md',
 };
+
+export const SidebarTemplate = args => (
+  <StoryLayout>
+    <div className="w-72 bg-theme-pure p-size-2y">
+      <span
+        data-size="xs"
+        className="rounded-full flex items-center w-max bg-theme-inverted text-theme-inverted px-size-4x py-size-2y leading-size font-mono text-size font-semibold tracking-wider"
+      >
+        <span className="inline-block relative -left-2 w-2 h-2 bg-theme-pure rounded-full"></span>
+        IN PROGRESS
+      </span>
+
+      <Text
+        {...args}
+        variant="h4"
+        className="flex items-center mt-size-2y gap-size-hx text-theme-active"
+      >
+        branch-name
+      </Text>
+      <Text
+        {...args}
+        variant="h6"
+        className="flex items-center mt-size-qy gap-size-hx text-theme-muted"
+      >
+        commit-hash
+      </Text>
+      <Text {...args} size="sm" className="mt-size-4y">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio,
+        architecto!
+      </Text>
+    </div>
+  </StoryLayout>
+);
