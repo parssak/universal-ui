@@ -32,7 +32,7 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
   return {
     'text-base': colorMap(8, 0),
     'text-inverted': colorMap(0, 8),
-    'text-muted': color === 'neutral' ? colorMap(5, 4) : colorMap(5, 2),
+    'text-muted': color === 'neutral' ? colorMap(5, 3) : colorMap(5, 2),
     'text-active': color === 'neutral' ? colorMap(9, 2) : colorMap(9, 3),
     'bg-pure': isDark ? colors.black : colors.white,
     'bg-base': colorMap(0, 8),
