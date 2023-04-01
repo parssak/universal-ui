@@ -29,8 +29,6 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
   const C = predefinedColors ?? colors[color];
   const colorMap = (light, dark) => C[STEPS[isDark ? dark : light]];
 
-  // console.debug(color)
-  console.log(color === 'neutral')
   return {
     'text-base': colorMap(8, 0),
     'text-inverted': colorMap(0, 8),
