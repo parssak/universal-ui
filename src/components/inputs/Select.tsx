@@ -236,7 +236,7 @@ const SelectItem = forwardRefWithAs(function<
     const base =
       'flex items-center rounded w-full text-left border border-transparent group/item-text';
     const focusClasses =
-      'focus:bg-theme-active/30 focus:outline-none data-[state=checked]:bg-theme-active/50';
+      'focus:bg-theme-base focus:outline-none data-[state=checked]:bg-theme-active';
     const sizeClass = getInputSizeCx({
       override: 'pt-size-hy pb-size-hy',
     });

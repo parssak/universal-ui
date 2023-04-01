@@ -1,5 +1,5 @@
-@import url("https://rsms.me/inter/inter.css");
-@import url("http://fonts.cdnfonts.com/css/jetbrains-mono");
+@import "https://rsms.me/inter/inter.css";
+/* @import "http://fonts.cdnfonts.com/css/jetbrains-mono"; */
 
 @tailwind base;
 @tailwind components;

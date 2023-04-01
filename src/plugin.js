@@ -24,6 +24,7 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
     '700',
     '800',
     '900',
+    '950'
   ];
 
   const C = predefinedColors ?? colors[color];
@@ -32,14 +33,15 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
   return {
     'text-base': colorMap(8, 0),
     'text-inverted': colorMap(0, 8),
-    'text-muted': color === 'neutral' ? colorMap(5, 3) : colorMap(5, 2),
-    'text-active': color === 'neutral' ? colorMap(9, 2) : colorMap(9, 3),
+    'text-muted': color === 'neutral' ? colorMap(5, 3) : colorMap(5, 4),
+    'text-active': color === 'neutral' ? colorMap(10, 2) : colorMap(10, 3),
     'bg-pure': isDark ? colors.black : colors.white,
-    'bg-base': colorMap(0, 8),
-    'bg-inverted': colorMap(8, 0),
-    'bg-active': colorMap(2, 6),
+    'bg-base': colorMap(1, 9),
+    'bg-muted': colorMap(0, 10),
+    'bg-inverted': colorMap(9, 1),
+    'bg-active': colorMap(2, 8),
     'bg-inverted-active': colorMap(5, 5),
-    'border-base': colorMap(3, 6),
+    'border-base': colorMap(3, 7),
     'border-active': colorMap(4, 5),
     'border-inverted': colorMap(7, 3),
     'border-muted': colorMap(2, 7),
@@ -287,6 +289,7 @@ module.exports = plugin(
           theme: {
             pure: 'rgb(var(--color-bg-pure) / <alpha-value>)',
             base: 'rgb(var(--color-bg-base) / <alpha-value>)',
+            muted: 'rgb(var(--color-bg-muted) / <alpha-value>)',
             inverted: 'rgb(var(--color-bg-inverted) / <alpha-value>)',
             active: 'rgb(var(--color-bg-active) / <alpha-value>)',
           },
