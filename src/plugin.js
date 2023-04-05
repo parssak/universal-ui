@@ -24,7 +24,7 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
     '700',
     '800',
     '900',
-    '950'
+    '950',
   ];
 
   const C = predefinedColors ?? colors[color];
@@ -33,8 +33,8 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
   return {
     'text-base': colorMap(8, 0),
     'text-inverted': colorMap(0, 8),
-    'text-muted': color === 'neutral' ? colorMap(5, 3) : colorMap(5, 4),
-    'text-active': color === 'neutral' ? colorMap(10, 2) : colorMap(10, 3),
+    'text-muted': colorMap(5, color === 'neutral' ? 3 : 4),
+    'text-active': colorMap(10, color === 'neutral' ? 2 : 3),
     'bg-pure': isDark ? colors.black : colors.white,
     'bg-base': colorMap(1, 9),
     'bg-muted': colorMap(0, 10),
@@ -273,7 +273,6 @@ module.exports = plugin(
       );
     });
   },
-
   {
     theme: {
       extend: {
