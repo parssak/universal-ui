@@ -76,7 +76,7 @@ const SelectTrigger = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
-      override: 'hover:bg-theme-base',
+      override: 'hover:bg-theme-base group/select-trigger',
     });
 
     const sizeClass = getInputSizeCx();
