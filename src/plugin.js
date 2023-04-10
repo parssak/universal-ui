@@ -27,14 +27,14 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
     '950',
   ];
 
-  const C = predefinedColors ?? colors[color];
-  const colorMap = (light, dark) => C[STEPS[isDark ? dark : light]];
+  const colorArray = predefinedColors ?? colors[color];
+  const colorMap = (light, dark) => colorArray[STEPS[isDark ? dark : light]];
 
   return {
     'text-base': colorMap(8, 0),
     'text-inverted': colorMap(0, 8),
-    'text-muted': colorMap(5, color === 'neutral' ? 3 : 4),
-    'text-active': colorMap(10, color === 'neutral' ? 2 : 3),
+    'text-muted': colorMap(5, 4),
+    'text-active': colorMap(10, 2),
     'bg-pure': isDark ? colors.black : colors.white,
     'bg-base': colorMap(1, 9),
     'bg-muted': colorMap(0, 10),

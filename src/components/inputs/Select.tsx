@@ -122,6 +122,7 @@ const SelectTrigger = forwardRefWithAs(function<
   return (
     <RadixSelect.Trigger asChild>
       {render({
+        // @ts-ignore
         props: {
           'data-size': size,
           'data-theme': theme,
