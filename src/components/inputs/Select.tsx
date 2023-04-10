@@ -130,7 +130,7 @@ const SelectTrigger = forwardRefWithAs(function<
           className: classNames,
           ref,
           children: (
-            <div className="flex items-center justify-between min-w-[15ch]">
+            <div className="flex items-center justify-stretch min-w-[15ch]">
               {leadingIcon && (
                 <RadixSelect.Icon asChild>
                   <InputIcon type="leading">{leadingIcon}</InputIcon>
@@ -138,13 +138,13 @@ const SelectTrigger = forwardRefWithAs(function<
               )}
               <RadixSelect.Value
                 placeholder={rest.placeholder || 'Select an option...'}
-                className="inline"
+                className="inline flex-1"
               >
                 {children}
               </RadixSelect.Value>
               {trailingIcon && (
                 <RadixSelect.Icon asChild>
-                  <InputIcon type="trailing">{trailingIcon}</InputIcon>
+                  <InputIcon type="trailing" className='ml-auto'>{trailingIcon}</InputIcon>
                 </RadixSelect.Icon>
               )}
             </div>
