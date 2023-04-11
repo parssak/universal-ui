@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useMemo } from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import { useClassNames } from '../../hooks/useClassNames';
@@ -88,6 +90,7 @@ export const Text = forwardRefWithAs(function<
   }, [props.as, variant]);
 
   return render({
+    // @ts-ignore
     props: {
       ref,
       className: classNames,

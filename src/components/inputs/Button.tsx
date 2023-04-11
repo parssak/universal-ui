@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import { useClassNames } from '../../hooks/useClassNames';
@@ -100,6 +102,7 @@ const ButtonRoot = forwardRefWithAs(function<
   });
 
   return render({
+    // @ts-ignore
     props: {
       ref,
       className: classNames,

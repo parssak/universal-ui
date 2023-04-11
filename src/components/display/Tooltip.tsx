@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import { useClassNames } from '../../hooks/useClassNames';
@@ -37,6 +39,7 @@ const TooltipTrigger = forwardRefWithAs(function<
   return (
     <RadixTooltip.Trigger {...rest} asChild>
       {render({
+        // @ts-ignore
         props: {
           ref,
           className: classNames,

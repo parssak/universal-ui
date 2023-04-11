@@ -1,10 +1,12 @@
+'use client';
+
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import {
   forwardRefWithAs,
   Props,
   render,
-  unwrapConfigClasses
+  unwrapConfigClasses,
 } from '../../core';
 import { useClassNames } from '../../hooks/useClassNames';
 import { Size, Theme } from '../../types';
@@ -17,7 +19,7 @@ export interface CardProps {
 
 const DEFAULT_CARD_TAG = 'div';
 
-const CardRoot = forwardRefWithAs(function <
+const CardRoot = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_CARD_TAG
 >(props: Props<TTag> & CardProps, ref: React.Ref<TTag>) {
   const { size, theme, dark, className, ...rest } = props;
@@ -33,6 +35,7 @@ const CardRoot = forwardRefWithAs(function <
   });
 
   return render({
+    // @ts-ignore
     props: {
       ref,
       className: classNames,
@@ -45,9 +48,9 @@ const CardRoot = forwardRefWithAs(function <
   });
 });
 
-export interface CardContentProps { }
+export interface CardContentProps {}
 
-const CardContent = forwardRefWithAs(function <
+const CardContent = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_CARD_TAG
 >(props: Props<TTag> & CardContentProps, ref: React.Ref<TTag>) {
   const { className, ...rest } = props;
@@ -62,6 +65,7 @@ const CardContent = forwardRefWithAs(function <
   });
 
   return render({
+    // @ts-ignore
     props: {
       ref,
       className: classNames,

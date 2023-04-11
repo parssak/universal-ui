@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import { useClassNames } from '../../hooks/useClassNames';
@@ -144,7 +146,9 @@ const SelectTrigger = forwardRefWithAs(function<
               </RadixSelect.Value>
               {trailingIcon && (
                 <RadixSelect.Icon asChild>
-                  <InputIcon type="trailing" className='ml-auto'>{trailingIcon}</InputIcon>
+                  <InputIcon type="trailing" className="ml-auto">
+                    {trailingIcon}
+                  </InputIcon>
                 </RadixSelect.Icon>
               )}
             </div>

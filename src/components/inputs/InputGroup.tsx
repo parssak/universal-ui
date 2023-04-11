@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import {
@@ -44,6 +46,7 @@ const InputGroup = forwardRefWithAs(function<
   return (
     <InputGroupContext.Provider value={{ variant, borderOption }}>
       {render({
+        // @ts-ignore
         props: {
           ref,
           className: classNames,
