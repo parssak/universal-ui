@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import {

@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useMemo } from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import { useClassNames } from '../../hooks/useClassNames';

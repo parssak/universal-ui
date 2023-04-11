@@ -7,11 +7,11 @@ export const getInputBaseCx = (options?: {
   override?: (() => string) | string;
 }) => {
   const base =
-    'font-medium tracking-tight rounded transition-colors duration-100 border shadow disabled:opacity-75 disabled:cursor-not-allowed';
+    'font-medium tracking-tight rounded border shadow disabled:opacity-75 disabled:cursor-not-allowed';
 
   const focusStyles = options?.removeFocus
     ? ''
-    : 'focus:outline-none ring-0 transition-all focus-within:relative focus-within:z-20 focus:ring focus-within:ring focus:ring-theme-base/50 focus-within:ring-theme-base/50';
+    : 'focus:outline-none ring-0 focus-within:relative transition-[ring] focus-within:z-20 focus:ring focus-within:ring focus:ring-theme-base/50 focus-within:ring-theme-base/50';
 
   const override = options?.override;
 

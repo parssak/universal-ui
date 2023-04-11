@@ -1,5 +1,3 @@
-'use client';
-
 // ! For internal use only, do not export from index.ts
 
 import { createContext, useContext } from 'react';
