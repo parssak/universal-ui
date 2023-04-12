@@ -25,7 +25,7 @@ const CardRoot = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base =
-      'border border-theme-muted rounded-md shadow-sm bg-theme-base/20';
+      'border border-theme-muted rounded-md shadow-sm bg-theme-muted';
 
     const configClasses = unwrapConfigClasses('card', config, props);
 
@@ -55,7 +55,7 @@ const CardContent = forwardRefWithAs(function<
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
-    const base = 'p-size-x';
+    const base = 'pl-size-x pr-size-x pt-size-x pb-size-x';
 
     const configClasses = unwrapConfigClasses('card.content', config, props);
 

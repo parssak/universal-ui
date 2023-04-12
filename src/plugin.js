@@ -263,8 +263,8 @@ module.exports = plugin(
       );
     });
 
-    addVariant(`is-dark`, `[data-dark=true][data-anchor=true] &`);
-    addVariant(`is-light`, `[data-dark=false][data-anchor=true] &`);
+    addVariant(`is-dark`, `[data-dark=true] &`);
+    addVariant(`is-light`, `[data-dark=false] &`);
 
     sizes.forEach(size => {
       addVariant(
@@ -364,9 +364,27 @@ module.exports = plugin(
               transform: 'scale(1)',
             },
           },
+          'fade-in': {
+            '0%': {
+              opacity: '0',
+            },
+            '100%': {
+              opacity: '1',
+            },
+          },
+          'fade-out': {
+            '0%': {
+              opacity: '1',
+            },
+            '100%': {
+              opacity: '0.75',
+            },
+          },
         },
         animation: {
           'scale-in': 'scale-in 0.1s ease-out',
+          'fade-in': 'fade-in 0.1s ease-out',
+          'fade-out': 'fade-out 0.1s ease-out',
         },
       },
     },
