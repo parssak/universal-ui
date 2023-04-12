@@ -50,8 +50,14 @@ const ModalRoot = forwardRefWithAs(function<
   });
 
   const overlayClassNames = useClassNames(() => {
-    const base = 'fixed inset-0 bg-black/50';
+    const base = 'fixed  inset-0 bg-black/50';
     const configClasses = unwrapConfigClasses('modal_overlay', config, props);
+    return [base, configClasses];
+  });
+
+  const rootClassNames = useClassNames(() => {
+    const base = 'fixed z-[51] inset-0 grid p-size-x place-items-center';
+    const configClasses = unwrapConfigClasses('modal_root', config, props);
     return [base, configClasses];
   });
 
@@ -63,7 +69,7 @@ const ModalRoot = forwardRefWithAs(function<
       modal={modal}
     >
       <RadixDialog.Portal container={container ?? body}>
-        <ThemeProvider className="fixed inset-0 grid p-size-x place-items-center">
+        <ThemeProvider className={rootClassNames}>
           <RadixDialog.Overlay className={overlayClassNames} />
           <RadixDialog.Content asChild>
             {/* @ts-ignore */}

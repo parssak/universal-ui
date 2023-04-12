@@ -76,6 +76,7 @@ export type UniversalUIConfigContextProps = {
       | ((props: CardContentProps & WithClassName) => string);
     modal?: string | ((props: ModalProps & WithClassName) => string);
     modal_overlay?: string | ((props: ModalProps & WithClassName) => string);
+    modal_root?: string | ((props: ModalProps & WithClassName) => string);
     'modal.content'?: string | ((props: WithClassName) => string);
     'modal.title'?: string | ((props: WithClassName) => string);
     'tooltip.trigger'?:
