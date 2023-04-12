@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import { useClassNames } from '../../hooks/useClassNames';
-import { Size, TextColorVariant, TextStyleVariant, Theme } from '../../types';
+import { Size,  TextStyleVariant, Theme } from '../../types';
 import {
   forwardRefWithAs,
   Props,
@@ -12,7 +12,6 @@ import {
 export interface TextProps {
   size?: Size;
   theme?: Theme;
-  colorVariant?: TextColorVariant;
   variant?: TextStyleVariant;
   dark?: boolean;
 }
@@ -22,27 +21,12 @@ const DEFAULT_TEXT_TAG = 'p';
 export const Text = forwardRefWithAs(function<
   TTag extends React.ElementType = typeof DEFAULT_TEXT_TAG
 >(props: Props<TTag> & TextProps, ref: React.Ref<TTag>) {
-  const {
-    size,
-    theme,
-    variant = 'p',
-    colorVariant = 'base',
-    dark,
-    className,
-    ...rest
-  } = props;
+  const { size, theme, variant = 'p', dark, className, ...rest } = props;
 
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
-    const base = '';
-
-    const colorVariants: Record<TextColorVariant, string> = {
-      base: `text-theme-base`,
-      muted: `text-theme-muted`,
-      inverted: `text-theme-inverted`,
-      active: `text-theme-active`,
-    };
+    const base = 'text-theme-base';
 
     const styleVariants: Record<TextStyleVariant, string> = {
       h1: `text-4xl   font-semibold tracking-tight`,
@@ -69,16 +53,9 @@ export const Text = forwardRefWithAs(function<
     const configClasses = unwrapConfigClasses('text', config, {
       ...props,
       variant,
-      colorVariant,
     });
 
-    return [
-      base,
-      colorVariants[colorVariant],
-      styleVariants[variant],
-      configClasses,
-      className,
-    ];
+    return [base, styleVariants[variant], configClasses, className];
   });
 
   const renderElement: React.ElementType = useMemo(() => {

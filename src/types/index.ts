@@ -1,6 +1,5 @@
 export type Variant = 'solid' | 'outline' | 'ghost' | 'inverted';
 export type GroupBorderOption = 'both' | 'left' | 'right' | 'none';
-export type TextColorVariant = 'base' | 'inverted' | 'muted' | 'active';
 export type TextStyleVariant =
   | 'h1'
   | 'h2'
@@ -11,7 +10,7 @@ export type TextStyleVariant =
   | 'p'
   | 'code'
   | 'kbd';
-  
+
 export type Theme =
   | 'neutral'
   | 'brand'
