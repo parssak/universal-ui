@@ -347,6 +347,7 @@ module.exports = plugin(
           'size-qy': 'var(--size-qy)',
           'size-line': 'var(--size-line)',
         },
+        
         fontSize: {
           size: 'var(--size-text)',
         },

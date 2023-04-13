@@ -88,6 +88,10 @@ export type UniversalUIConfigContextProps = {
     'tooltip.content_arrow'?:
       | string
       | ((props: TooltipContentProps & WithClassName) => string);
+    popover?: string | ((props: WithClassName) => string);
+    'popover.trigger'?: string | ((props: WithClassName) => string);
+    'popover.content'?: string | ((props: WithClassName) => string);
+    'popover.content_arrow'?: string | ((props: WithClassName) => string);
   };
   providers?: {
     tooltip?: Omit<Tooltip.TooltipProviderProps, 'children'>;
