@@ -55,7 +55,7 @@ const CardContent = forwardRefWithAs(function<
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
-    const base = 'pl-size-x pr-size-x pt-size-x pb-size-x';
+    const base = 'p-size-x';
 
     const configClasses = unwrapConfigClasses('card.content', config, props);
 
