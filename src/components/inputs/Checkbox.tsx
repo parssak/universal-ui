@@ -21,7 +21,7 @@ const CheckboxRoot = forwardRef(
 
     const classNames = useClassNames(() => {
       const base = getInputBaseCx({
-        override: 'bg-theme-base/40 border-theme-muted',
+        override: 'bg-theme-pure border-theme-active',
       });
 
       const sizeClass = 'w-size-2x h-size-2x';
