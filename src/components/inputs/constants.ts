@@ -58,7 +58,7 @@ export const getInputVariantCx = (
       bg-theme-base
       text-theme-base
       placeholder:text-theme-muted
-      border-theme-base
+      border-theme-muted group-data-[uui]/card:border-theme-base
       ${removeHover ? '' : 'enabled:hover:bg-theme-active'}
 
       `,

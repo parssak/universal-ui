@@ -68,14 +68,6 @@ const ButtonRoot = forwardRefWithAs(function<
       variant || groupVariantClass || 'solid',
       {
         removeHover: props.disabled,
-        // override: v => {
-        //   switch (v) {
-        //     case 'solid':
-        //       return 'border-theme-muted';
-        //     default:
-        //       return '';
-        //   }
-        // },
       }
     );
 

@@ -83,7 +83,7 @@ const SelectTrigger = forwardRefWithAs(function<
 
     const groupVariantClass = inputGroupContext?.variant;
     const variantClass = getInputVariantCx(
-      variant || groupVariantClass || 'solid',
+      variant || groupVariantClass || 'solid'
       // {
       //   override: v => {
       //     switch (v) {
@@ -251,7 +251,7 @@ const SelectItem = forwardRefWithAs(function<
 
   const textClassNames = useClassNames(() => {
     const base =
-      'text-theme-muted group-data-[state=checked]/item-text:text-theme-base';
+      'text-theme-muted group-data-[state=closed]/select-trigger:text-theme-base group-data-[state=checked]/item-text:text-theme-base';
 
     const configClasses = unwrapConfigClasses(
       'select.item_text',
