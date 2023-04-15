@@ -7,7 +7,7 @@ export const getInputBaseCx = (options?: {
   override?: (() => string) | string;
 }) => {
   const base =
-    'font-medium tracking-tight rounded border shadow disabled:opacity-75 disabled:cursor-not-allowed';
+    'font-medium tracking-tight rounded border disabled:opacity-75 disabled:cursor-not-allowed';
 
   const focusStyles = options?.removeFocus
     ? ''

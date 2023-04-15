@@ -84,16 +84,16 @@ const SelectTrigger = forwardRefWithAs(function<
     const groupVariantClass = inputGroupContext?.variant;
     const variantClass = getInputVariantCx(
       variant || groupVariantClass || 'solid',
-      {
-        override: v => {
-          switch (v) {
-            case 'solid':
-              return 'border-theme-base/20';
-            default:
-              return '';
-          }
-        },
-      }
+      // {
+      //   override: v => {
+      //     switch (v) {
+      //       case 'solid':
+      //         return 'border-theme-base/20';
+      //       default:
+      //         return '';
+      //     }
+      //   },
+      // }
     );
 
     const inGroup = inputGroupContext !== null;

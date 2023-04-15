@@ -31,20 +31,19 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
   const colorMap = (light, dark) => colorArray[STEPS[isDark ? dark : light]];
 
   return {
-    'text-base': colorMap(8, 0),
-    'text-inverted': colorMap(0, 8),
     'text-muted': colorMap(5, 4),
+    'text-base': colorMap(8, 0),
     'text-active': colorMap(10, 2),
+    'text-inverted': colorMap(0, 8),
     'bg-pure': isDark ? colors.black : colors.white,
-    'bg-base': colorMap(1, 9),
     'bg-muted': colorMap(0, 10),
-    'bg-inverted': colorMap(9, 1),
+    'bg-base': colorMap(1, 9),
     'bg-active': colorMap(2, 8),
-    'bg-inverted-active': colorMap(5, 5),
+    'bg-inverted': colorMap(9, 1),
+    'border-muted': colorMap(2, 8),
     'border-base': colorMap(3, 7),
-    'border-active': colorMap(4, 5),
+    'border-active': colorMap(4, 6),
     'border-inverted': colorMap(7, 3),
-    'border-muted': colorMap(2, 7),
   };
 };
 
