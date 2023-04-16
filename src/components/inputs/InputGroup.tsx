@@ -36,7 +36,7 @@ const InputGroup = forwardRefWithAs(function<
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
-    const base = 'inline-flex shadow rounded';
+    const base = 'inline-flex rounded';
     const configClasses = unwrapConfigClasses('input-group', config, props);
     return [base, configClasses, className];
   });

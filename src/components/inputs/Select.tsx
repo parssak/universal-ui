@@ -84,16 +84,6 @@ const SelectTrigger = forwardRefWithAs(function<
     const groupVariantClass = inputGroupContext?.variant;
     const variantClass = getInputVariantCx(
       variant || groupVariantClass || 'solid'
-      // {
-      //   override: v => {
-      //     switch (v) {
-      //       case 'solid':
-      //         return 'border-theme-base/20';
-      //       default:
-      //         return '';
-      //     }
-      //   },
-      // }
     );
 
     const inGroup = inputGroupContext !== null;
@@ -237,7 +227,7 @@ const SelectItem = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base =
-      'flex items-center rounded w-full text-left border border-transparent group/item-text';
+      'flex items-center rounded w-full text-left border border-transparent group/select-item';
     const focusClasses =
       'focus:bg-theme-base focus:outline-none data-[state=checked]:bg-theme-active';
     const sizeClass = getInputSizeCx({
@@ -251,7 +241,7 @@ const SelectItem = forwardRefWithAs(function<
 
   const textClassNames = useClassNames(() => {
     const base =
-      'text-theme-muted group-data-[state=closed]/select-trigger:text-theme-base group-data-[state=checked]/item-text:text-theme-base';
+      'text-theme-base group-data-[state=closed]/select-trigger:text-theme-base group-data-[state=checked]/select-item:font-medium';
 
     const configClasses = unwrapConfigClasses(
       'select.item_text',
