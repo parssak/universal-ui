@@ -29,16 +29,16 @@ const Template = args => (
 export const Basic = Template.bind({});
 Basic.args = {};
 
-export const LeadingIcon = args => (
+export const TrailingIcon = args => (
   <StoryLayout>
     <Select {...args}>
       <Select.Trigger
-        leadingIcon={<Icon name="chevron-down" />}
+        trailingIcon={<Icon name="chevron-down" />}
         variant="outline"
       />
       <Select.Panel>
-        {FRUITS.map(fruit => (
-          <Select.Item value={fruit} key={fruit} className="capitalize">
+        {FRUITS.map((fruit, i) => (
+          <Select.Item value={fruit} key={fruit} className="capitalize" disabled={i >= 3 && i < 6}>
             {fruit}
           </Select.Item>
         ))}

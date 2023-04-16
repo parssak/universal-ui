@@ -207,6 +207,7 @@ export interface SelectItemProps extends RadixSelect.SelectItemProps {
   theme?: Theme;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
+  textClassName?: string;
 }
 
 const DEFAULT_SELECT_ITEM_TAG = 'button';
@@ -221,13 +222,14 @@ const SelectItem = forwardRefWithAs(function<
     theme,
     leadingIcon,
     trailingIcon = <Icon name="check" />,
+    textClassName,
     ...rest
   } = props;
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
     const base =
-      'flex items-center rounded w-full text-left border border-transparent group/select-item';
+      'flex items-center rounded w-full text-left border border-transparent group/select-item data-[disabled]:opacity-50 data-[disabled]:cursor-not-allowed';
     const focusClasses =
       'focus:bg-theme-base focus:outline-none data-[state=checked]:bg-theme-active';
     const sizeClass = getInputSizeCx({
@@ -236,7 +238,13 @@ const SelectItem = forwardRefWithAs(function<
 
     const configClasses = unwrapConfigClasses('select.item', config, props);
 
-    return [base, focusClasses, sizeClass, configClasses, className];
+    return [
+      base,
+      focusClasses,
+      sizeClass,
+      configClasses,
+      className
+    ];
   });
 
   const textClassNames = useClassNames(() => {
@@ -249,7 +257,7 @@ const SelectItem = forwardRefWithAs(function<
       props
     );
 
-    return [base, configClasses];
+    return [base, configClasses, textClassName];
   });
 
   return (
