@@ -18,7 +18,7 @@ const TooltipRoot = ({ delayDuration = 150, ...rest }: TooltipProps) => {
   return <RadixTooltip.Root {...rest} delayDuration={delayDuration} />;
 };
 
-const DEFAULT_TOOLTIP_TRIGGER_TAG = 'div';
+const DEFAULT_TOOLTIP_TRIGGER_TAG = 'span';
 
 export interface TooltipTriggerProps extends RadixTooltip.TooltipTriggerProps {}
 
