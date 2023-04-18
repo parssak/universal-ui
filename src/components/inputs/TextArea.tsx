@@ -8,32 +8,26 @@ import {
   render,
   unwrapConfigClasses,
 } from '../../core';
-import {
-  getInputBaseCx,
-  getInputGroupItemCx,
-  getInputSizeCx,
-  getInputVariantCx,
-} from './constants';
-import { useInputGroupContext } from './InputGroupContext';
+import { getInputBaseCx, getInputSizeCx, getInputVariantCx } from './constants';
 import { InputIcon } from './InputIcon';
 
-export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface TextAreaProps
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
   size?: Size;
   theme?: Theme;
   variant?: Variant;
   dark?: boolean;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
-  inputRef?: React.Ref<HTMLInputElement>;
+  textareaRef?: React.Ref<HTMLTextAreaElement>;
 }
 
-const DEFAULT_INPUT_TAG = 'div';
-const INPUT_TAG = 'input';
+const DEFAULT_TEXTAREA_TAG = 'div';
+const TEXTAREA_TAG = 'textarea';
 
-export const Input = forwardRefWithAs(function<
-  TTag extends React.ElementType = typeof INPUT_TAG
->(props: Omit<Props<TTag>, 'size'> & InputProps, ref: React.Ref<TTag>) {
+export const TextArea = forwardRefWithAs(function<
+  TTag extends React.ElementType = typeof TEXTAREA_TAG
+>(props: Omit<Props<TTag>, 'size'> & TextAreaProps, ref: React.Ref<TTag>) {
   const {
     size,
     theme,
@@ -42,63 +36,59 @@ export const Input = forwardRefWithAs(function<
     className,
     leadingIcon,
     trailingIcon,
-    inputRef,
+    textareaRef: textareaRef,
     ...rest
   } = props;
   const config = useUniversalUIConfig();
-  const inputGroupContext = useInputGroupContext();
+  // const inputGroupContext = useInputGroupContext();
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
-      override:
-        'font-normal placeholder:opacity-50 truncate w-max flex items-center',
+      override: 'font-normal placeholder:opacity-50 truncate w-max flex ',
     });
 
     const sizeClass = getInputSizeCx();
 
-    const groupVariantClass = inputGroupContext?.variant;
-    const variantClass = getInputVariantCx(
-      variant || groupVariantClass || 'solid',
-      {
-        removeHover: true,
-        override: v => {
-          switch (v) {
-            case 'solid':
-              return 'bg-theme-pure border-theme-base';
-            default:
-              return '';
-          }
-        },
-      }
-    );
+    // const groupVariantClass = inputGroupContext?.variant;
+    const variantClass = getInputVariantCx(variant || 'solid', {
+      removeHover: true,
+      override: v => {
+        switch (v) {
+          case 'solid':
+            return 'bg-theme-pure border-theme-base';
+          default:
+            return '';
+        }
+      },
+    });
 
-    const inGroup = inputGroupContext !== null;
-    const groupClasses =
-      inGroup &&
-      getInputGroupItemCx({ borderOption: inputGroupContext?.borderOption });
+    // const inGroup = inputGroupContext !== null;
+    // const groupClasses =
+    //   inGroup &&
+    //   getInputGroupItemCx({ borderOption: inputGroupContext?.borderOption });
 
     const configClasses = unwrapConfigClasses('input', config, {
       ...props,
-      inGroup,
+      // inGroup,
     });
 
     return [
       base,
       sizeClass,
       variantClass,
-      groupClasses,
+      // groupClasses,
       configClasses,
       className,
     ];
   });
 
-  const inputClassNames = useClassNames(() => {
+  const textareaClassNames = useClassNames(() => {
     const base =
       'bg-transparent focus:outline-none placeholder:text-theme-muted truncate placeholder:opacity-50 w-full disabled:opacity-50 disabled:cursor-not-allowed';
 
     const configClasses = unwrapConfigClasses('input_inner', config, {
       ...props,
-      inGroup: inputGroupContext !== null,
+      // inGroup: inputGroupContext !== null,
     });
 
     return [base, configClasses];
@@ -114,13 +104,17 @@ export const Input = forwardRefWithAs(function<
       children: (
         <>
           {leadingIcon && <InputIcon type="leading">{leadingIcon}</InputIcon>}
-          <input {...rest} className={inputClassNames} ref={inputRef} />
+          <textarea
+            {...rest}
+            className={textareaClassNames}
+            ref={textareaRef}
+          />
           {trailingIcon && (
             <InputIcon type="trailing">{trailingIcon}</InputIcon>
           )}
         </>
       ),
     },
-    defaultTag: DEFAULT_INPUT_TAG,
+    defaultTag: DEFAULT_TEXTAREA_TAG,
   });
 });
