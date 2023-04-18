@@ -16,7 +16,7 @@ import {
   TooltipTriggerProps,
 } from '../components/display/Tooltip';
 import { ThemeProvider, ThemeProviderProps } from './ThemeProvider';
-import { ModalProps } from '../components/display/Modal';
+import { DialogProps } from '../components/display/Dialog';
 
 interface CanBeInsideInputGroup {
   inGroup?: boolean;
@@ -74,11 +74,11 @@ export type UniversalUIConfigContextProps = {
     'card.content'?:
       | string
       | ((props: CardContentProps & WithClassName) => string);
-    modal?: string | ((props: ModalProps & WithClassName) => string);
-    modal_overlay?: string | ((props: ModalProps & WithClassName) => string);
-    modal_root?: string | ((props: ModalProps & WithClassName) => string);
-    'modal.content'?: string | ((props: WithClassName) => string);
-    'modal.title'?: string | ((props: WithClassName) => string);
+    dialog?: string | ((props: DialogProps & WithClassName) => string);
+    dialog_overlay?: string | ((props: DialogProps & WithClassName) => string);
+    dialog_root?: string | ((props: DialogProps & WithClassName) => string);
+    'dialog.content'?: string | ((props: WithClassName) => string);
+    'dialog.title'?: string | ((props: WithClassName) => string);
     'tooltip.trigger'?:
       | string
       | ((props: TooltipTriggerProps & WithClassName) => string);

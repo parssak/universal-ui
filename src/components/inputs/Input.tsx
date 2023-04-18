@@ -17,7 +17,8 @@ import {
 import { useInputGroupContext } from './InputGroupContext';
 import { InputIcon } from './InputIcon';
 
-export interface InputProps {
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: Size;
   theme?: Theme;
   variant?: Variant;

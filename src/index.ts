@@ -1,7 +1,7 @@
 // Display
 export * from './components/display/Text';
 export * from './components/display/Card';
-export * from './components/display/Modal';
+export * from './components/display/Dialog';
 export * from './components/display/Tooltip';
 export * from './components/display/Popover';
 

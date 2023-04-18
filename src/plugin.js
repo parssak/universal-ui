@@ -28,6 +28,7 @@ const getColorsForTheme = (color, isDark = false, predefinedColors) => {
   ];
 
   const colorArray = predefinedColors ?? colors[color];
+  // console.debug(colorArray)
   const colorMap = (light, dark) => colorArray[STEPS[isDark ? dark : light]];
 
   return {
@@ -212,6 +213,7 @@ module.exports = plugin(
       );
     };
 
+    
     addBase({
       ':root': {
         ...getCSSColorVariables(defaultColors),
@@ -238,6 +240,12 @@ module.exports = plugin(
       } else {
         addBase({
           [`[data-theme=${name}]`]: {
+            ...getCSSColorVariables(colors),
+          },
+          [`[data-theme=${name}][data-dark=false]`]: {
+            ...getCSSColorVariables(colors),
+          },
+          [`[data-dark=false] [data-theme=${name}]:not([data-override=true])`]: {
             ...getCSSColorVariables(colors),
           },
         });
@@ -275,6 +283,11 @@ module.exports = plugin(
   {
     theme: {
       extend: {
+        colors: {
+          neutral: {
+            base: 'rgb(var(--color-base) / <alpha-value>)',
+          },
+        },
         textColor: {
           theme: {
             base: 'rgb(var(--color-text-base) / <alpha-value>)',
@@ -346,7 +359,6 @@ module.exports = plugin(
           'size-qy': 'var(--size-qy)',
           'size-line': 'var(--size-line)',
         },
-        
         fontSize: {
           size: 'var(--size-text)',
         },

@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import StoryLayout from '../utils/StoryLayout';
-import { Button, Input, Modal, Text } from '../../src';
+import { Button, Input, Dialog, Text } from '../../src';
 
 export default {
-  component: Modal,
+  component: Dialog,
 };
 
 const Template = args => {
   const [open, setOpen] = useState(false);
   return (
     <StoryLayout>
-      <Button onClick={() => setOpen(true)}>Open Modal</Button>
-      <Modal {...args} open={open} onOpenChange={setOpen}>
-        <Modal.Content>
-          <Modal.Title>Edit Profile</Modal.Title>
-          <Modal.Description className="mt-size-2y">
+      <Button onClick={() => setOpen(true)}>Open Dialog</Button>
+      <Dialog {...args} open={open} onOpenChange={setOpen}>
+        <Dialog.Content>
+          <Dialog.Title>Edit Profile</Dialog.Title>
+          <Dialog.Description className="mt-size-2y">
             Make changes to your profile here.
-          </Modal.Description>
+          </Dialog.Description>
 
           <label className="grid grid-cols-4 items-center gap-size-x mt-size-4y ">
             <Text size="sm" as="span" className="font-medium  text-right">
@@ -33,8 +33,8 @@ const Template = args => {
           <div className="flex justify-end mt-6">
             <Button theme="brand">Save changes</Button>
           </div>
-        </Modal.Content>
-      </Modal>
+        </Dialog.Content>
+      </Dialog>
     </StoryLayout>
   );
 };

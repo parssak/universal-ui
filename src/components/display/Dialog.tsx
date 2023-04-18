@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import { useClassNames } from '../../hooks/useClassNames';
-import * as RadixDialog from '@radix-ui/react-dialog';
+import * as RadixShenanigans from '@radix-ui/react-dialog';
 import { Card } from './Card';
 
 import {
@@ -14,18 +14,18 @@ import { useBodyElement } from '../../hooks/useBody';
 import { Size, Theme } from '../../types';
 import { ThemeProvider } from '../../config/ThemeProvider';
 
-const DEFAULT_MODAL_TAG = 'div';
+const DEFAULT_DIALOG_TAG = 'div';
 
-export interface ModalProps extends RadixDialog.DialogProps {
+export interface DialogProps extends RadixShenanigans.DialogProps {
   theme?: Theme;
   dark?: boolean;
   size?: Size;
   container?: HTMLElement | null | undefined;
 }
 
-const ModalRoot = forwardRefWithAs(function<
-  TTag extends React.ElementType = typeof DEFAULT_MODAL_TAG
->(props: Props<TTag> & ModalProps, ref: React.Ref<TTag>) {
+const DialogRoot = forwardRefWithAs(function<
+  TTag extends React.ElementType = typeof DEFAULT_DIALOG_TAG
+>(props: Props<TTag> & DialogProps, ref: React.Ref<TTag>) {
   const {
     className,
     children,
@@ -45,33 +45,33 @@ const ModalRoot = forwardRefWithAs(function<
   const classNames = useClassNames(() => {
     const base =
       'relative max-w-lg w-full transition-none shadow-md data-[state=open]:animate-fade-in';
-    const configClasses = unwrapConfigClasses('modal', config, props);
+    const configClasses = unwrapConfigClasses('dialog', config, props);
     return [base, configClasses, className];
   });
 
   const overlayClassNames = useClassNames(() => {
     const base = 'fixed  inset-0 bg-black/50';
-    const configClasses = unwrapConfigClasses('modal_overlay', config, props);
+    const configClasses = unwrapConfigClasses('dialog_overlay', config, props);
     return [base, configClasses];
   });
 
   const rootClassNames = useClassNames(() => {
     const base = 'fixed z-[51] inset-0 grid p-size-x place-items-center';
-    const configClasses = unwrapConfigClasses('modal_root', config, props);
+    const configClasses = unwrapConfigClasses('dialog_root', config, props);
     return [base, configClasses];
   });
 
   return (
-    <RadixDialog.Root
+    <RadixShenanigans.Root
       open={open}
       defaultOpen={defaultOpen}
       onOpenChange={onOpenChange}
       modal={modal}
     >
-      <RadixDialog.Portal container={container ?? body}>
+      <RadixShenanigans.Portal container={container ?? body}>
         <ThemeProvider className={rootClassNames}>
-          <RadixDialog.Overlay className={overlayClassNames} />
-          <RadixDialog.Content asChild>
+          <RadixShenanigans.Overlay className={overlayClassNames} />
+          <RadixShenanigans.Content asChild>
             {/* @ts-ignore */}
             <Card
               {...rest}
@@ -83,24 +83,24 @@ const ModalRoot = forwardRefWithAs(function<
             >
               {children}
             </Card>
-          </RadixDialog.Content>
+          </RadixShenanigans.Content>
         </ThemeProvider>
-      </RadixDialog.Portal>
-    </RadixDialog.Root>
+      </RadixShenanigans.Portal>
+    </RadixShenanigans.Root>
   );
 });
 
-const DEFAULT_MODAL_CONTENT_TAG = 'div';
+const DEFAULT_DIALOG_CONTENT_TAG = 'div';
 
-const ModalContent = forwardRefWithAs(function<
-  TTag extends React.ElementType = typeof DEFAULT_MODAL_TAG
+const DialogContent = forwardRefWithAs(function<
+  TTag extends React.ElementType = typeof DEFAULT_DIALOG_TAG
 >(props: Props<TTag>, ref: React.Ref<TTag>) {
   const { className, ...rest } = props;
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
     const base = 'pl-size-x pr-size-x pt-size-x pb-size-x';
-    const configClasses = unwrapConfigClasses('modal.content', config, props);
+    const configClasses = unwrapConfigClasses('dialog.content', config, props);
     return [base, configClasses, className];
   });
 
@@ -111,27 +111,27 @@ const ModalContent = forwardRefWithAs(function<
       className: classNames,
       ...rest,
     },
-    defaultTag: DEFAULT_MODAL_CONTENT_TAG,
+    defaultTag: DEFAULT_DIALOG_CONTENT_TAG,
   });
 });
 
-const DEFAULT_MODAL_TITLE_TAG = 'h3';
+const DEFAULT_DIALOG_TITLE_TAG = 'h3';
 
-const ModalTitle = forwardRefWithAs(function<
-  TTag extends React.ElementType = typeof DEFAULT_MODAL_CONTENT_TAG
+const DialogTitle = forwardRefWithAs(function<
+  TTag extends React.ElementType = typeof DEFAULT_DIALOG_CONTENT_TAG
 >(props: Props<TTag>, ref: React.Ref<TTag>) {
   const { className, ...rest } = props;
   const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
     const base = 'text-theme-base text-xl font-medium tracking-tight';
-    const configClasses = unwrapConfigClasses('modal.title', config, props);
+    const configClasses = unwrapConfigClasses('dialog.title', config, props);
 
     return [base, configClasses, className];
   });
 
   return (
-    <RadixDialog.Title asChild>
+    <RadixShenanigans.Title asChild>
       {render({
         // @ts-ignore
         props: {
@@ -139,16 +139,16 @@ const ModalTitle = forwardRefWithAs(function<
           className: classNames,
           ...rest,
         },
-        defaultTag: DEFAULT_MODAL_TITLE_TAG,
+        defaultTag: DEFAULT_DIALOG_TITLE_TAG,
       })}
-    </RadixDialog.Title>
+    </RadixShenanigans.Title>
   );
 });
 
-const DEFAULT_MODAL_DESCRIPTION_TAG = 'p';
+const DEFAULT_DIALOG_DESCRIPTION_TAG = 'p';
 
-const ModalDescription = forwardRefWithAs(function<
-  TTag extends React.ElementType = typeof DEFAULT_MODAL_CONTENT_TAG
+const DialogDescription = forwardRefWithAs(function<
+  TTag extends React.ElementType = typeof DEFAULT_DIALOG_CONTENT_TAG
 >(props: Props<TTag>, ref: React.Ref<TTag>) {
   const { className, ...rest } = props;
 
@@ -158,7 +158,7 @@ const ModalDescription = forwardRefWithAs(function<
   });
 
   return (
-    <RadixDialog.Description asChild>
+    <RadixShenanigans.Description asChild>
       {render({
         // @ts-ignore
         props: {
@@ -166,15 +166,15 @@ const ModalDescription = forwardRefWithAs(function<
           className: classNames,
           ...rest,
         },
-        defaultTag: DEFAULT_MODAL_DESCRIPTION_TAG,
+        defaultTag: DEFAULT_DIALOG_DESCRIPTION_TAG,
       })}
-    </RadixDialog.Description>
+    </RadixShenanigans.Description>
   );
 });
 
-export const Modal = Object.assign(ModalRoot, {
-  Root: ModalRoot,
-  Content: ModalContent,
-  Title: ModalTitle,
-  Description: ModalDescription,
+export const Dialog = Object.assign(DialogRoot, {
+  Root: DialogRoot,
+  Content: DialogContent,
+  Title: DialogTitle,
+  Description: DialogDescription,
 });
