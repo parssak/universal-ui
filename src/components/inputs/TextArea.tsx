@@ -47,7 +47,9 @@ export const TextArea = forwardRefWithAs(function<
       override: 'font-normal placeholder:opacity-50 truncate w-max flex ',
     });
 
-    const sizeClass = getInputSizeCx();
+    const sizeClass = getInputSizeCx({
+      override: 'pl-0 pr-0 pt-0 pb-0',
+    });
 
     // const groupVariantClass = inputGroupContext?.variant;
     const variantClass = getInputVariantCx(variant || 'solid', {
@@ -86,12 +88,16 @@ export const TextArea = forwardRefWithAs(function<
     const base =
       'bg-transparent focus:outline-none placeholder:text-theme-muted truncate placeholder:opacity-50 w-full disabled:opacity-50 disabled:cursor-not-allowed';
 
+    const sizeClasses = ` ${!!leadingIcon ? '' : 'pl-size-x'} ${
+      !!trailingIcon ? '' : 'pr-size-x'
+    } pt-size-y pb-size-y `;
+
     const configClasses = unwrapConfigClasses('input_inner', config, {
       ...props,
       // inGroup: inputGroupContext !== null,
     });
 
-    return [base, configClasses];
+    return [base, sizeClasses, configClasses];
   });
 
   return render({
@@ -103,14 +109,23 @@ export const TextArea = forwardRefWithAs(function<
       'data-dark': dark,
       children: (
         <>
-          {leadingIcon && <InputIcon type="leading">{leadingIcon}</InputIcon>}
+          {leadingIcon && (
+            <InputIcon
+              className="ml-size-x mt-size-y -left-size-hx"
+              type="leading"
+            >
+              {leadingIcon}
+            </InputIcon>
+          )}
           <textarea
             {...rest}
             className={textareaClassNames}
             ref={textareaRef}
           />
           {trailingIcon && (
-            <InputIcon type="trailing">{trailingIcon}</InputIcon>
+            <InputIcon type="trailing"
+              className="mr-size-x mt-size-y -right-size-hx"
+            >{trailingIcon}</InputIcon>
           )}
         </>
       ),
