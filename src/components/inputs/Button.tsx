@@ -18,7 +18,8 @@ import { useInputGroupContext } from './InputGroupContext';
 import { InputIcon } from './InputIcon';
 import { InputGroup } from './InputGroup';
 
-export interface ButtonProps {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size;
   theme?: Theme;
   variant?: Variant;
