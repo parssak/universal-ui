@@ -76,14 +76,17 @@ const SelectTrigger = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
-      override: 'bg-theme-pure hover:bg-theme-base group/select-trigger',
+      override: 'hover:bg-theme-base group/select-trigger',
     });
 
     const sizeClass = getInputSizeCx();
 
     const groupVariantClass = inputGroupContext?.variant;
     const variantClass = getInputVariantCx(
-      variant || groupVariantClass || 'solid'
+      variant || groupVariantClass || 'solid',
+      {
+        override: _ => 'bg-theme-pure',
+      }
     );
 
     const inGroup = inputGroupContext !== null;
@@ -238,13 +241,7 @@ const SelectItem = forwardRefWithAs(function<
 
     const configClasses = unwrapConfigClasses('select.item', config, props);
 
-    return [
-      base,
-      focusClasses,
-      sizeClass,
-      configClasses,
-      className
-    ];
+    return [base, focusClasses, sizeClass, configClasses, className];
   });
 
   const textClassNames = useClassNames(() => {
