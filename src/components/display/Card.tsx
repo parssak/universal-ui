@@ -25,7 +25,7 @@ const CardRoot = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base =
-      'border border-theme-base rounded-md shadow-sm bg-theme-muted group/card';
+      'border border-theme-base rounded-md shadow-sm bg-theme-pure group/card';
 
     const configClasses = unwrapConfigClasses('card', config, props);
 
