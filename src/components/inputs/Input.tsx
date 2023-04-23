@@ -1,6 +1,6 @@
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
-import { useClassNames } from '../../hooks/useClassNames';
+import { useClassNames, useMounted } from '../../hooks/useClassNames';
 import { Size, Theme, Variant } from '../../types';
 import {
   forwardRefWithAs,
@@ -47,11 +47,13 @@ export const Input = forwardRefWithAs(function<
   } = props;
   const config = useUniversalUIConfig();
   const inputGroupContext = useInputGroupContext();
+  const mounted = useMounted();
 
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
       override:
         'font-normal placeholder:opacity-50 truncate w-max flex items-center',
+      mounted,
     });
 
     const sizeClass = getInputSizeCx();

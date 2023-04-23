@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
-import { useClassNames } from '../../hooks/useClassNames';
+import { useClassNames, useMounted } from '../../hooks/useClassNames';
 import { Size, Theme } from '../../types';
 import { unwrapConfigClasses } from '../../core';
 import { getInputBaseCx } from './constants';
@@ -18,10 +18,12 @@ const CheckboxRoot = forwardRef(
   (props: CheckboxProps, ref: React.Ref<HTMLButtonElement>) => {
     const { size, theme, dark, className, ...rest } = props;
     const config = useUniversalUIConfig();
-
+    const mounted = useMounted();
+    
     const classNames = useClassNames(() => {
       const base = getInputBaseCx({
         override: 'bg-theme-pure border-theme-active',
+        mounted,
       });
 
       const sizeClass = 'w-size-2x h-size-2x';

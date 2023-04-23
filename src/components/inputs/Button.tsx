@@ -1,6 +1,6 @@
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
-import { useClassNames } from '../../hooks/useClassNames';
+import { useClassNames, useMounted } from '../../hooks/useClassNames';
 import { Size, Theme, Variant } from '../../types';
 import {
   forwardRefWithAs,
@@ -48,10 +48,12 @@ const ButtonRoot = forwardRefWithAs(function<
   } = props;
   const config = useUniversalUIConfig();
   const inputGroupContext = useInputGroupContext();
-
+  
+  const mounted = useMounted();
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
       override: 'select-none inline-flex items-center justify-center',
+      mounted,
     });
 
     const sizeClass = getInputSizeCx({

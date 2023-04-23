@@ -80,6 +80,7 @@ const DialogRoot = forwardRefWithAs(function<
               theme={theme}
               size={size}
               dark={dark}
+              data-modal={modal}
             >
               {children}
             </Card>

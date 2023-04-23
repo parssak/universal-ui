@@ -1,6 +1,6 @@
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
-import { useClassNames } from '../../hooks/useClassNames';
+import { useClassNames, useMounted } from '../../hooks/useClassNames';
 import { Size, Theme, Variant } from '../../types';
 import {
   forwardRefWithAs,
@@ -74,9 +74,12 @@ const SelectTrigger = forwardRefWithAs(function<
   const inputGroupContext = useInputGroupContext();
   const { size, theme, dark } = React.useContext(SelectContext);
 
+  const mounted = useMounted();
+
   const classNames = useClassNames(() => {
     const base = getInputBaseCx({
       override: 'hover:bg-theme-base group/select-trigger',
+      mounted,
     });
 
     const sizeClass = getInputSizeCx();
@@ -170,7 +173,7 @@ const SelectPanel = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base =
-      'bg-theme-pure px-size-qx py-size-qx rounded border border-theme-base shadow-md';
+      'bg-theme-pure px-size-qx py-size-qx rounded border border-theme-base shadow-md z-[51]';
     const configClasses = unwrapConfigClasses('select.panel', config, props);
 
     return [base, configClasses, className];

@@ -73,7 +73,7 @@ const PopoverContent = (props: PopoverContentProps) => {
 
   const classNames = useClassNames(() => {
     const base =
-      'bg-theme-base border border-theme-muted rounded text-theme-base shadow-sm';
+      'bg-theme-base border border-theme-muted rounded text-theme-base shadow-sm z-[51]';
     const sizeClasses = 'pl-size-x pr-size-x pb-size-x pt-size-x text-size';
     const animationClasses =
       'origin-[var(--radix-Popover-content-transform-origin)] animate-fade-in';

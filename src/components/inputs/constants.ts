@@ -5,9 +5,14 @@ import { GroupBorderOption, Variant } from '../../types';
 export const getInputBaseCx = (options?: {
   removeFocus?: boolean;
   override?: (() => string) | string;
+  mounted?: boolean;
 }) => {
   const base =
-    'font-medium enabled:hover:transition-colors enabled:focus:transition-colors tracking-tight rounded border disabled:opacity-75 disabled:cursor-not-allowed';
+    'font-medium tracking-tight rounded border disabled:opacity-75 disabled:cursor-not-allowed';
+  
+  const mountedStyles = options?.mounted
+    ? 'enabled:hover:transition-colors enabled:focus:transition-colors'
+    : '';
 
   const focusStyles = options?.removeFocus
     ? ''
@@ -23,7 +28,7 @@ export const getInputBaseCx = (options?: {
     overrideStyles = override;
   }
 
-  return [base, focusStyles, overrideStyles].join(' ');
+  return [base, mountedStyles, focusStyles, overrideStyles].join(' ');
 };
 
 export const getInputSizeCx = (options?: {

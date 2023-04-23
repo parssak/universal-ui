@@ -73,7 +73,7 @@ const TooltipContent = (props: TooltipContentProps) => {
 
   const classNames = useClassNames(() => {
     const base =
-      'bg-theme-base border border-theme-muted rounded text-theme-base shadow-sm';
+      'bg-theme-base border border-theme-muted rounded text-theme-base shadow-sm z-[51]';
     const sizeClasses = 'px-size-x py-size-qy text-size';
     const animationClasses =
       'origin-[var(--radix-tooltip-content-transform-origin)] animate-scale-in';
