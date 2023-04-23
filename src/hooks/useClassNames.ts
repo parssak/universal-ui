@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo,  } from 'react';
 
 import { extendTailwindMerge } from 'tailwind-merge';
 
@@ -10,11 +10,11 @@ export const useClassNames = (
 };
 
 export const useMounted = () => { 
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  return mounted;
+  // const [mounted, setMounted] = useState(false);
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
+  return true;
 }
 
 export const useMemoizedClassNames = (

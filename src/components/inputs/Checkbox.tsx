@@ -26,7 +26,7 @@ const CheckboxRoot = forwardRef(
         mounted,
       });
 
-      const sizeClass = 'w-size-2x h-size-2x';
+      const sizeClass = 'w-[calc(var(--size-text)+var(--size-qx))] h-[calc(var(--size-text)+var(--size-qx))] flex-shrink-0';
 
       const configClasses = unwrapConfigClasses('checkbox', config, props);
 

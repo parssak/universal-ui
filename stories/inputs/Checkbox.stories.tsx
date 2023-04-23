@@ -11,10 +11,10 @@ export default {
 
 const Template = args => (
   <StoryLayout>
-    <div className="flex items-center gap-size-hx">
+    <label className="flex items-center gap-[calc(var(--size-text)/2)]" data-size={args.size}>
       <Checkbox {...args} />
       <Text>This is a checkbox</Text>
-    </div>
+    </label>
   </StoryLayout>
 );
 

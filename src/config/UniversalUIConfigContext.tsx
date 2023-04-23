@@ -17,6 +17,7 @@ import {
 } from '../components/display/Tooltip';
 import { ThemeProvider, ThemeProviderProps } from './ThemeProvider';
 import { DialogProps } from '../components/display/Dialog';
+import { InputIconProps } from '../components/inputs/InputIcon';
 
 interface CanBeInsideInputGroup {
   inGroup?: boolean;
@@ -58,6 +59,7 @@ export type UniversalUIConfigContextProps = {
             WithThemeSizeVariant &
             WithClassName
         ) => string);
+    'input-icon'?: string | ((props: InputIconProps & WithClassName) => string);
     'select.panel'?:
       | string
       | ((props: SelectPanelProps & WithClassName) => string);

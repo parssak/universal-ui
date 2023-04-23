@@ -3,16 +3,19 @@
 
 import React, { forwardRef } from 'react';
 import { useClassNames } from '../../hooks/useClassNames';
+import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
+import { unwrapConfigClasses } from '../../core';
+
+export interface InputIconProps {
+  type?: 'center' | 'leading' | 'trailing';
+}
 
 export const InputIcon = forwardRef<
   HTMLSpanElement,
-  {
-    children: React.ReactNode;
-    className?: string;
-    type?: 'center' | 'leading' | 'trailing';
-  }
+  InputIconProps & React.HTMLAttributes<HTMLSpanElement>
 >((props, ref) => {
   const { children, className, type = 'center' } = props;
+  const config = useUniversalUIConfig();
 
   const classNames = useClassNames(() => {
     const base =
@@ -24,7 +27,9 @@ export const InputIcon = forwardRef<
       trailing: 'relative -right-size-qx ',
     };
 
-    return [base, positionClasses[type], className];
+    const configClasses = unwrapConfigClasses('input-icon', config, props);
+
+    return [base, positionClasses[type], configClasses, className];
   });
 
   return (

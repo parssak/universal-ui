@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import StoryLayout from '../utils/StoryLayout';
-import { Button, Input, Dialog, Text } from '../../src';
+import { Button, Input, Dialog, Text, Select } from '../../src';
 
 export default {
   component: Dialog,
@@ -30,6 +30,16 @@ const Template = args => {
             </Text>
             <Input className="col-span-3 w-full" />
           </label>
+          <div className="my-auto py-size-x">
+            <Select>
+              <Select.Trigger className="w-full" />
+              <Select.Panel>
+                <Select.Item value="everything">Everything</Select.Item>
+                <Select.Item value="some-things">Some things</Select.Item>
+                <Select.Item value="nothing">Nothing</Select.Item>
+              </Select.Panel>
+            </Select>
+          </div>
           <div className="flex justify-end mt-6">
             <Button theme="brand">Save changes</Button>
           </div>
