@@ -1,7 +1,7 @@
 import React from 'react';
 import { useUniversalUIConfig } from '../../config/UniversalUIConfigContext';
 import { useClassNames } from '../../hooks/useClassNames';
-import * as RadixShenanigans from '@radix-ui/react-dialog';
+import * as RadixDialog from '@radix-ui/react-dialog';
 import { Card } from './Card';
 
 import {
@@ -16,7 +16,7 @@ import { ThemeProvider } from '../../config/ThemeProvider';
 
 const DEFAULT_DIALOG_TAG = 'div';
 
-export interface DialogProps extends RadixShenanigans.DialogProps {
+export interface DialogProps extends RadixDialog.DialogProps {
   theme?: Theme;
   dark?: boolean;
   size?: Size;
@@ -62,16 +62,16 @@ const DialogRoot = forwardRefWithAs(function<
   });
 
   return (
-    <RadixShenanigans.Root
+    <RadixDialog.Root
       open={open}
       defaultOpen={defaultOpen}
       onOpenChange={onOpenChange}
       modal={modal}
     >
-      <RadixShenanigans.Portal container={container ?? body}>
+      <RadixDialog.Portal container={container ?? body}>
         <ThemeProvider className={rootClassNames}>
-          <RadixShenanigans.Overlay className={overlayClassNames} />
-          <RadixShenanigans.Content asChild>
+          <RadixDialog.Overlay className={overlayClassNames} />
+          <RadixDialog.Content asChild>
             {/* @ts-ignore */}
             <Card
               {...rest}
@@ -84,10 +84,10 @@ const DialogRoot = forwardRefWithAs(function<
             >
               {children}
             </Card>
-          </RadixShenanigans.Content>
+          </RadixDialog.Content>
         </ThemeProvider>
-      </RadixShenanigans.Portal>
-    </RadixShenanigans.Root>
+      </RadixDialog.Portal>
+    </RadixDialog.Root>
   );
 });
 
@@ -132,7 +132,7 @@ const DialogTitle = forwardRefWithAs(function<
   });
 
   return (
-    <RadixShenanigans.Title asChild>
+    <RadixDialog.Title asChild>
       {render({
         // @ts-ignore
         props: {
@@ -142,7 +142,7 @@ const DialogTitle = forwardRefWithAs(function<
         },
         defaultTag: DEFAULT_DIALOG_TITLE_TAG,
       })}
-    </RadixShenanigans.Title>
+    </RadixDialog.Title>
   );
 });
 
@@ -159,7 +159,7 @@ const DialogDescription = forwardRefWithAs(function<
   });
 
   return (
-    <RadixShenanigans.Description asChild>
+    <RadixDialog.Description asChild>
       {render({
         // @ts-ignore
         props: {
@@ -169,7 +169,7 @@ const DialogDescription = forwardRefWithAs(function<
         },
         defaultTag: DEFAULT_DIALOG_DESCRIPTION_TAG,
       })}
-    </RadixShenanigans.Description>
+    </RadixDialog.Description>
   );
 });
 

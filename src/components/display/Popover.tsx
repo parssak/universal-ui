@@ -18,12 +18,12 @@ const PopoverRoot = ({ ...rest }: PopoverProps) => {
   return <RadixPopover.Root {...rest} />;
 };
 
-const DEFAULT_Popover_TRIGGER_TAG = 'div';
+const DEFAULT_POPOVER_TRIGGER_TAG = 'div';
 
 export interface PopoverTriggerProps extends RadixPopover.PopoverTriggerProps {}
 
 const PopoverTrigger = forwardRefWithAs(function<
-  TTag extends React.ElementType = typeof DEFAULT_Popover_TRIGGER_TAG
+  TTag extends React.ElementType = typeof DEFAULT_POPOVER_TRIGGER_TAG
 >(props: Props<TTag> & PopoverProps, ref: React.Ref<TTag>) {
   const { className, ...rest } = props;
   const config = useUniversalUIConfig();
@@ -35,7 +35,7 @@ const PopoverTrigger = forwardRefWithAs(function<
   });
 
   return (
-    <RadixPopover.Trigger {...rest} asChild>
+    <RadixPopover.Trigger asChild>
       {render({
         // @ts-ignore
         props: {
@@ -43,7 +43,7 @@ const PopoverTrigger = forwardRefWithAs(function<
           className: classNames,
           ...rest,
         },
-        defaultTag: DEFAULT_Popover_TRIGGER_TAG,
+        defaultTag: DEFAULT_POPOVER_TRIGGER_TAG,
       })}
     </RadixPopover.Trigger>
   );

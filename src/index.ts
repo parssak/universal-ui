@@ -1,9 +1,10 @@
 // Display
-export * from './components/display/Text';
 export * from './components/display/Card';
 export * from './components/display/Dialog';
-export * from './components/display/Tooltip';
 export * from './components/display/Popover';
+export * from './components/display/Tabs';
+export * from './components/display/Text';
+export * from './components/display/Tooltip';
 
 
 // Inputs

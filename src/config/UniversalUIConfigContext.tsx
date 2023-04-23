@@ -18,6 +18,15 @@ import {
 import { ThemeProvider, ThemeProviderProps } from './ThemeProvider';
 import { DialogProps } from '../components/display/Dialog';
 import { InputIconProps } from '../components/inputs/InputIcon';
+import {
+  PopoverContentProps,
+  PopoverTriggerProps,
+} from '../components/display/Popover';
+import {
+  TabsContentProps,
+  TabsListProps,
+  TabsTriggerProps,
+} from '../components/display/Tabs';
 
 interface CanBeInsideInputGroup {
   inGroup?: boolean;
@@ -71,7 +80,6 @@ export type UniversalUIConfigContextProps = {
       | ((props: SelectItemProps & WithClassName) => string);
 
     // -- Display --
-    text?: string | ((props: TextProps & WithClassName) => string);
     card?: string | ((props: CardProps & WithClassName) => string);
     'card.content'?:
       | string
@@ -79,8 +87,26 @@ export type UniversalUIConfigContextProps = {
     dialog?: string | ((props: DialogProps & WithClassName) => string);
     dialog_overlay?: string | ((props: DialogProps & WithClassName) => string);
     dialog_root?: string | ((props: DialogProps & WithClassName) => string);
+    // popover?: string | ((props: WithClassName) => string);
+    'popover.trigger'?:
+      | string
+      | ((props: PopoverTriggerProps & WithClassName) => string);
+    'popover.content'?:
+      | string
+      | ((props: PopoverContentProps & WithClassName) => string);
+    'popover.content_arrow'?:
+      | string
+      | ((props: PopoverContentProps & WithClassName) => string);
     'dialog.content'?: string | ((props: WithClassName) => string);
     'dialog.title'?: string | ((props: WithClassName) => string);
+    'tabs.list'?: string | ((props: TabsListProps & WithClassName) => string);
+    'tabs.trigger'?:
+      | string
+      | ((props: TabsTriggerProps & WithClassName) => string);
+    'tabs.content'?:
+      | string
+      | ((props: TabsContentProps & WithClassName) => string);
+    text?: string | ((props: TextProps & WithClassName) => string);
     'tooltip.trigger'?:
       | string
       | ((props: TooltipTriggerProps & WithClassName) => string);
@@ -90,10 +116,6 @@ export type UniversalUIConfigContextProps = {
     'tooltip.content_arrow'?:
       | string
       | ((props: TooltipContentProps & WithClassName) => string);
-    popover?: string | ((props: WithClassName) => string);
-    'popover.trigger'?: string | ((props: WithClassName) => string);
-    'popover.content'?: string | ((props: WithClassName) => string);
-    'popover.content_arrow'?: string | ((props: WithClassName) => string);
   };
   providers?: {
     tooltip?: Omit<Tooltip.TooltipProviderProps, 'children'>;

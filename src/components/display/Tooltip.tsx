@@ -35,7 +35,7 @@ const TooltipTrigger = forwardRefWithAs(function<
   });
 
   return (
-    <RadixTooltip.Trigger {...rest} asChild>
+    <RadixTooltip.Trigger asChild>
       {render({
         // @ts-ignore
         props: {
