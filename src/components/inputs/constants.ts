@@ -12,7 +12,7 @@ export const getInputBaseCx = (options?: {
   
   const mountedStyles = options?.mounted
     ? 'enabled:hover:transition-colors enabled:focus:transition-colors'
-    : '';
+    : 'dark:invisible';
 
   const focusStyles = options?.removeFocus
     ? ''
