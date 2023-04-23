@@ -11,8 +11,8 @@ export const getInputBaseCx = (options?: {
     'font-medium tracking-tight rounded border disabled:opacity-75 disabled:cursor-not-allowed';
   
   const mountedStyles = options?.mounted
-    ? 'enabled:hover:transition-colors enabled:focus:transition-colors'
-    : 'dark:invisible';
+    ? 'enabled:hover:transition-colors'
+    : '';
 
   const focusStyles = options?.removeFocus
     ? ''
