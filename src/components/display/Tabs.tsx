@@ -58,7 +58,7 @@ const TabsTrigger = forwardRefWithAs(function<
 
   const classNames = useClassNames(() => {
     const base =
-      'inline-block px-size-x py-size-y text-size leading-size font-medium text-theme-muted group/tabs-trigger border-b-2 border-transparent';
+      'inline-block px-size-x py-size-x text-size leading-size font-medium text-theme-muted group/tabs-trigger border-b-2 border-transparent';
     const activeClasses =
       'data-[state=active]:border-current data-[state=active]:text-theme-active';
     const inactiveClasses = 'data-[state=inactive]:hover:text-theme-active';
